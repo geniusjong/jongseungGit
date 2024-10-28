@@ -1,0 +1,30 @@
+2024.10.28 at 15:32:49 KST ERROR com.maeil.rtm.App2 99 gmailSend - Failed to send email. javax.mail.MessagingException: Could not connect to SMTP host: smtp.gmail.com, port: 465, response: -1
+	at com.sun.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:1949) ~[mail-1.4.7.jar:1.4.7]
+	at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:654) ~[mail-1.4.7.jar:1.4.7]
+	at javax.mail.Service.connect(Service.java:317) ~[mail-1.4.7.jar:1.4.7]
+	at javax.mail.Service.connect(Service.java:176) ~[mail-1.4.7.jar:1.4.7]
+	at javax.mail.Service.connect(Service.java:125) ~[mail-1.4.7.jar:1.4.7]
+	at javax.mail.Transport.send0(Transport.java:194) ~[mail-1.4.7.jar:1.4.7]
+	at javax.mail.Transport.send(Transport.java:124) ~[mail-1.4.7.jar:1.4.7]
+	at com.maeil.rtm.App2.gmailSend(App2.java:96) [bin/:?]
+	at com.maeil.rtm.App2$TmRealTimeMonitorTask.checkDeliAndSendEmail(App2.java:58) [bin/:?]
+	at com.maeil.rtm.App2$TmRealTimeMonitorTask.run(App2.java:45) [bin/:?]
+	at java.util.TimerThread.mainLoop(Timer.java:555) [?:1.7.0_80]
+	at java.util.TimerThread.run(Timer.java:505) [?:1.7.0_80]
+
+2024.10.28 at 15:32:49 KST INFO  com.maeil.rtm.App2$TmRealTimeMonitorTask 59 checkDeliAndSendEmail - Email sent successfully: [선적정보] 선적정보 20000건 초과! 확인 요망
+
+ DELI : 56
+2024.10.28 at 15:37:03 KST ERROR com.maeil.rtm.App2 103 gmailSend - Failed to send email. javax.mail.MessagingException: Could not connect to SMTP host: smtp.gmail.com, port: 465, response: -1
+	at com.sun.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:1949) ~[mail-1.4.7.jar:1.4.7]
+	at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:654) ~[mail-1.4.7.jar:1.4.7]
+	at javax.mail.Service.connect(Service.java:317) ~[mail-1.4.7.jar:1.4.7]
+	at javax.mail.Service.connect(Service.java:176) ~[mail-1.4.7.jar:1.4.7]
+	at javax.mail.Service.connect(Service.java:125) ~[mail-1.4.7.jar:1.4.7]
+	at javax.mail.Transport.send0(Transport.java:194) ~[mail-1.4.7.jar:1.4.7]
+	at javax.mail.Transport.send(Transport.java:124) ~[mail-1.4.7.jar:1.4.7]
+	at com.maeil.rtm.App2.gmailSend(App2.java:100) [bin/:?]
+	at com.maeil.rtm.App2.startRealTimeMonitorTask(App2.java:40) [bin/:?]
+	at com.maeil.rtm.App2.main(App2.java:35) [bin/:?]
+
+2024.10.28 at 15:37:03 KST INFO  com.maeil.rtm.App2 41 startRealTimeMonitorTask - Monitoring started.

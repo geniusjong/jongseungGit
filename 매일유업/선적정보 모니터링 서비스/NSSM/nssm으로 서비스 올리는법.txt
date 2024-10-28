@@ -1,0 +1,12 @@
+2024-10-28 CVO 선적정보 모니터링 서비스 테스트 완료 및 로컬에 적용 완료
+1. Windows에서 명령 프롬프트를 관리자 권한으로 실행
+2. cd C:\NSSM\nssm-2.24\win64 를 통해 nssm.exe가 깔린곳으로 이동
+3. 명령어를 입력해 서비스로 등록 nssm install rtmDELIService "C:\NSSM\rtmDELItest\rtmCVO.bat"
+4. nssm start rtmDELIService로 서비스 실행 및 확인
+5. bat 파일 
+chcp 949 
+java -jar C:\NSSM\rtmDELItest\rtmDELI.jar
+
+chcp 949 : (코드 페이지(Code Page)를 949로 설정하는 명령입니다. 949는 한국어 문자 인코딩(CP949, 즉, Windows-949, 확장 EUC-KR))
+java -jar C:\NSSM\rtmDELItest\rtmDELI.jar : jar 위치
+jar는 이클립스에서 export로 runnable jar file로 받으면 됨

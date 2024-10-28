@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>	
+
+	<settings>
+		<setting name="defaultStatementTimeout" value="${jdbc.defaultStatementTimeout}" />
+	</settings>
+   	
+	<environments default="development">
+		<environment id="development">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="${jdbc.driver}" />
+				<property name="url" value="${jdbc.url}" />
+				<property name="username" value="${jdbc.username}" />
+				<property name="password" value="${jdbc.password}" />
+				<property name="poolPingEnabled" value="${jdbc.poolPingEnabled}" />
+				<property name="poolPingQuery" value="${jdbc.poolPingQuery}" />
+				
+				<property name="poolMaximumCheckoutTime" value="${jdbc.poolMaximumCheckoutTime}" />
+ 				<property name="poolPingConnectionsNotUsedFor" value="${jdbc.poolPingConnectionsNotUsedFor}" />
+				<property name="poolTimeToWait" value="${jdbc.poolTimeToWait}" /> 
+								
+			</dataSource>
+		</environment>
+	</environments>
+	
+	<mappers>
+		<!-- <mapper resource="mapper/ServiceMapper.xml" /> -->
+		<mapper resource="com/maeil/rtm/mapper/ServiceMapper.xml" />
+	</mappers>
+</configuration>

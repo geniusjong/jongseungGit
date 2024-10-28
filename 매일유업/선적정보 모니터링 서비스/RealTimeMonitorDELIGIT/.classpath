@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="properties"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="lib" path="libs/commons-codec-1.10.jar"/>
+	<classpathentry kind="lib" path="libs/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="libs/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="libs/guava-15.0.jar"/>
+	<classpathentry kind="lib" path="libs/httpclient-4.5.6.jar"/>
+	<classpathentry kind="lib" path="libs/httpcore-4.4.10.jar"/>
+	<classpathentry kind="lib" path="libs/joda-time-2.3.jar"/>
+	<classpathentry kind="lib" path="libs/log4j-api-2.11.0.jar" sourcepath="C:/Users/유창수/AppData/Local/Temp/.org.sf.feeling.decompiler1654748296651/source/log4j-api-2.11.0-sources.jar"/>
+	<classpathentry kind="lib" path="libs/log4j-core-2.11.0.jar"/>
+	<classpathentry kind="lib" path="libs/mybatis-3.4.6.jar"/>
+	<classpathentry kind="lib" path="libs/sqljdbc4-2.0.jar"/>
+	<classpathentry kind="lib" path="libs/gson-2.8.5.jar" sourcepath="C:/Users/dhcho/AppData/Local/Temp/.org.sf.feeling.decompiler1592533858301/source/gson-2.8.5-sources.jar"/>
+	<classpathentry kind="lib" path="libs/mail-1.4.7.jar" sourcepath="C:/Users/Metanet/AppData/Local/Temp/.org.sf.feeling.decompiler1729840089775/source/mail-1.4.7-sources-1730091198491.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
