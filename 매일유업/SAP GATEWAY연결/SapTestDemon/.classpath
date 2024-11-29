@@ -25,5 +25,11 @@
 	<classpathentry kind="lib" path="C:/workspace_cvo/RealTimeMonitorDELIGIT/libs/slf4j-api-1.7.5.jar"/>
 	<classpathentry kind="lib" path="C:/workspace_cvo/RealTimeMonitorDELIGIT/libs/slf4j-log4j12-1.7.5.jar"/>
 	<classpathentry kind="lib" path="C:/workspace_cvo/RealTimeMonitorDELIGIT/libs/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="C:/workspace_cvo/SapTestDemon/libs/spring-beans-6.1.12.jar"/>
+	<classpathentry kind="lib" path="C:/workspace_cvo/SapTestDemon/libs/spring-context-6.1.12.jar"/>
+	<classpathentry kind="lib" path="C:/workspace_cvo/SapTestDemon/libs/spring-core-6.1.12.jar"/>
+	<classpathentry kind="lib" path="C:/workspace_cvo/SapTestDemon/libs/commons-jxpath-1.3.jar"/>
+	<classpathentry kind="lib" path="C:/workspace_cvo/SapTestDemon/libs/servlet-api-2.5.jar"/>
+	<classpathentry kind="lib" path="C:/workspace_cvo/SapTestDemon/libs/spring-web-6.1.12.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
