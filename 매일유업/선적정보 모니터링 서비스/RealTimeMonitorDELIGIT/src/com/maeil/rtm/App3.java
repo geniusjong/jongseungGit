@@ -1,5 +1,8 @@
 package com.maeil.rtm;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Properties;
 import java.util.Timer;
@@ -19,6 +22,7 @@ import org.apache.logging.log4j.Logger;
 
 import com.maeil.rtm.constants.MailConst;
 import com.maeil.rtm.database.DatabaseAccessor;
+
 
 public class App3
 {
@@ -44,7 +48,107 @@ public class App3
 				LogManager.shutdown();
             }
         });
- }
+    }
+	//private static final String LOG_FILE_PATH = "C:/log/cvo/batch.log"; // 로컬로그 파일 경로
+	private static final String LOG_FILE_PATH = "F:/log/cvo/batch.log"; // 로그 파일 경로
+    private static final String[] BATCH_TASKS = {
+		"SAP IF 하차, 회수 수량 전송 스케쥴러 수행 완료",
+		"첨부파일정리 스케쥴러 수행 완료",
+		"미등록 차량/대리점 데이터 삭제 스케쥴러 수행 완료",
+		"포장재출고회수통계 등록 스케쥴러 수행 완료",
+		"거래처정보 병합 스케쥴러 수행 완료",
+		"창고통계 등록 스케쥴러 수행 완료",
+		"14일 이전 미전송된 SAP IF 하차, 회수 수량 전송 스케쥴러 수행 완료",
+		"차량통계 등록 스케쥴러 수행 완료",
+		"수송차량통계 등록 스케쥴러 수행 완료"
+	};
+
+    private void scheduleLogCheckTask() {
+        TimerTask logCheckTask = new TimerTask() {
+            @Override
+            public void run() {
+                checkLogFileAndSendEmail();
+            }
+        };
+        
+        // 매일 8시 50분에 실행
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(Calendar.HOUR_OF_DAY, 8);
+        calendar.set(Calendar.MINUTE, 50);
+        calendar.set(Calendar.SECOND, 0);
+
+        // 현재 시간이 이미 지났다면 다음 날로 설정
+        if (calendar.getTimeInMillis() < System.currentTimeMillis()) {
+            calendar.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        /* 
+        realTimeMonitorTimer.scheduleAtFixedRate(logCheckTask, 
+                0, // 지연 없이 즉시 시작
+                5 * 60 * 1000);
+		*/
+        
+        realTimeMonitorTimer.scheduleAtFixedRate(logCheckTask, 
+            calendar.getTime(), 
+            24 * 60 * 60 * 1000); // 24시간마다 반복
+    }
+
+    private void checkLogFileAndSendEmail() {
+        Calendar now = Calendar.getInstance();
+        int dayOfWeek = now.get(Calendar.DAY_OF_WEEK);
+
+        // 월요일(2)부터 금요일(6)까지만 실행
+        if (dayOfWeek >= Calendar.MONDAY && dayOfWeek <= Calendar.FRIDAY) {
+            try {
+                if (checkLogFileForCompletion()) {
+                    logger.info("배치 완료 메일을 전송했습니다.");
+                } else {
+                    logger.info("로그 파일에서 완료 메시지를 찾지 못했습니다.");
+                }
+            } catch (IOException e) {
+                logger.error("로그 파일 확인 중 오류 발생", e);
+            }
+        } 
+	   /*
+		try{
+			checkLogFileForCompletion();
+		}	catch (IOException e) {
+			logger.error("로그 파일 확인 중 오류 발생", e);
+		}
+		*/
+    }
+    private boolean checkLogFileForCompletion() throws IOException {
+        String logFilePath = LOG_FILE_PATH; // 로그 파일 경로
+		boolean[] taskCompleted = new boolean[BATCH_TASKS.length];
+		int completedTasks = 0;
+		StringBuilder fileContent = new StringBuilder(); // 파일 내용을 저장할 StringBuilder
+
+		try (BufferedReader reader = new BufferedReader(new FileReader(logFilePath))) {
+			String line;
+			while ((line = reader.readLine()) != null) {
+				fileContent.append(line).append("\n"); // 각 줄을 StringBuilder에 추가
+				for (int i = 0; i < BATCH_TASKS.length; i++) {
+					if (!taskCompleted[i] && line.contains(BATCH_TASKS[i])) {
+						taskCompleted[i] = true;
+						completedTasks++;
+					}
+				}
+			}
+    	}
+	    boolean allTasksCompleted = (completedTasks == BATCH_TASKS.length);
+    if (allTasksCompleted) {
+        logger.info("모든 배치 작업이 완료되었습니다.");
+		gmailSend(fileContent.toString());
+    } else {
+        logger.info("완료되지 않은 배치 작업이 있습니다.");
+        for (int i = 0; i < BATCH_TASKS.length; i++) {
+            if (!taskCompleted[i]) {
+                logger.info("미완료 작업: " + BATCH_TASKS[i]);
+            }
+        }
+		gmailSend(fileContent.toString());
+    }
+    return allTasksCompleted;
+}
  	// 이메일 인증 정보
     String user = MailConst.USER;
     String password = MailConst.PASSWORD;
@@ -55,7 +159,8 @@ public class App3
 	// 실시간 데이터 수신 모니터링 타이머 시작
 	public void startRealTimeMonitorTask() {
 		gmailSend(EMAIL_START); // 시작 알림 이메일 전송
-		realTimeMonitorTimer.schedule(new TmRealTimeMonitorTask(), 0);
+		realTimeMonitorTimer.scheduleAtFixedRate(new TmRealTimeMonitorTask(), 0, ONE_HOUR_IN_MILLISECONDS); // 1시간에 1번씩 체크
+		scheduleLogCheckTask(); // 새로운 로그 체크 작업 스케줄링
 	}
 	//실시간 데이터 수신 모니터링 종료시 리소스 해제
     public void stopRealTimeMonitorTask() {
@@ -71,7 +176,9 @@ public class App3
 		@Override
 		public void run() {
 			//realTimeMonitorTimer.schedule(new TmRealTimeMonitorTask(), 1000*60*1); //1분에 1번씩 체크(테스트용)
-			realTimeMonitorTimer.schedule(new TmRealTimeMonitorTask(), ONE_HOUR_IN_MILLISECONDS);  // 1시간에 1번씩 체크
+			//realTimeMonitorTimer.schedule(new TmRealTimeMonitorTask(), ONE_HOUR_IN_MILLISECONDS);  // 1시간에 1번씩 체크
+
+			logger.info("RealTimeMonitorTask started. Will run every hour.");
 
 			String message = EMAIL_SUBJECT;
 			String DELI = "";
@@ -143,8 +250,8 @@ public class App3
             message.setSubject(EMAIL_SUBJECT); //메일 제목을 입력
 
             // Text
-            message.setText(str);    //메일 내용을 입력
-
+            //message.setText(str);    //메일 내용을 입력
+			message.setContent("<html><body>" + str + "</body></html>", "text/html; charset=UTF-8");  //메일 내용을 입력
             // send the message
             Transport.send(message); ////전송
             logger.info("message sent successfully...");
