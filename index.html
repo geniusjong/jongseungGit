@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>로또 추출기</title>
+</head>
+<body>
+    <h1>로또 번호 추출기</h1>
+
+    <button id="generate-btn">로또 번호 생성</button>
+    <p id="result">여기에 결과가 표시됩니다.</p>
+
+    <script>
+        document.getElementById('generate-btn').addEventListener('click', function() {
+            // 로또 번호 6개 추출
+            const numbers = [];
+            while (numbers.length < 6) {
+                const num = Math.floor(Math.random() * 45) + 1;
+                if (!numbers.includes(num)) {
+                    numbers.push(num);
+                }
+            }
+            numbers.sort((a, b) => a - b); // 오름차순 정렬
+            document.getElementById('result').innerText = `로또 번호: ${numbers.join(', ')}`;
+        });
+    </script>
+</body>
+</html>
