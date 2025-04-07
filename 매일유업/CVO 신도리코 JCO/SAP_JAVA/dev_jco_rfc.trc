@@ -1,0 +1,1630 @@
+
+**** Error file opened at 20200203 160012 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Mon Feb 03 16:00:12,219<    RfcException:
+    message: Parameter ABAP system number ('sysnr') needs to be a two digit number string instead of 'sysnr'
+    return code: RFC_INVALID_PARAMETER (19)
+    error group: 101
+    key: RFC_ERROR_PROGRAM
+	at com.sap.conn.rfc.api.RfcOptions.checkSystemNumber(RfcOptions.java:449)
+	at com.sap.conn.rfc.api.RfcOptions.checkParameters(RfcOptions.java:277)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcClient.initialize(MiddlewareJavaRfc.java:1378)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcClient.connect(MiddlewareJavaRfc.java:1408)
+	at com.sap.conn.jco.rt.ClientConnection.connect(ClientConnection.java:729)
+	at com.sap.conn.jco.rt.RepositoryConnection.connect(RepositoryConnection.java:52)
+	at com.sap.conn.jco.rt.PoolingFactory.init(PoolingFactory.java:115)
+	at com.sap.conn.jco.rt.ConnectionManager.createFactory(ConnectionManager.java:349)
+	at com.sap.conn.jco.rt.DefaultConnectionManager.createFactory(DefaultConnectionManager.java:46)
+	at com.sap.conn.jco.rt.ConnectionManager.getFactory(ConnectionManager.java:323)
+	at com.sap.conn.jco.rt.RfcDestination.getSystemID(RfcDestination.java:1013)
+	at com.sap.conn.jco.rt.RepositoryManager.getRepository(RepositoryManager.java:29)
+	at com.sap.conn.jco.rt.RfcDestination.initRepository(RfcDestination.java:968)
+	at com.sap.conn.jco.rt.RfcDestination.getRepository(RfcDestination.java:1079)
+	at com.sap.conn.jco.rt.RfcDestination.getRepository(RfcDestination.java:34)
+	at com.sap.conn.jco.rt.DefaultServer.update(DefaultServer.java:220)
+	at com.sap.conn.jco.rt.DefaultServer.<init>(DefaultServer.java:117)
+	at com.sap.conn.jco.rt.DefaultServerManager$DefaultServerFactory.createServer(DefaultServerManager.java:412)
+	at com.sap.conn.jco.rt.DefaultServerManager.getServer(DefaultServerManager.java:104)
+	at com.sap.conn.jco.rt.StandaloneServerFactory.update(StandaloneServerFactory.java:362)
+	at com.sap.conn.jco.rt.StandaloneServerFactory.getServerInstance(StandaloneServerFactory.java:175)
+	at com.sap.conn.jco.server.JCoServerFactory.getServer(JCoServerFactory.java:84)
+	at DefineJCoServer.startServer(DefineJCoServer.java:87)
+	at DefineJCoServer.main(DefineJCoServer.java:105)
+
+
+**** Error file opened at 20200203 160405 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Mon Feb 03 16:04:05,293<    RfcException:
+    message: Parameter ABAP system number ('sysnr') needs to be a two digit number string instead of 'sysnr'
+    return code: RFC_INVALID_PARAMETER (19)
+    error group: 101
+    key: RFC_ERROR_PROGRAM
+	at com.sap.conn.rfc.api.RfcOptions.checkSystemNumber(RfcOptions.java:449)
+	at com.sap.conn.rfc.api.RfcOptions.checkParameters(RfcOptions.java:277)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcClient.initialize(MiddlewareJavaRfc.java:1378)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcClient.connect(MiddlewareJavaRfc.java:1408)
+	at com.sap.conn.jco.rt.ClientConnection.connect(ClientConnection.java:729)
+	at com.sap.conn.jco.rt.RepositoryConnection.connect(RepositoryConnection.java:52)
+	at com.sap.conn.jco.rt.PoolingFactory.init(PoolingFactory.java:115)
+	at com.sap.conn.jco.rt.ConnectionManager.createFactory(ConnectionManager.java:349)
+	at com.sap.conn.jco.rt.DefaultConnectionManager.createFactory(DefaultConnectionManager.java:46)
+	at com.sap.conn.jco.rt.ConnectionManager.getFactory(ConnectionManager.java:323)
+	at com.sap.conn.jco.rt.RfcDestination.getSystemID(RfcDestination.java:1013)
+	at com.sap.conn.jco.rt.RepositoryManager.getRepository(RepositoryManager.java:29)
+	at com.sap.conn.jco.rt.RfcDestination.initRepository(RfcDestination.java:968)
+	at com.sap.conn.jco.rt.RfcDestination.getRepository(RfcDestination.java:1079)
+	at com.sap.conn.jco.rt.RfcDestination.getRepository(RfcDestination.java:34)
+	at com.sap.conn.jco.rt.DefaultServer.update(DefaultServer.java:220)
+	at com.sap.conn.jco.rt.DefaultServer.<init>(DefaultServer.java:117)
+	at com.sap.conn.jco.rt.DefaultServerManager$DefaultServerFactory.createServer(DefaultServerManager.java:412)
+	at com.sap.conn.jco.rt.DefaultServerManager.getServer(DefaultServerManager.java:104)
+	at com.sap.conn.jco.rt.StandaloneServerFactory.update(StandaloneServerFactory.java:362)
+	at com.sap.conn.jco.rt.StandaloneServerFactory.getServerInstance(StandaloneServerFactory.java:175)
+	at com.sap.conn.jco.server.JCoServerFactory.getServer(JCoServerFactory.java:84)
+	at DefineJCoServer.startServer(DefineJCoServer.java:87)
+	at DefineJCoServer.main(DefineJCoServer.java:105)
+
+
+**** Error file opened at 20200203 160420 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Mon Feb 03 16:04:20,330<    RfcException:
+    message: Parameter ABAP system number ('sysnr') needs to be a two digit number string instead of 'sysnr'
+    return code: RFC_INVALID_PARAMETER (19)
+    error group: 101
+    key: RFC_ERROR_PROGRAM
+	at com.sap.conn.rfc.api.RfcOptions.checkSystemNumber(RfcOptions.java:449)
+	at com.sap.conn.rfc.api.RfcOptions.checkParameters(RfcOptions.java:277)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcClient.initialize(MiddlewareJavaRfc.java:1378)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcClient.connect(MiddlewareJavaRfc.java:1408)
+	at com.sap.conn.jco.rt.ClientConnection.connect(ClientConnection.java:729)
+	at com.sap.conn.jco.rt.RepositoryConnection.connect(RepositoryConnection.java:52)
+	at com.sap.conn.jco.rt.PoolingFactory.init(PoolingFactory.java:115)
+	at com.sap.conn.jco.rt.ConnectionManager.createFactory(ConnectionManager.java:349)
+	at com.sap.conn.jco.rt.DefaultConnectionManager.createFactory(DefaultConnectionManager.java:46)
+	at com.sap.conn.jco.rt.ConnectionManager.getFactory(ConnectionManager.java:323)
+	at com.sap.conn.jco.rt.RfcDestination.getSystemID(RfcDestination.java:1013)
+	at com.sap.conn.jco.rt.RepositoryManager.getRepository(RepositoryManager.java:29)
+	at com.sap.conn.jco.rt.RfcDestination.initRepository(RfcDestination.java:968)
+	at com.sap.conn.jco.rt.RfcDestination.getRepository(RfcDestination.java:1079)
+	at com.sap.conn.jco.rt.RfcDestination.getRepository(RfcDestination.java:34)
+	at com.sap.conn.jco.rt.DefaultServer.update(DefaultServer.java:220)
+	at com.sap.conn.jco.rt.DefaultServer.<init>(DefaultServer.java:117)
+	at com.sap.conn.jco.rt.DefaultServerManager$DefaultServerFactory.createServer(DefaultServerManager.java:412)
+	at com.sap.conn.jco.rt.DefaultServerManager.getServer(DefaultServerManager.java:104)
+	at com.sap.conn.jco.rt.StandaloneServerFactory.update(StandaloneServerFactory.java:362)
+	at com.sap.conn.jco.rt.StandaloneServerFactory.getServerInstance(StandaloneServerFactory.java:175)
+	at com.sap.conn.jco.server.JCoServerFactory.getServer(JCoServerFactory.java:84)
+	at DefineJCoServer.startServer(DefineJCoServer.java:87)
+	at DefineJCoServer.main(DefineJCoServer.java:105)
+
+
+**** Error file opened at 20200203 160440 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Mon Feb 03 16:04:40,534<    RfcException:
+    message: Parameter ABAP system number ('sysnr') needs to be a two digit number string instead of 'sysnr'
+    return code: RFC_INVALID_PARAMETER (19)
+    error group: 101
+    key: RFC_ERROR_PROGRAM
+	at com.sap.conn.rfc.api.RfcOptions.checkSystemNumber(RfcOptions.java:449)
+	at com.sap.conn.rfc.api.RfcOptions.checkParameters(RfcOptions.java:277)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcClient.initialize(MiddlewareJavaRfc.java:1378)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcClient.connect(MiddlewareJavaRfc.java:1408)
+	at com.sap.conn.jco.rt.ClientConnection.connect(ClientConnection.java:729)
+	at com.sap.conn.jco.rt.RepositoryConnection.connect(RepositoryConnection.java:52)
+	at com.sap.conn.jco.rt.PoolingFactory.init(PoolingFactory.java:115)
+	at com.sap.conn.jco.rt.ConnectionManager.createFactory(ConnectionManager.java:349)
+	at com.sap.conn.jco.rt.DefaultConnectionManager.createFactory(DefaultConnectionManager.java:46)
+	at com.sap.conn.jco.rt.ConnectionManager.getFactory(ConnectionManager.java:323)
+	at com.sap.conn.jco.rt.RfcDestination.getSystemID(RfcDestination.java:1013)
+	at com.sap.conn.jco.rt.RepositoryManager.getRepository(RepositoryManager.java:29)
+	at com.sap.conn.jco.rt.RfcDestination.initRepository(RfcDestination.java:968)
+	at com.sap.conn.jco.rt.RfcDestination.getRepository(RfcDestination.java:1079)
+	at com.sap.conn.jco.rt.RfcDestination.getRepository(RfcDestination.java:34)
+	at com.sap.conn.jco.rt.DefaultServer.update(DefaultServer.java:220)
+	at com.sap.conn.jco.rt.DefaultServer.<init>(DefaultServer.java:117)
+	at com.sap.conn.jco.rt.DefaultServerManager$DefaultServerFactory.createServer(DefaultServerManager.java:412)
+	at com.sap.conn.jco.rt.DefaultServerManager.getServer(DefaultServerManager.java:104)
+	at com.sap.conn.jco.rt.StandaloneServerFactory.update(StandaloneServerFactory.java:362)
+	at com.sap.conn.jco.rt.StandaloneServerFactory.getServerInstance(StandaloneServerFactory.java:175)
+	at com.sap.conn.jco.server.JCoServerFactory.getServer(JCoServerFactory.java:84)
+	at DefineJCoServer.startServer(DefineJCoServer.java:87)
+	at DefineJCoServer.main(DefineJCoServer.java:105)
+
+
+**** Error file opened at 20200203 160449 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Mon Feb 03 16:04:49,966<    RfcException:
+    message: Parameter ABAP system number ('sysnr') needs to be a two digit number string instead of 'sysnr'
+    return code: RFC_INVALID_PARAMETER (19)
+    error group: 101
+    key: RFC_ERROR_PROGRAM
+	at com.sap.conn.rfc.api.RfcOptions.checkSystemNumber(RfcOptions.java:449)
+	at com.sap.conn.rfc.api.RfcOptions.checkParameters(RfcOptions.java:277)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcClient.initialize(MiddlewareJavaRfc.java:1378)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcClient.connect(MiddlewareJavaRfc.java:1408)
+	at com.sap.conn.jco.rt.ClientConnection.connect(ClientConnection.java:729)
+	at com.sap.conn.jco.rt.RepositoryConnection.connect(RepositoryConnection.java:52)
+	at com.sap.conn.jco.rt.PoolingFactory.init(PoolingFactory.java:115)
+	at com.sap.conn.jco.rt.ConnectionManager.createFactory(ConnectionManager.java:349)
+	at com.sap.conn.jco.rt.DefaultConnectionManager.createFactory(DefaultConnectionManager.java:46)
+	at com.sap.conn.jco.rt.ConnectionManager.getFactory(ConnectionManager.java:323)
+	at com.sap.conn.jco.rt.RfcDestination.getSystemID(RfcDestination.java:1013)
+	at com.sap.conn.jco.rt.RepositoryManager.getRepository(RepositoryManager.java:29)
+	at com.sap.conn.jco.rt.RfcDestination.initRepository(RfcDestination.java:968)
+	at com.sap.conn.jco.rt.RfcDestination.getRepository(RfcDestination.java:1079)
+	at com.sap.conn.jco.rt.RfcDestination.getRepository(RfcDestination.java:34)
+	at com.sap.conn.jco.rt.DefaultServer.update(DefaultServer.java:220)
+	at com.sap.conn.jco.rt.DefaultServer.<init>(DefaultServer.java:117)
+	at com.sap.conn.jco.rt.DefaultServerManager$DefaultServerFactory.createServer(DefaultServerManager.java:412)
+	at com.sap.conn.jco.rt.DefaultServerManager.getServer(DefaultServerManager.java:104)
+	at com.sap.conn.jco.rt.StandaloneServerFactory.update(StandaloneServerFactory.java:362)
+	at com.sap.conn.jco.rt.StandaloneServerFactory.getServerInstance(StandaloneServerFactory.java:175)
+	at com.sap.conn.jco.server.JCoServerFactory.getServer(JCoServerFactory.java:84)
+	at DefineJCoServer.startServer(DefineJCoServer.java:87)
+	at DefineJCoServer.main(DefineJCoServer.java:105)
+
+
+**** Error file opened at 20200211 231323 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error thrown [Tue Feb 11 23:13:23,865]: Error thrown by application running in JCo Server
+java.lang.IncompatibleClassChangeError: Expecting non-static method DB.DBinsert()V
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:690)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200211 232607 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error thrown [Tue Feb 11 23:26:07,591]: Error thrown by application running in JCo Server
+java.lang.NoSuchMethodError: DB.DBinsert()V
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:692)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Error thrown [Tue Feb 11 23:27:58,352]: Error thrown by application running in JCo Server
+java.lang.NoSuchMethodError: DB.DBinsert()V
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:692)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200211 233249 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error thrown [Tue Feb 11 23:32:49,460]: Error thrown by application running in JCo Server
+java.lang.IncompatibleClassChangeError: Expected static method DB.DBinsert(Ljava/util/HashMap;)V
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:692)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Error thrown [Tue Feb 11 23:34:56,686]: Error thrown by application running in JCo Server
+java.lang.IncompatibleClassChangeError: Expected static method DB.DBinsert(Ljava/util/HashMap;)V
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:692)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 085911 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 08:59:11,841]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:692)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 09:02:14,176]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:692)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 090756 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error thrown [Wed Feb 12 09:07:56,334]: Error thrown by application running in JCo Server
+java.lang.IncompatibleClassChangeError: Expecting non-static method DB.Print123(Ljava/util/HashMap;)V
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:694)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 090948 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 09:09:48,468]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at DB.Print123(DB.java:100)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:694)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 090956 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 09:09:56,058]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at DB.Print123(DB.java:100)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:694)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 09:10:00,273]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:692)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 09:11:08,262]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:692)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Error thrown [Wed Feb 12 09:11:41,395]: Error thrown by application running in JCo Server
+java.lang.IncompatibleClassChangeError: Expected static method DB.DBinsert(Ljava/util/HashMap;)V
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:692)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 091147 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 09:11:47,500]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at DB.Print123(DB.java:100)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:694)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 091236 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error thrown [Wed Feb 12 09:12:36,840]: Error thrown by application running in JCo Server
+java.lang.IncompatibleClassChangeError: Expected static method DB.Print123(Ljava/util/HashMap;)V
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:697)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 094355 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error thrown [Wed Feb 12 09:43:55,592]: Error thrown by application running in JCo Server
+java.lang.IncompatibleClassChangeError: Expected static method DB.Print123(Ljava/util/HashMap;)V
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:694)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 094625 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 09:46:25,502]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at DB.Print123(DB.java:100)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 09:46:34,326]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at DB.Print123(DB.java:100)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 09:46:42,335]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at DB.Print123(DB.java:100)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 094817 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 09:48:17,694]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at DB.Print123(DB.java:102)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 09:48:24,534]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at DB.Print123(DB.java:102)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 09:48:37,638]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at DB.Print123(DB.java:102)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 094954 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 09:49:54,071]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at DB.Print123(DB.java:102)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 095728 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 09:57:28,499]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at DB.Print123(DB.java:97)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 09:57:34,344]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at DB.Print123(DB.java:97)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 095916 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 09:59:16,258]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at DB.Print123(DB.java:97)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 095955 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 09:59:55,138]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:44)
+	at DB.Print123(DB.java:97)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 100106 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 10:01:06,938]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:45)
+	at DB.Print123(DB.java:103)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 100154 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 10:01:54,987]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:45)
+	at DB.Print123(DB.java:103)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 100237 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 10:02:37,771]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:45)
+	at DB.Print123(DB.java:104)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 100345 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 10:03:45,644]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:46)
+	at DB.Print123(DB.java:104)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 10:04:51,774]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:46)
+	at DB.Print123(DB.java:104)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 100528 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 10:05:28,103]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.DBinsert(DB.java:52)
+	at DB.Print123(DB.java:106)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:698)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 132407 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Info:  >Wed Feb 12 13:24:07,646<    [JCoRFC] 'SDH_SEND_SHIP_DELI_INF' could not be found in the server repository.
+Exception thrown [Wed Feb 12 13:24:07,646]: Exception thrown in JCo Server
+com.sap.conn.jco.JCoException: (123) JCO_ERROR_FUNCTION_NOT_FOUND: 'SDH_SEND_SHIP_DELI_INF' could not be found in the server repository.
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3501)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 132531 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 13:25:31,409]: Exception thrown by application running in JCo Server
+com.sap.conn.jco.JCoRuntimeException: (127) JCO_ERROR_FIELD_NOT_FOUND: Field ROUTE is not a member of ZLES3010
+	at com.sap.conn.jco.rt.AbstractMetaData.indexOf(AbstractMetaData.java:404)
+	at com.sap.conn.jco.rt.AbstractRecord.getString(AbstractRecord.java:3000)
+	at StepByStepServer$CLS_SDH_SEND_SHIP_DELI_INF.handleRequest(StepByStepServer.java:1033)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 132707 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 13:27:07,915]: Exception thrown in JCo Server
+java.lang.ArrayIndexOutOfBoundsException: 193
+	at com.sap.i18n.cp.ConvertUc2Db.ConvertArrImpl(ConvertUc2Db.java:74)
+	at com.sap.i18n.cp.ConvertCToX.ConvertArr(ConvertCToX.java:72)
+	at com.sap.conn.jco.rt.Converter.decodeChar(Converter.java:74)
+	at com.sap.conn.jco.rt.TableParameter.getBytes(TableParameter.java:81)
+	at com.sap.conn.rfc.engine.RfcCall.send_table_space(RfcCall.java:127)
+	at com.sap.conn.rfc.engine.RfcCall.rfc_table(RfcCall.java:76)
+	at com.sap.conn.rfc.engine.RfcCall.rfc_extdata(RfcCall.java:391)
+	at com.sap.conn.rfc.engine.RfcCall.ab_rfcbxt_withoutFlush(RfcCall.java:47)
+	at com.sap.conn.rfc.engine.RfcIoOpenCntl.RfcSendData(RfcIoOpenCntl.java:2379)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3889)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 132959 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 13:29:59,869]: Exception thrown in JCo Server
+java.lang.ArrayIndexOutOfBoundsException: 193
+	at com.sap.i18n.cp.ConvertUc2Db.ConvertArrImpl(ConvertUc2Db.java:74)
+	at com.sap.i18n.cp.ConvertCToX.ConvertArr(ConvertCToX.java:72)
+	at com.sap.conn.jco.rt.Converter.decodeChar(Converter.java:74)
+	at com.sap.conn.jco.rt.TableParameter.getBytes(TableParameter.java:81)
+	at com.sap.conn.rfc.engine.RfcCall.send_table_space(RfcCall.java:127)
+	at com.sap.conn.rfc.engine.RfcCall.rfc_table(RfcCall.java:76)
+	at com.sap.conn.rfc.engine.RfcCall.rfc_extdata(RfcCall.java:391)
+	at com.sap.conn.rfc.engine.RfcCall.ab_rfcbxt_withoutFlush(RfcCall.java:47)
+	at com.sap.conn.rfc.engine.RfcIoOpenCntl.RfcSendData(RfcIoOpenCntl.java:2379)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3889)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 13:30:10,852]: Exception thrown in JCo Server
+java.lang.ArrayIndexOutOfBoundsException: 193
+	at com.sap.i18n.cp.ConvertUc2Db.ConvertArrImpl(ConvertUc2Db.java:74)
+	at com.sap.i18n.cp.ConvertCToX.ConvertArr(ConvertCToX.java:72)
+	at com.sap.conn.jco.rt.Converter.decodeChar(Converter.java:74)
+	at com.sap.conn.jco.rt.TableParameter.getBytes(TableParameter.java:81)
+	at com.sap.conn.rfc.engine.RfcCall.send_table_space(RfcCall.java:127)
+	at com.sap.conn.rfc.engine.RfcCall.rfc_table(RfcCall.java:76)
+	at com.sap.conn.rfc.engine.RfcCall.rfc_extdata(RfcCall.java:391)
+	at com.sap.conn.rfc.engine.RfcCall.ab_rfcbxt_withoutFlush(RfcCall.java:47)
+	at com.sap.conn.rfc.engine.RfcIoOpenCntl.RfcSendData(RfcIoOpenCntl.java:2379)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3889)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 13:31:25,510]: Exception thrown in JCo Server
+java.lang.ArrayIndexOutOfBoundsException: 193
+	at com.sap.i18n.cp.ConvertUc2Db.ConvertArrImpl(ConvertUc2Db.java:74)
+	at com.sap.i18n.cp.ConvertCToX.ConvertArr(ConvertCToX.java:72)
+	at com.sap.conn.jco.rt.Converter.decodeChar(Converter.java:74)
+	at com.sap.conn.jco.rt.TableParameter.getBytes(TableParameter.java:81)
+	at com.sap.conn.rfc.engine.RfcCall.send_table_space(RfcCall.java:127)
+	at com.sap.conn.rfc.engine.RfcCall.rfc_table(RfcCall.java:76)
+	at com.sap.conn.rfc.engine.RfcCall.rfc_extdata(RfcCall.java:391)
+	at com.sap.conn.rfc.engine.RfcCall.ab_rfcbxt_withoutFlush(RfcCall.java:47)
+	at com.sap.conn.rfc.engine.RfcIoOpenCntl.RfcSendData(RfcIoOpenCntl.java:2379)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3889)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 13:33:08,805]: Exception thrown in JCo Server
+java.lang.ArrayIndexOutOfBoundsException: 193
+	at com.sap.i18n.cp.ConvertUc2Db.ConvertArrImpl(ConvertUc2Db.java:74)
+	at com.sap.i18n.cp.ConvertCToX.ConvertArr(ConvertCToX.java:72)
+	at com.sap.conn.jco.rt.Converter.decodeChar(Converter.java:74)
+	at com.sap.conn.jco.rt.TableParameter.getBytes(TableParameter.java:81)
+	at com.sap.conn.rfc.engine.RfcCall.send_table_space(RfcCall.java:127)
+	at com.sap.conn.rfc.engine.RfcCall.rfc_table(RfcCall.java:76)
+	at com.sap.conn.rfc.engine.RfcCall.rfc_extdata(RfcCall.java:391)
+	at com.sap.conn.rfc.engine.RfcCall.ab_rfcbxt_withoutFlush(RfcCall.java:47)
+	at com.sap.conn.rfc.engine.RfcIoOpenCntl.RfcSendData(RfcIoOpenCntl.java:2379)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3889)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 133422 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 13:34:22,287]: Exception thrown in JCo Server
+java.lang.ArrayIndexOutOfBoundsException: 193
+	at com.sap.i18n.cp.ConvertUc2Db.ConvertArrImpl(ConvertUc2Db.java:74)
+	at com.sap.i18n.cp.ConvertCToX.ConvertArr(ConvertCToX.java:72)
+	at com.sap.conn.jco.rt.Converter.decodeChar(Converter.java:74)
+	at com.sap.conn.jco.rt.TableParameter.getBytes(TableParameter.java:81)
+	at com.sap.conn.rfc.engine.RfcCall.send_table_space(RfcCall.java:127)
+	at com.sap.conn.rfc.engine.RfcCall.rfc_table(RfcCall.java:76)
+	at com.sap.conn.rfc.engine.RfcCall.rfc_extdata(RfcCall.java:391)
+	at com.sap.conn.rfc.engine.RfcCall.ab_rfcbxt_withoutFlush(RfcCall.java:47)
+	at com.sap.conn.rfc.engine.RfcIoOpenCntl.RfcSendData(RfcIoOpenCntl.java:2379)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3889)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 13:34:26,784]: Exception thrown in JCo Server
+java.lang.ArrayIndexOutOfBoundsException: 193
+	at com.sap.i18n.cp.ConvertUc2Db.ConvertArrImpl(ConvertUc2Db.java:74)
+	at com.sap.i18n.cp.ConvertCToX.ConvertArr(ConvertCToX.java:72)
+	at com.sap.conn.jco.rt.Converter.decodeChar(Converter.java:74)
+	at com.sap.conn.jco.rt.TableParameter.getBytes(TableParameter.java:81)
+	at com.sap.conn.rfc.engine.RfcCall.send_table_space(RfcCall.java:127)
+	at com.sap.conn.rfc.engine.RfcCall.rfc_table(RfcCall.java:76)
+	at com.sap.conn.rfc.engine.RfcCall.rfc_extdata(RfcCall.java:391)
+	at com.sap.conn.rfc.engine.RfcCall.ab_rfcbxt_withoutFlush(RfcCall.java:47)
+	at com.sap.conn.rfc.engine.RfcIoOpenCntl.RfcSendData(RfcIoOpenCntl.java:2379)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3889)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 152253 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 15:22:53,455]: Exception thrown by application running in JCo Server
+com.sap.conn.jco.JCoRuntimeException: (127) JCO_ERROR_FIELD_NOT_FOUND: Field TPNUM is not a member of ZLES3010
+	at com.sap.conn.jco.rt.AbstractMetaData.indexOf(AbstractMetaData.java:404)
+	at com.sap.conn.jco.rt.AbstractRecord.getString(AbstractRecord.java:3000)
+	at StepByStepServer$CLS_SDH_SEND_SHIP_DELI_INF.handleRequest(StepByStepServer.java:1213)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 15:24:11,256]: Exception thrown by application running in JCo Server
+com.sap.conn.jco.JCoRuntimeException: (127) JCO_ERROR_FIELD_NOT_FOUND: Field TPNUM is not a member of ZLES3010
+	at com.sap.conn.jco.rt.AbstractMetaData.indexOf(AbstractMetaData.java:404)
+	at com.sap.conn.jco.rt.AbstractRecord.getString(AbstractRecord.java:3000)
+	at StepByStepServer$CLS_SDH_SEND_SHIP_DELI_INF.handleRequest(StepByStepServer.java:1213)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 15:24:55,096]: Exception thrown by application running in JCo Server
+com.sap.conn.jco.JCoRuntimeException: (127) JCO_ERROR_FIELD_NOT_FOUND: Field TPNUM is not a member of ZLES3010
+	at com.sap.conn.jco.rt.AbstractMetaData.indexOf(AbstractMetaData.java:404)
+	at com.sap.conn.jco.rt.AbstractRecord.getString(AbstractRecord.java:3000)
+	at StepByStepServer$CLS_SDH_SEND_SHIP_DELI_INF.handleRequest(StepByStepServer.java:1213)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Wed Feb 12 15:25:09,032]: Exception thrown by application running in JCo Server
+com.sap.conn.jco.JCoRuntimeException: (127) JCO_ERROR_FIELD_NOT_FOUND: Field TPNUM is not a member of ZLES3010
+	at com.sap.conn.jco.rt.AbstractMetaData.indexOf(AbstractMetaData.java:404)
+	at com.sap.conn.jco.rt.AbstractRecord.getString(AbstractRecord.java:3000)
+	at StepByStepServer$CLS_SDH_SEND_SHIP_DELI_INF.handleRequest(StepByStepServer.java:1213)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200212 172951 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Wed Feb 12 17:29:51,141]: Exception thrown by application running in JCo Server
+com.sap.conn.jco.JCoRuntimeException: (127) JCO_ERROR_FIELD_NOT_FOUND: Field S is not a member of ZMM1T0320
+	at com.sap.conn.jco.rt.AbstractMetaData.indexOf(AbstractMetaData.java:404)
+	at com.sap.conn.jco.rt.AbstractRecord.getString(AbstractRecord.java:3000)
+	at StepByStepServer$CLS_SDH_EIS_MATERIAL_CODE.handleRequest(StepByStepServer.java:677)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200213 001129 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Thu Feb 13 00:11:29,468]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.sdh_crate_pack_master_if(DB.java:64)
+	at DB.DB_SDH_CRATE_PACK_MASTER_IF(DB.java:11)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:559)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200213 004709 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Thu Feb 13 00:47:09,590]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.sdh_crate_pack_master_if(DB.java:64)
+	at DB.DB_SDH_CRATE_PACK_MASTER_IF(DB.java:11)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:559)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200213 004812 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Thu Feb 13 00:48:12,034]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at DB.sdh_crate_pack_master_if(DB.java:76)
+	at DB.DB_SDH_CRATE_PACK_MASTER_IF(DB.java:11)
+	at StepByStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.handleRequest(StepByStepServer.java:559)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200213 005541 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Info:  >Thu Feb 13 00:55:41,117<    [JCoRFC] 'SDH_EIS_LEVEL_CODE' could not be found in the server repository.
+Exception thrown [Thu Feb 13 00:55:41,117]: Exception thrown in JCo Server
+com.sap.conn.jco.JCoException: (123) JCO_ERROR_FUNCTION_NOT_FOUND: 'SDH_EIS_LEVEL_CODE' could not be found in the server repository.
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3501)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200213 154213 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Info:  >Thu Feb 13 15:42:13,839<    [JCoRFC] 'SDH_SORT_MASTER_TABLE' could not be found in the server repository.
+Exception thrown [Thu Feb 13 15:42:13,839]: Exception thrown in JCo Server
+com.sap.conn.jco.JCoException: (123) JCO_ERROR_FUNCTION_NOT_FOUND: 'SDH_SORT_MASTER_TABLE' could not be found in the server repository.
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3501)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200213 161000 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Info:  >Thu Feb 13 16:10:00,056<    [JCoRFC] 'SDH_SEND_SHIP_DELI_INF' could not be found in the server repository.
+Exception thrown [Thu Feb 13 16:10:00,056]: Exception thrown in JCo Server
+com.sap.conn.jco.JCoException: (123) JCO_ERROR_FUNCTION_NOT_FOUND: 'SDH_SEND_SHIP_DELI_INF' could not be found in the server repository.
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3501)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Info:  >Thu Feb 13 16:10:22,665<    [JCoRFC] 'SDH_SEND_SHIP_DELI_INF' could not be found in the server repository.
+Exception thrown [Thu Feb 13 16:10:22,665]: Exception thrown in JCo Server
+com.sap.conn.jco.JCoException: (123) JCO_ERROR_FUNCTION_NOT_FOUND: 'SDH_SEND_SHIP_DELI_INF' could not be found in the server repository.
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3501)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200213 225912 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Thu Feb 13 22:59:12,400]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at StepByStepServer$CLS_SDH_SEND_SHIP_DELI_INF.handleRequest(StepByStepServer.java:1188)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200213 230023 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Thu Feb 13 23:00:23,735]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at StepByStepServer$CLS_SDH_SEND_SHIP_DELI_INF.handleRequest(StepByStepServer.java:896)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200213 230611 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Thu Feb 13 23:06:11,250]: Exception thrown by application running in JCo Server
+java.lang.NullPointerException
+	at StepByStepServer$CLS_SDH_SEND_SHIP_DELI_INF.handleRequest(StepByStepServer.java:900)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200213 232633 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Info:  >Thu Feb 13 23:26:33,803<    [JCoRFC] 'SDH_EIS_MATERIAL_CODE' could not be found in the server repository.
+Exception thrown [Thu Feb 13 23:26:33,803]: Exception thrown in JCo Server
+com.sap.conn.jco.JCoException: (123) JCO_ERROR_FUNCTION_NOT_FOUND: 'SDH_EIS_MATERIAL_CODE' could not be found in the server repository.
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3501)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Info:  >Thu Feb 13 23:26:43,428<    [JCoRFC] 'SDH_EIS_MATERIAL_CODE' could not be found in the server repository.
+Exception thrown [Thu Feb 13 23:26:43,428]: Exception thrown in JCo Server
+com.sap.conn.jco.JCoException: (123) JCO_ERROR_FUNCTION_NOT_FOUND: 'SDH_EIS_MATERIAL_CODE' could not be found in the server repository.
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3501)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Exception thrown [Thu Feb 13 23:27:15,895]: Exception thrown by application running in JCo Server
+com.sap.conn.jco.JCoRuntimeException: (127) JCO_ERROR_FIELD_NOT_FOUND: Field TKNUM_CNT_R is not a member of EXPORTS
+	at com.sap.conn.jco.rt.AbstractMetaData.indexOf(AbstractMetaData.java:404)
+	at com.sap.conn.jco.rt.AbstractRecord.setValue(AbstractRecord.java:4074)
+	at StepByStepServer$CLS_SDH_SEND_SHIP_DELI_INF.handleRequest(StepByStepServer.java:1201)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200213 233400 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Exception thrown [Thu Feb 13 23:34:00,141]: Exception thrown by application running in JCo Server
+com.sap.conn.jco.JCoRuntimeException: (127) JCO_ERROR_FIELD_NOT_FOUND: Field T_DATA is not a member of TABLES
+	at com.sap.conn.jco.rt.AbstractMetaData.indexOf(AbstractMetaData.java:404)
+	at com.sap.conn.jco.rt.AbstractRecord.getTable(AbstractRecord.java:3172)
+	at com.sap.conn.jco.rt.AbstractRecord.getTable(AbstractRecord.java:53)
+	at StepByStepServer$CLS_SDH_EIS_MATERIAL_CODE.handleRequest(StepByStepServer.java:579)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:1041)
+	at com.sap.conn.jco.rt.DefaultServerWorker$FunctionDispatcher.handleRequest(DefaultServerWorker.java:977)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatchRequest(DefaultServerWorker.java:148)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3685)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200214 160130 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Info:  >Fri Feb 14 16:01:30,335<    [JCoRFC] 'SDH_SEND_SHIP_DELI_INF' could not be found in the server repository.
+Exception thrown [Fri Feb 14 16:01:30,350]: Exception thrown in JCo Server
+com.sap.conn.jco.JCoException: (123) JCO_ERROR_FUNCTION_NOT_FOUND: 'SDH_SEND_SHIP_DELI_INF' could not be found in the server repository.
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3501)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Info:  >Fri Feb 14 16:02:16,397<    [JCoRFC] 'SDH_SEND_SHIP_DELI_INF' could not be found in the server repository.
+Exception thrown [Fri Feb 14 16:02:16,397]: Exception thrown in JCo Server
+com.sap.conn.jco.JCoException: (123) JCO_ERROR_FUNCTION_NOT_FOUND: 'SDH_SEND_SHIP_DELI_INF' could not be found in the server repository.
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3501)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Info:  >Fri Feb 14 16:55:57,292<    [JCoRFC] 'SDH_SEND_SHIP_DELI_INF' could not be found in the server repository.
+Exception thrown [Fri Feb 14 16:55:57,292]: Exception thrown in JCo Server
+com.sap.conn.jco.JCoException: (123) JCO_ERROR_FUNCTION_NOT_FOUND: 'SDH_SEND_SHIP_DELI_INF' could not be found in the server repository.
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3501)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+Info:  >Fri Feb 14 16:56:05,213<    [JCoRFC] 'SDH_SEND_SHIP_DELI_INF' could not be found in the server repository.
+Exception thrown [Fri Feb 14 16:56:05,213]: Exception thrown in JCo Server
+com.sap.conn.jco.JCoException: (123) JCO_ERROR_FUNCTION_NOT_FOUND: 'SDH_SEND_SHIP_DELI_INF' could not be found in the server repository.
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.dispatchRequest(MiddlewareJavaRfc.java:3501)
+	at com.sap.conn.jco.rt.MiddlewareJavaRfc$JavaRfcServer.listen(MiddlewareJavaRfc.java:2729)
+	at com.sap.conn.jco.rt.DefaultServerWorker.dispatch(DefaultServerWorker.java:275)
+	at com.sap.conn.jco.rt.DefaultServerWorker.loop(DefaultServerWorker.java:356)
+	at com.sap.conn.jco.rt.DefaultServerWorker.run(DefaultServerWorker.java:232)
+	at java.lang.Thread.run(Unknown Source)
+
+
+**** Error file opened at 20200217 145931 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Mon Feb 17 14:59:31,033<    >RfcGetException rc (7) message: Name or password is incorrect (repeat logon)
+<RfcGetException
+
+
+**** Error file opened at 20200217 150031 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Mon Feb 17 15:00:31,033<    >RfcGetException rc (7) message: Name or password is incorrect (repeat logon)
+<RfcGetException
+
+
+**** Error file opened at 20200217 150149 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Mon Feb 17 15:01:49,609<    >RfcGetException rc (7) message: Name or password is incorrect (repeat logon)
+<RfcGetException
+
+
+**** Error file opened at 20200217 150416 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Mon Feb 17 15:04:16,781<    >RfcGetException rc (7) message: Client 100 is not available in this system
+<RfcGetException
+
+
+**** Error file opened at 20200218 170029 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Tue Feb 18 17:00:29,184<    
+>RfcIoException:
+    message: CPIC-CALL: CMSEND on convId: 20624178
+no SAP ErrInfo available
+    Return code: RFCIO_ERROR_SYSERROR(5)<
+
+
+Error:  >Tue Feb 18 17:00:29,188<    
+>RfcIoException:
+    message: CPIC-CALL: 'CMSEND';
+ Connection closed
+
+    Return code: RFCIO_ERROR_SYSERROR(5)<
+
+
+Error: [3] >Tue Feb 18 17:00:29,188<    RfcException raised by system [Barcode-WEB1|SINDOH_SAP_RFC]:
+    message: CPIC-CALL: 'CMSEND';
+ Connection closed
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20200311 144139 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Wed Mar 11 14:41:39,950<    
+>RfcIoException:
+    message: no message received
+    Return code: RFCIO_ERROR_CANCELLED(23)<
+
+
+Error:  >Wed Mar 11 14:41:39,966<    
+>RfcIoException:
+    message: no message received
+    Return code: RFCIO_ERROR_CANCELLED(23)<
+
+
+Error:  >Wed Mar 11 14:41:39,966<    
+>RfcIoException:
+    message: no message received
+    Return code: RFCIO_ERROR_SYSERROR(5)<
+
+
+Error:  >Wed Mar 11 14:41:39,966<    
+>RfcIoException:
+    message: no message received
+    Return code: RFCIO_ERROR_SYSERROR(5)<
+
+
+Error: [2] >Wed Mar 11 14:41:39,966<    RfcException raised by system [Barcode-WEB1|SINDOH_SAP_RFC]:
+    message: no message received
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error: [3] >Wed Mar 11 14:41:39,966<    RfcException raised by system [Barcode-WEB1|SINDOH_SAP_RFC]:
+    message: no message received
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Wed Mar 11 14:41:42,993<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Wed Mar 11 14:41:42 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     1
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Wed Mar 11 14:41:44,978<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Wed Mar 11 14:41:44 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Wed Mar 11 14:41:47,025<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Wed Mar 11 14:41:47 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     3
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Wed Mar 11 14:41:51,056<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Wed Mar 11 14:41:51 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     4
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Wed Mar 11 14:41:59,103<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Wed Mar 11 14:41:59 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     5
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Wed Mar 11 14:42:15,165<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Wed Mar 11 14:42:15 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     6
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Wed Mar 11 14:42:47,275<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Wed Mar 11 14:42:47 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     7
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Wed Mar 11 14:43:51,587<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Wed Mar 11 14:43:51 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     8
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20200314 010129 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Sat Mar 14 01:01:29,514<    
+>RfcIoException:
+    message: no message received
+    Return code: RFCIO_ERROR_CANCELLED(23)<
+
+
+Error:  >Sat Mar 14 01:01:29,530<    
+>RfcIoException:
+    message: no message received
+    Return code: RFCIO_ERROR_CANCELLED(23)<
+
+
+Error:  >Sat Mar 14 01:01:29,530<    
+>RfcIoException:
+    message: no message received
+    Return code: RFCIO_ERROR_SYSERROR(5)<
+
+
+Error:  >Sat Mar 14 01:01:29,530<    
+>RfcIoException:
+    message: no message received
+    Return code: RFCIO_ERROR_SYSERROR(5)<
+
+
+Error: [2] >Sat Mar 14 01:01:29,530<    RfcException raised by system [Barcode-WEB1|SINDOH_SAP_RFC]:
+    message: no message received
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error: [3] >Sat Mar 14 01:01:29,530<    RfcException raised by system [Barcode-WEB1|SINDOH_SAP_RFC]:
+    message: no message received
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Sat Mar 14 01:01:32,545<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Sat Mar 14 01:01:32 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     1
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Sat Mar 14 01:01:34,530<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Sat Mar 14 01:01:34 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     2
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Sat Mar 14 01:01:38,561<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Sat Mar 14 01:01:38 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     3
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Sat Mar 14 01:01:42,561<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Sat Mar 14 01:01:42 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     4
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Sat Mar 14 01:01:50,608<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Sat Mar 14 01:01:50 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     5
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Sat Mar 14 01:02:06,670<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Sat Mar 14 01:02:06 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     6
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+Error:  >Sat Mar 14 01:02:38,780<    RfcException:
+    message: Connect to SAP gateway failed
+    Connection parameters: PROGID="SINDOH_SAP_DAEMON" GWHOST=172.16.10.8 GWSERV=3300
+
+ERROR       partner '172.16.10.8:3300' not reached
+TIME        Sat Mar 14 01:02:38 2020
+RELEASE     753
+COMPONENT   NI (network interface)
+VERSION     40
+RC          -10
+MODULE      D:/depot/bas/753_REL/src/base/ni/nixxi.cpp
+LINE        3449
+DETAIL      NiPConnect2: 172.16.10.8:3300
+SYSTEM CALL connect
+ERRNO       10061
+ERRNO TEXT  WSAECONNREFUSED: Connection refused
+COUNTER     7
+
+    return code: RFC_FAILURE (1)
+    error group: 102
+    key: RFC_ERROR_COMMUNICATION
+
+**** Error file opened at 20200319 095438 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Thu Mar 19 09:54:38,479<    >RfcGetException rc (7) message: Name or password is incorrect (repeat logon)
+<RfcGetException
+
+
+**** Error file opened at 20200323 093947 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Mon Mar 23 09:39:47,637<    >RfcGetException rc (7) message: Password logon no longer possible - too many failed attempts
+<RfcGetException
+
+
+**** Error file opened at 20200323 095606 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Mon Mar 23 09:56:06,119<    >RfcGetException rc (7) message: Password logon no longer possible - too many failed attempts
+<RfcGetException
+
+
+**** Error file opened at 20200323 100321 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Mon Mar 23 10:03:21,215<    >RfcGetException rc (7) message: Name or password is incorrect (repeat logon)
+<RfcGetException
+
+
+**** Error file opened at 20200323 102548 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Mon Mar 23 10:25:48,623<    >RfcGetException rc (7) message: Password logon no longer possible - too many failed attempts
+<RfcGetException
+
+
+**** Error file opened at 20200323 102719 Korea Standard Time Rel. 3.0.14 (2015-12-16) [753.512]
+Error:  >Mon Mar 23 10:27:19,810<    >RfcGetException rc (7) message: Password logon no longer possible - too many failed attempts
+<RfcGetException
+
+
+**** Error file opened at 20241211 133656 Korea Standard Time Rel. 3.0.14 (2015-12-16) [754.325]
+Error:  >Wed Dec 11 13:36:56,564<    >RfcGetException rc (7) message: Name or password is incorrect (repeat logon)
+<RfcGetException
+
+
+**** Error file opened at 20241211 134926 Korea Standard Time Rel. 3.0.14 (2015-12-16) [754.325]
+Error:  >Wed Dec 11 13:49:26,504<    >RfcGetException rc (7) message: Name or password is incorrect (repeat logon)
+<RfcGetException
+
+
+**** Error file opened at 20241211 135556 Korea Standard Time Rel. 3.0.14 (2015-12-16) [754.325]
+Error:  >Wed Dec 11 13:55:56,026<    >RfcGetException rc (7) message: ## ## ##### #######. ## #######.
+<RfcGetException
+

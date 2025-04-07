@@ -1,0 +1,7 @@
+#for tests only !
+#Thu Feb 06 16:09:26 KST 2020
+MEINS=0
+LFIMG=0
+VSTEL=
+MATNR=
+VHILM=

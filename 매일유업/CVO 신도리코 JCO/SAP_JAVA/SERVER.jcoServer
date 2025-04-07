@@ -1,0 +1,7 @@
+#for tests only !
+#Tue Feb 04 09:37:47 KST 2020
+jco.server.connection_count=1
+jco.server.gwhost=10.229.2.35
+jco.server.progid=SINDOH_SAP_DAEMON
+jco.server.gwserv=3300
+jco.server.repository_destination=SINDOH_SAP_RFC

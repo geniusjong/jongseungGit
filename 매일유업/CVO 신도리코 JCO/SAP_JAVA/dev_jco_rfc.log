@@ -1,0 +1,75 @@
+
+**** Log file opened at 2024-12-12 14:12:06 KST (GMT+09:00 Korea Standard Time) Rel. 3.1.10 (2024-06-14) [754.325]
+Error: [1]    >Thu Dec 12 14:12:06,963<    RfcException raised by system [MQA|10.229.2.35|00] for user [RFSMLSDOH1]:
+	message: 이름 또는 비밀번호가 잘못되었습니다. 다시 로그온하십시오.
+	return code: RFC_SYS_EXCEPTION (RFC_SYS_EXCEPTION)
+	error group: RFC_ERROR_LOGON_FAILURE
+
+
+**** Log file opened at 2024-12-12 14:20:31 KST (GMT+09:00 Korea Standard Time) Rel. 3.1.10 (2024-06-14) [754.325]
+Error: [1]    >Thu Dec 12 14:20:31,627<    RfcException raised by system [MQA|10.229.2.35|00] for user [RFSMLSDOH1]:
+	message: 이름 또는 비밀번호가 잘못되었습니다. 다시 로그온하십시오.
+	return code: RFC_SYS_EXCEPTION (RFC_SYS_EXCEPTION)
+	error group: RFC_ERROR_LOGON_FAILURE
+
+
+**** Log file opened at 2024-12-12 14:20:46 KST (GMT+09:00 Korea Standard Time) Rel. 3.1.10 (2024-06-14) [754.325]
+Error: [1]    >Thu Dec 12 14:20:46,452<    RfcException raised by system [MQA|10.229.2.35|00] for user [RFSMLSDOH1]:
+	message: 이름 또는 비밀번호가 잘못되었습니다. 다시 로그온하십시오.
+	return code: RFC_SYS_EXCEPTION (RFC_SYS_EXCEPTION)
+	error group: RFC_ERROR_LOGON_FAILURE
+
+
+**** Log file opened at 2024-12-12 21:43:59 KST (GMT+09:00 Korea Standard Time) Rel. 3.1.10 (2024-06-14) [754.325]
+Error:     >Thu Dec 12 21:43:59,696<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: PROGID=SINDOH_SAP_DAEMON GWHOST=10.229.2.35 GWSERV=3200
+no SAP ErrInfo available
+	return code: RFC_FAILURE (RFC_FAILURE)
+	error group: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu Dec 12 21:44:01,650<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: PROGID=SINDOH_SAP_DAEMON GWHOST=10.229.2.35 GWSERV=3200
+no SAP ErrInfo available
+	return code: RFC_FAILURE (RFC_FAILURE)
+	error group: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu Dec 12 21:44:03,651<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: PROGID=SINDOH_SAP_DAEMON GWHOST=10.229.2.35 GWSERV=3200
+no SAP ErrInfo available
+	return code: RFC_FAILURE (RFC_FAILURE)
+	error group: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu Dec 12 21:44:07,653<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: PROGID=SINDOH_SAP_DAEMON GWHOST=10.229.2.35 GWSERV=3200
+no SAP ErrInfo available
+	return code: RFC_FAILURE (RFC_FAILURE)
+	error group: RFC_ERROR_COMMUNICATION
+
+Error:     >Thu Dec 12 21:44:15,656<    RfcException raised by system [<unknown>]:
+	message: Connect to SAP gateway failed
+	connection parameters: PROGID=SINDOH_SAP_DAEMON GWHOST=10.229.2.35 GWSERV=3200
+no SAP ErrInfo available
+	return code: RFC_FAILURE (RFC_FAILURE)
+	error group: RFC_ERROR_COMMUNICATION
+
+
+**** Log file opened at 2024-12-12 21:52:38 KST (GMT+09:00 Korea Standard Time) Rel. 3.1.10 (2024-06-14) [754.325]
+Exception thrown [Thu Dec 12 21:52:38,253]: Exception thrown by application running in JCoServer
+com.sap.conn.jco.JCoRuntimeException: (127) JCO_ERROR_FIELD_NOT_FOUND: Field 'SEQNO1' is not a member of record 'ZLES3010'
+	at com.sap.conn.jco.rt.AbstractMetaData.indexOf(AbstractMetaData.java:419)
+	at com.sap.conn.jco.rt.AbstractRecord.getString(AbstractRecord.java:4026)
+	at StepByStepServer$CLS_SDH_SEND_SHIP_DELI_INF.handleRequest(StepByStepServer.java:968)
+	at com.sap.conn.jco.rt.AbstractServerWorker$FunctionDispatcher.handleRequest(AbstractServerWorker.java:1038)
+	at com.sap.conn.jco.rt.AbstractServerWorker.dispatchRequest(AbstractServerWorker.java:265)
+	at com.sap.conn.jco.rt.CPICServerWorker.dispatchRequest(CPICServerWorker.java:26)
+	at com.sap.conn.jco.rt.AbstractServerConnection.dispatchRequest(AbstractServerConnection.java:2073)
+	at com.sap.conn.jco.rt.AbstractServerConnection.listen(AbstractServerConnection.java:950)
+	at com.sap.conn.jco.rt.CPICServerWorker.dispatch(CPICServerWorker.java:73)
+	at com.sap.conn.jco.rt.AbstractServerWorker.loop(AbstractServerWorker.java:372)
+	at com.sap.conn.jco.rt.AbstractServerWorker.run(AbstractServerWorker.java:336)
+	at java.lang.Thread.run(Unknown Source)
+
