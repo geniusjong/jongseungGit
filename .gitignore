@@ -1,0 +1,65 @@
+# 민감한 설정 파일들
+**/*.properties
+**/application.properties
+**/db.properties
+
+# 로그 파일들
+**/*.log
+**/*.log.gz
+**/logs/
+**/log/
+
+# 바이너리 파일들
+**/*.exe
+**/*.jar
+**/*.class
+**/*.war
+**/*.ear
+
+# 컴파일된 파일들
+**/build/
+**/target/
+**/bin/
+**/classes/
+
+# IDE 설정 파일들
+**/.idea/
+**/*.iml
+**/.classpath
+**/.project
+**/.settings/
+
+# 시스템 파일들
+**/.DS_Store
+**/Thumbs.db
+**/desktop.ini
+
+# 기타 민감 정보가 포함될 수 있는 파일들
+**/*.bat
+**/*.sh
+**/*.ini
+**/WakeUpTheBill.ini
+
+# Excel 파일 (개인정보 포함 가능)
+**/*.xlsx
+**/*.xls
+
+# 백업 파일들
+**/*.bak
+**/*.backup
+**/*~
+
+# NSSM 관련 실행 파일
+**/nssm.exe
+
+# JD-GUI 관련 파일
+**/jd-gui.exe
+**/jadx-gui-*.exe
+
+# JAR 라이브러리 폴더
+**/lib/
+**/libs/
+
+# 노트북 파일 (개인정보 포함 가능)
+**/*.ipynb
+

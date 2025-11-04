@@ -1,36 +1,68 @@
 package com.maeil.rtm;
 import java.sql.*;
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Properties;
 import org.json.JSONObject;
 
 public class MariaDBConnection {
     private static final int MAX_RETRIES = 3;
-    private static final long RETRY_DELAY_MS = 5000; // 5ì´ˆ
+    private static final long RETRY_DELAY_MS = 5000; // 5ÃÊ
+    
+    private static Properties loadDatabaseProperties() {
+        Properties props = new Properties();
+        try {
+            // lotto.properties ÆÄÀÏ ÀĞ±â ½Ãµµ
+            InputStream inputStream = MariaDBConnection.class.getClassLoader()
+                    .getResourceAsStream("lotto.properties");
+            if (inputStream == null) {
+                // properties Æú´õ¿¡¼­ Á÷Á¢ ÀĞ±â ½Ãµµ
+                inputStream = MariaDBConnection.class.getClassLoader()
+                        .getResourceAsStream("../properties/lotto.properties");
+            }
+            if (inputStream != null) {
+                props.load(inputStream);
+                inputStream.close();
+            }
+        } catch (Exception e) {
+            System.err.println("lotto.properties ÆÄÀÏÀ» ÀĞÀ» ¼ö ¾ø½À´Ï´Ù: " + e.getMessage());
+        }
+        return props;
+    }
 
     public static void main(String[] args) {
-        String dbUrl = "jdbc:mariadb://localhost:3306/lotto";
-        String dbUser = "root";
-        String dbPassword = "1234";
+        Properties dbProps = loadDatabaseProperties();
+        
+        // properties ÆÄÀÏ¿¡¼­ ÀĞ°Å³ª, ¾øÀ¸¸é È¯°æ º¯¼ö ¶Ç´Â ±âº»°ª »ç¿ë
+        String dbUrl = dbProps.getProperty("lotto.db.url", 
+            System.getenv("LOTTO_DB_URL") != null ? System.getenv("LOTTO_DB_URL") 
+            : "jdbc:mariadb://localhost:3306/lotto");
+        String dbUser = dbProps.getProperty("lotto.db.user", 
+            System.getenv("LOTTO_DB_USER") != null ? System.getenv("LOTTO_DB_USER") 
+            : "root");
+        String dbPassword = dbProps.getProperty("lotto.db.password", 
+            System.getenv("LOTTO_DB_PASSWORD") != null ? System.getenv("LOTTO_DB_PASSWORD") 
+            : "");
 
         try (Connection conn = DriverManager.getConnection(dbUrl, dbUser, dbPassword)) {
-            // 1. ìµœì‹  íšŒì°¨ ë²ˆí˜¸ ê°€ì ¸ì˜¤ê¸°
+            // 1. ÃÖ½Å È¸Â÷ ¹øÈ£ °¡Á®¿À±â
             int nextDrawNumber = getNextDrawNumber(conn);
             if (nextDrawNumber == 0) {
-                System.out.println("íšŒì°¨ ì •ë³´ë¥¼ ê°€ì ¸ì˜¬ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.");
+                System.out.println("È¸Â÷ Á¤º¸¸¦ °¡Á®¿Ã ¼ö ¾ø½À´Ï´Ù.");
                 return;
             }
 
-            // 2. API ìš”ì²­ ë° ë°ì´í„° ì²˜ë¦¬
+            // 2. API ¿äÃ» ¹× µ¥ÀÌÅÍ Ã³¸®
             JSONObject json = requestLottoData(nextDrawNumber);
             if (json == null) {
-                System.out.println("ë¡œë˜ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜¤ì§€ ëª»í–ˆìŠµë‹ˆë‹¤.");
+                System.out.println("·Î¶Ç µ¥ÀÌÅÍ¸¦ °¡Á®¿ÀÁö ¸øÇß½À´Ï´Ù.");
                 return;
             }
 
-            // 3. JSON íŒŒì‹± ë° DBì— INSERT
+            // 3. JSON ÆÄ½Ì ¹× DB¿¡ INSERT
             processAndSaveLottoData(conn, json);
 
         } catch (Exception e) {
@@ -70,7 +102,7 @@ public class MariaDBConnection {
                     }
                 }
             } catch (Exception e) {
-                System.out.println("API ìš”ì²­ ì‹¤íŒ¨. ì¬ì‹œë„ ì¤‘... (ì‹œë„ " + (attempt + 1) + "/" + MAX_RETRIES + ")");
+                System.out.println("API ¿äÃ» ½ÇÆĞ. Àç½Ãµµ Áß... (½Ãµµ " + (attempt + 1) + "/" + MAX_RETRIES + ")");
                 if (attempt < MAX_RETRIES - 1) {
                     try {
                         Thread.sleep(RETRY_DELAY_MS);
@@ -81,7 +113,7 @@ public class MariaDBConnection {
                 }
             }
         }
-        System.out.println("ìµœëŒ€ ì¬ì‹œë„ íšŸìˆ˜ ì´ˆê³¼. API ìš”ì²­ ì‹¤íŒ¨.");
+        System.out.println("ÃÖ´ë Àç½Ãµµ È½¼ö ÃÊ°ú. API ¿äÃ» ½ÇÆĞ.");
         return null;
     }
 
@@ -98,7 +130,7 @@ public class MariaDBConnection {
         long firstAccumamnt = json.getLong("firstAccumamnt");
         long firstprizecount = firstAccumamnt / firstWinamnt;
 
-        System.out.println("ë°ì´í„° í™•ì¸ : firstWinamnt : " + firstWinamnt + " firstAccumamnt : " + firstAccumamnt + " firstprizecount : " + firstprizecount);
+        System.out.println("µ¥ÀÌÅÍ È®ÀÎ : firstWinamnt : " + firstWinamnt + " firstAccumamnt : " + firstAccumamnt + " firstprizecount : " + firstprizecount);
 
         String insertQuery = "INSERT INTO tb_lotto_number (postgame, num1, num2, num3, num4, num5, num6, bonusnum, firstprize, firstprizecount) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = conn.prepareStatement(insertQuery)) {
@@ -114,7 +146,7 @@ public class MariaDBConnection {
             pstmt.setLong(10, firstprizecount);
 
             pstmt.executeUpdate();
-            System.out.println("ë¡œë˜ ë°ì´í„°ê°€ ì„±ê³µì ìœ¼ë¡œ ì €ì¥ë˜ì—ˆìŠµë‹ˆë‹¤.");
+            System.out.println("·Î¶Ç µ¥ÀÌÅÍ°¡ ¼º°øÀûÀ¸·Î ÀúÀåµÇ¾ú½À´Ï´Ù.");
         }
     }
 }

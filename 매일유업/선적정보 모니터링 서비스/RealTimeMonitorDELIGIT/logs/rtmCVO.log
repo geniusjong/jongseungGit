@@ -1,5 +1,0 @@
-2024.11.29 at 14:55:47 KST INFO  com.maeil.rtm.App3 143 gmailSend - 이메일이 성공적으로 전송되었습니다.
-2024.11.29 at 15:39:33 KST INFO  com.maeil.rtm.App3 150 gmailSend - message sent successfully...
-2024.11.29 at 15:39:33 KST INFO  com.maeil.rtm.App3 151 gmailSend - 이메일이 성공적으로 전송되었습니다.
-2024.11.29 at 15:39:34 KST INFO  com.maeil.rtm.App3$TmRealTimeMonitorTask 102 run - DELI is 5,000 records or less.
-2024.11.29 at 15:39:34 KST INFO  com.maeil.rtm.App3$TmRealTimeMonitorTask 104 run - selectDELI result : 0
