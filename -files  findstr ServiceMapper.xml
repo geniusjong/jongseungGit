@@ -1,0 +1,258 @@
+ .gitignore                                         |   65 [32m+[m
+ CLASS file view/LICENSE                            |  676 [32m++[m
+ CLASS file view/NOTICE                             |   16 [32m+[m
+ CLASS file view/README.md                          |   65 [32m+[m
+ .../nssm-2.24/ChangeLog.txt                        |    0
+ .../README.txt" => NSSM demon/nssm-2.24/README.txt |    0
+ .../nssm-2.24/src/account.cpp                      |    0
+ .../nssm-2.24/src/account.h                        |    0
+ .../nssm-2.24/src/console.cpp                      |    0
+ .../nssm-2.24/src/console.h                        |    0
+ .../env.cpp" => NSSM demon/nssm-2.24/src/env.cpp   |    0
+ .../src/env.h" => NSSM demon/nssm-2.24/src/env.h   |    0
+ .../nssm-2.24/src/event.cpp                        |    0
+ .../event.h" => NSSM demon/nssm-2.24/src/event.h   |    0
+ .../gui.cpp" => NSSM demon/nssm-2.24/src/gui.cpp   |    0
+ .../src/gui.h" => NSSM demon/nssm-2.24/src/gui.h   |    0
+ .../nssm-2.24/src/imports.cpp                      |    0
+ .../nssm-2.24/src/imports.h                        |    0
+ .../src/io.cpp" => NSSM demon/nssm-2.24/src/io.cpp |    0
+ .../src/io.h" => NSSM demon/nssm-2.24/src/io.h     |    0
+ .../nssm-2.24/src/messages.mc                      |  Bin
+ .../nssm.cpp" => NSSM demon/nssm-2.24/src/nssm.cpp |    0
+ .../src/nssm.h" => NSSM demon/nssm-2.24/src/nssm.h |    0
+ .../nssm.ico" => NSSM demon/nssm-2.24/src/nssm.ico |  Bin
+ .../nssm.rc" => NSSM demon/nssm-2.24/src/nssm.rc   |  Bin
+ .../nssm.sln" => NSSM demon/nssm-2.24/src/nssm.sln |    0
+ .../nssm-2.24/src/nssm.vcproj                      |    0
+ .../nssm-2.24/src/process.cpp                      |    0
+ .../nssm-2.24/src/process.h                        |    0
+ .../nssm-2.24/src/registry.cpp                     |    0
+ .../nssm-2.24/src/registry.h                       |    0
+ .../nssm-2.24/src/resource.h                       |    0
+ .../nssm-2.24/src/service.cpp                      |    0
+ .../nssm-2.24/src/service.h                        |    0
+ .../nssm-2.24/src/settings.cpp                     |    0
+ .../nssm-2.24/src/settings.h                       |    0
+ .../nssm-2.24/src/version.cmd                      |    0
+ ...30\254\353\246\254\353\212\224\353\262\225.txt" |    0
+ "SQLD \352\263\265\353\266\200"                    |  426 [31m-[m
+ lotto.xlsx                                         |  Bin [31m91460[m -> [32m0[m bytes
+ .../lotto_web/src/com/lottoweb/util/DbConfig.java" |   37 [32m+[m[31m-[m
+ .../Lotto/properties/db.properties"                |   37 [32m+[m[31m-[m
+ .../src/com/maeil/rtm/MariaDBConnection.java"      |   60 [32m+[m[31m-[m
+ .../src/com/maeil/rtm/constants/MailConst.java"    |  104 [32m+[m[31m-[m
+ .../maeil/rtm/constants/ServerConfigConst.java"    |  138 [32m+[m[31m-[m
+ ...4\227\205\353\254\264 \354\240\225\353\246\254" |  452 [31m-[m
+ .../CVO jco/sapjco3.dll"                           |  Bin [31m5162032[m -> [32m0[m bytes
+ .../CVO jco/workspace.zip"                         |  Bin [31m32944441[m -> [32m0[m bytes
+ .../SAP_Client/.classpath"                         |    9 [31m-[m
+ .../SAP_Client/.project"                           |   28 [31m-[m
+ .../.settings/org.eclipse.jdt.core.prefs"          |   11 [31m-[m
+ .../ABAP_AS_WITHOUT_POOL.jcoDestination"           |   10 [31m-[m
+ .../SAP_Client/ABAP_AS_WITH_POOL.jcoDestination"   |   10 [31m-[m
+ .../ABAP_MS_WITHOUT_POOL.jcoDestination"           |   10 [31m-[m
+ .../SAP_Client/DB.properties"                      |    6 [31m-[m
+ .../SAP_Client/application.log"                    |   40 [31m-[m
+ .../SAP_Client/bin/ClientDB.class"                 |  Bin [31m7985[m -> [32m0[m bytes
+ .../SAP_Client/bin/StepByStepClient$1.class"       |  Bin [31m2932[m -> [32m0[m bytes
+ .../SAP_Client/bin/StepByStepClient.class"         |  Bin [31m14485[m -> [32m0[m bytes
+ .../SAP_Client/bin/log4j.xml"                      |   69 [31m-[m
+ .../SAP_Client/dev_jco_rfc.trc"                    |   29 [31m-[m
+ .../SAP_Client/execute_step.bat"                   |    4 [31m-[m
+ .../SAP_Client/log4j-1.2.17.jar"                   |  Bin [31m489883[m -> [32m0[m bytes
+ .../SAP_Client/sapjco3.jar"                        |  Bin [31m1488440[m -> [32m0[m bytes
+ .../SAP_Client/sqljdbc42.jar"                      |  Bin [31m898868[m -> [32m0[m bytes
+ .../SAP_Client/src/ClientDB.java"                  |  274 [31m-[m
+ .../SAP_Client/src/StepByStepClient.java"          |  599 [31m--[m
+ .../SAP_Client/src/log4j.xml"                      |   69 [31m-[m
+ .../SAP_JAVA/.classpath"                           |   11 [31m-[m
+ .../SAP_JAVA/.project"                             |   28 [31m-[m
+ .../.settings/org.eclipse.core.resources.prefs"    |    4 [31m-[m
+ .../SAP_JAVA/.settings/org.eclipse.jdt.core.prefs" |   11 [31m-[m
+ .../SAP_JAVA/ABAP_AS_WITHOUT_POOL.jcoDestination"  |   16 [31m-[m
+ .../SAP_JAVA/ABAP_AS_WITH_POOL.jcoDestination"     |   16 [31m-[m
+ .../SAP_JAVA/ABAP_MS_WITHOUT_POOL.jcoDestination"  |   16 [31m-[m
+ .../SAP_JAVA/DB.properties"                        |    6 [31m-[m
+ .../SAP_JAVA/SAP.jcoDestination"                   |   11 [31m-[m
+ .../SAP_JAVA/SERVER.jcoServer"                     |    7 [31m-[m
+ .../SAP_JAVA/SINDOH_SAP_RFC.jcoDestination"        |   17 [31m-[m
+ .../bin/ABAP_AS_WITHOUT_POOL.jcoDestination"       |   10 [31m-[m
+ .../bin/ABAP_AS_WITHOUT_POOL_bak.jcoDestination"   |    8 [31m-[m
+ .../SAP_JAVA/bin/ABAP_AS_WITH_POOL.jcoDestination" |   10 [31m-[m
+ .../SAP_JAVA/bin/DB.class"                         |  Bin [31m14496[m -> [32m0[m bytes
+ .../SAP_JAVA/bin/JCoFunction.txt"                  |    7 [31m-[m
+ .../SAP_JAVA/bin/SAP.jcoDestination"               |   12 [31m-[m
+ .../SAP_JAVA/bin/SERVER.jcoServer"                 |    8 [31m-[m
+ .../SAP_JAVA/bin/SINDOH_SAP_RFC.jcoDestination"    |   15 [31m-[m
+ ...yStepServer$CLS_SDH_CRATE_PACK_MASTER_IF.class" |  Bin [31m4112[m -> [32m0[m bytes
+ .../StepByStepServer$CLS_SDH_EIS_LEVEL_CODE.class" |  Bin [31m4410[m -> [32m0[m bytes
+ ...epByStepServer$CLS_SDH_EIS_MATERIAL_CODE.class" |  Bin [31m4418[m -> [32m0[m bytes
+ ...pByStepServer$CLS_SDH_INTAKE_AMOUNT_PACK.class" |  Bin [31m4399[m -> [32m0[m bytes
+ ...yStepServer$CLS_SDH_MATERIAL_MAINT_IF_ST.class" |  Bin [31m4039[m -> [32m0[m bytes
+ ...pByStepServer$CLS_SDH_SEND_SHIP_DELI_INF.class" |  Bin [31m14619[m -> [32m0[m bytes
+ ...epByStepServer$CLS_SDH_SORT_MASTER_TABLE.class" |  Bin [31m4117[m -> [32m0[m bytes
+ .../StepByStepServer$MyStateChangedListener.class" |  Bin [31m1348[m -> [32m0[m bytes
+ .../StepByStepServer$MyThrowableListener.class"    |  Bin [31m1766[m -> [32m0[m bytes
+ .../bin/StepByStepServer$REPORT_PROGRAM.class"     |  Bin [31m2216[m -> [32m0[m bytes
+ .../bin/StepByStepServer$SetTraceHandler.class"    |  Bin [31m3207[m -> [32m0[m bytes
+ .../SAP_JAVA/bin/StepByStepServer.class"           |  Bin [31m18031[m -> [32m0[m bytes
+ ...StepServer2$CLS_SDH_CRATE_PACK_MASTER_IF.class" |  Bin [31m3801[m -> [32m0[m bytes
+ ...StepByStepServer2$CLS_SDH_EIS_LEVEL_CODE.class" |  Bin [31m4099[m -> [32m0[m bytes
+ ...pByStepServer2$CLS_SDH_EIS_MATERIAL_CODE.class" |  Bin [31m4110[m -> [32m0[m bytes
+ ...ByStepServer2$CLS_SDH_INTAKE_AMOUNT_PACK.class" |  Bin [31m4088[m -> [32m0[m bytes
+ ...StepServer2$CLS_SDH_MATERIAL_MAINT_IF_ST.class" |  Bin [31m4057[m -> [32m0[m bytes
+ ...ByStepServer2$CLS_SDH_SEND_SHIP_DELI_INF.class" |  Bin [31m12545[m -> [32m0[m bytes
+ ...pByStepServer2$CLS_SDH_SORT_MASTER_TABLE.class" |  Bin [31m3808[m -> [32m0[m bytes
+ ...StepByStepServer2$MyStateChangedListener.class" |  Bin [31m1352[m -> [32m0[m bytes
+ .../StepByStepServer2$MyThrowableListener.class"   |  Bin [31m1770[m -> [32m0[m bytes
+ .../bin/StepByStepServer2$REPORT_PROGRAM.class"    |  Bin [31m1179[m -> [32m0[m bytes
+ .../bin/StepByStepServer2$SetTraceHandler.class"   |  Bin [31m3112[m -> [32m0[m bytes
+ .../SAP_JAVA/bin/StepByStepServer2.class"          |  Bin [31m16410[m -> [32m0[m bytes
+ .../SAP_JAVA/bin/dev_jco_rfc.trc"                  | 8882 [31m--------------------[m
+ .../SAP_JAVA/bin/log4j.xml"                        |   38 [31m-[m
+ .../SAP_JAVA/dev_jco_rfc.log"                      |   75 [31m-[m
+ .../SAP_JAVA/dev_jco_rfc.trc"                      | 1630 [31m----[m
+ .../SAP_JAVA/execute_step.bat"                     |    4 [31m-[m
+ .../SAP_JAVA/lib/SDB_API_15219.jar"                |  Bin [31m171642[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/activation.jar"                   |  Bin [31m56290[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/apache-commons-logging.jar"       |  Bin [31m60841[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/classes12.jar"                    |  Bin [31m1196109[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/commons-codec-1.17.1-bin.zip"     |  Bin [31m3585715[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/commons-codec-1.3.jar"            |  Bin [31m46725[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/commons-email-1.1.jar"            |  Bin [31m30651[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/commons-fileupload-1.2.jar"       |  Bin [31m53082[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/commons-io-1.3.1.jar"             |  Bin [31m83613[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/commons-lang-2.4.jar"             |  Bin [31m261809[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/cos.jar"                          |  Bin [31m56404[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/dcaIche.jar"                      |  Bin [31m39050[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/ekooniz.jar"                      |  Bin [31m178471[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/elsjdbc.jar"                      |  Bin [31m128228[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/ezmorph-1.0.6.jar"                |  Bin [31m86487[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/jOpenDocument-1.2b3-jdk5.jar"     |  Bin [31m2632770[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/jdom.jar"                         |  Bin [31m150815[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/json-lib-2.2.2-jdk15.jar"         |  Bin [31m143977[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/jsp-api.jar"                      |  Bin [31m50501[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/jxl.jar"                          |  Bin [31m704543[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/kainess_1.1.jar"                  |  Bin [31m123602[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/kainess_prm.jar"                  |  Bin [31m114835[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/log4j-1.2.14.jar"                 |  Bin [31m367444[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/log4sql.jar"                      |  Bin [31m81349[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/mail.jar"                         |  Bin [31m434812[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/msbase.jar"                       |  Bin [31m287022[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/mssqlserver.jar"                  |  Bin [31m67115[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/nice_transfer_0.3.jar"            |  Bin [31m77657[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/ojdbc14_g.jar"                    |  Bin [31m1692499[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/org.apache.commons.beanutils.jar" |  Bin [31m201356[m -> [32m0[m bytes
+ .../lib/org.apache.commons.collections.jar"        |  Bin [31m571259[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/sapjco.jar"                       |  Bin [31m299296[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/sapjco_64.tar"                    |  Bin [31m12922880[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/slf4j-api-1.5.6.jar"              |  Bin [31m22338[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/slf4j-log4j12-1.5.6.jar"          |  Bin [31m9678[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/smartixV001.jar"                  |  Bin [31m182062[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/tagfree_mime_v6.jar"              |  Bin [31m13742[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/waf1_0.jar"                       |  Bin [31m75271[m -> [32m0[m bytes
+ .../SAP_JAVA/lib/xc3.jar"                          |  Bin [31m1288[m -> [32m0[m bytes
+ .../SAP_JAVA/log4j-1.2.17.jar"                     |  Bin [31m489883[m -> [32m0[m bytes
+ .../SAP_JAVA/logs/sap_server.log"                  |  608 [31m--[m
+ .../SAP_JAVA/sapjco3.jar"                          |  Bin [31m1608133[m -> [32m0[m bytes
+ .../SAP_JAVA/sapjco3.jar.3.0"                      |  Bin [31m1488440[m -> [32m0[m bytes
+ .../SAP_JAVA/sqljdbc42.jar"                        |  Bin [31m898868[m -> [32m0[m bytes
+ .../src/ABAP_AS_WITHOUT_POOL.jcoDestination"       |   10 [31m-[m
+ .../src/ABAP_AS_WITHOUT_POOL_bak.jcoDestination"   |    8 [31m-[m
+ .../SAP_JAVA/src/ABAP_AS_WITH_POOL.jcoDestination" |   10 [31m-[m
+ .../SAP_JAVA/src/DB.java"                          |  471 [31m--[m
+ .../SAP_JAVA/src/JCoFunction.txt"                  |    7 [31m-[m
+ .../SAP_JAVA/src/SAP.jcoDestination"               |   12 [31m-[m
+ .../SAP_JAVA/src/SERVER.jcoServer"                 |    8 [31m-[m
+ .../SAP_JAVA/src/SINDOH_SAP_RFC.jcoDestination"    |   15 [31m-[m
+ .../SAP_JAVA/src/StepByStepServer.java"            | 2160 [31m-----[m
+ .../SAP_JAVA/src/StepByStepServer2.java"           | 1853 [31m----[m
+ .../SAP_JAVA/src/dev_jco_rfc.trc"                  | 8882 [31m--------------------[m
+ .../SAP_JAVA/src/log4j.xml"                        |   38 [31m-[m
+ .../SapTestDemon/.classpath"                       |   35 [31m-[m
+ .../SapTestDemon/.idea/.gitignore"                 |    8 [31m-[m
+ .../SapTestDemon/.idea/misc.xml"                   |    6 [31m-[m
+ .../SapTestDemon/.idea/modules.xml"                |    8 [31m-[m
+ .../SapTestDemon/.project"                         |   28 [31m-[m
+ .../.settings/org.eclipse.core.resources.prefs"    |    2 [31m-[m
+ .../.settings/org.eclipse.jdt.core.prefs"          |   12 [31m-[m
+ .../SapTestDemon/RealTimeMonitorCVO.iml"           |  151 [31m-[m
+ .../SapTestDemon/bin/WakeUpTheBill.ini"            |   28 [31m-[m
+ .../bin/com/cvo/web/common/data/BaseBox.class"     |  Bin [31m6160[m -> [32m0[m bytes
+ .../bin/com/cvo/web/common/data/Box.class"         |  Bin [31m13083[m -> [32m0[m bytes
+ .../bin/com/cvo/web/common/data/BoxProp.class"     |  Bin [31m1759[m -> [32m0[m bytes
+ .../bin/com/cvo/web/common/data/ModelBox.class"    |  Bin [31m684[m -> [32m0[m bytes
+ .../com/cvo/web/common/data/PaginateModel.class"   |  Bin [31m2643[m -> [32m0[m bytes
+ .../web/common/data/parse/BoxDeserializer.class"   |  Bin [31m1652[m -> [32m0[m bytes
+ .../bin/com/cvo/web/common/util/StringUtil.class"  |  Bin [31m14242[m -> [32m0[m bytes
+ .../bin/com/maeil/rtm/S4HanaConnection.class"      |  Bin [31m4880[m -> [32m0[m bytes
+ .../rtm/constants/MailConst$InsertType.class"      |  Bin [31m1185[m -> [32m0[m bytes
+ .../bin/com/maeil/rtm/constants/MailConst.class"   |  Bin [31m624[m -> [32m0[m bytes
+ .../com/maeil/rtm/database/DatabaseAccessor.class" |  Bin [31m3561[m -> [32m0[m bytes
+ .../bin/com/maeil/rtm/mapper/ServiceMapper.class"  |  Bin [31m282[m -> [32m0[m bytes
+ .../bin/com/maeil/rtm/mapper/ServiceMapper.xml"    |   44 [31m-[m
+ .../bin/com/maeil/rtm/mapper/configuration.xml"    |   34 [31m-[m
+ .../SapTestDemon/bin/db.properties"                |   54 [31m-[m
+ .../SapTestDemon/bin/log4j2.xml"                   |   26 [31m-[m
+ .../SapTestDemon/libs/commons-codec-1.10.jar"      |  Bin [31m284184[m -> [32m0[m bytes
+ .../SapTestDemon/libs/commons-jxpath-1.3.jar"      |  Bin [31m299994[m -> [32m0[m bytes
+ .../SapTestDemon/libs/commons-lang-2.5.jar"        |  Bin [31m279193[m -> [32m0[m bytes
+ .../SapTestDemon/libs/commons-logging-1.2.jar"     |  Bin [31m61829[m -> [32m0[m bytes
+ .../SapTestDemon/libs/commons-net-3.8.0.jar"       |  Bin [31m307305[m -> [32m0[m bytes
+ .../SapTestDemon/libs/dsic-base-app-1.0.jar"       |  Bin [31m206555[m -> [32m0[m bytes
+ .../SapTestDemon/libs/dsic-common-1.0.jar"         |  Bin [31m232880[m -> [32m0[m bytes
+ .../SapTestDemon/libs/dsic-message-1.0.jar"        |  Bin [31m55353[m -> [32m0[m bytes
+ .../SapTestDemon/libs/gson-2.8.5.jar"              |  Bin [31m241622[m -> [32m0[m bytes
+ .../SapTestDemon/libs/guava-15.0.jar"              |  Bin [31m2172168[m -> [32m0[m bytes
+ .../SapTestDemon/libs/httpclient-4.5.6.jar"        |  Bin [31m767140[m -> [32m0[m bytes
+ .../SapTestDemon/libs/httpcore-4.4.10.jar"         |  Bin [31m326356[m -> [32m0[m bytes
+ .../SapTestDemon/libs/joda-time-2.3.jar"           |  Bin [31m581571[m -> [32m0[m bytes
+ .../SapTestDemon/libs/jsch-0.1.55.jar"             |  Bin [31m280681[m -> [32m0[m bytes
+ .../SapTestDemon/libs/log4j-1.2.17.jar"            |  Bin [31m480756[m -> [32m0[m bytes
+ .../SapTestDemon/libs/log4j-api-2.11.0.jar"        |  Bin [31m263109[m -> [32m0[m bytes
+ .../SapTestDemon/libs/log4j-core-2.11.0.jar"       |  Bin [31m1600780[m -> [32m0[m bytes
+ .../SapTestDemon/libs/logback-access-1.1.11.jar"   |  Bin [31m107134[m -> [32m0[m bytes
+ .../SapTestDemon/libs/logback-classic-1.1.11.jar"  |  Bin [31m309130[m -> [32m0[m bytes
+ .../SapTestDemon/libs/logback-core-1.1.11.jar"     |  Bin [31m475477[m -> [32m0[m bytes
+ .../libs/logback-ext-spring-0.1.4.jar"             |  Bin [31m14615[m -> [32m0[m bytes
+ .../SapTestDemon/libs/mail-1.4.7.jar"              |  Bin [31m521157[m -> [32m0[m bytes
+ .../SapTestDemon/libs/mybatis-3.4.6.jar"           |  Bin [31m1626073[m -> [32m0[m bytes
+ .../SapTestDemon/libs/servlet-api-2.5.jar"         |  Bin [31m105112[m -> [32m0[m bytes
+ .../SapTestDemon/libs/slf4j-api-1.7.5.jar"         |  Bin [31m26084[m -> [32m0[m bytes
+ .../SapTestDemon/libs/slf4j-log4j12-1.7.5.jar"     |  Bin [31m8869[m -> [32m0[m bytes
+ .../SapTestDemon/libs/spring-beans-6.1.12.jar"     |  Bin [31m862392[m -> [32m0[m bytes
+ .../SapTestDemon/libs/spring-context-6.1.12.jar"   |  Bin [31m1305612[m -> [32m0[m bytes
+ .../SapTestDemon/libs/spring-core-6.1.12.jar"      |  Bin [31m1882923[m -> [32m0[m bytes
+ .../SapTestDemon/libs/spring-web-6.1.12.jar"       |  Bin [31m1901655[m -> [32m0[m bytes
+ .../SapTestDemon/libs/sqljdbc4-2.0.jar"            |  Bin [31m466359[m -> [32m0[m bytes
+ .../logs/2024-10/rtmCVO-2024-10-25-1.log.gz"       |  Bin [31m112[m -> [32m0[m bytes
+ .../SapTestDemon/logs/rtmCVO.log"                  |   30 [31m-[m
+ .../SapTestDemon/properties/WakeUpTheBill.ini"     |   28 [31m-[m
+ .../SapTestDemon/properties/db.properties"         |   54 [31m-[m
+ .../SapTestDemon/properties/log4j2.xml"            |   26 [31m-[m
+ .../src/com/cvo/web/common/data/BaseBox.java"      |  379 [31m-[m
+ .../src/com/cvo/web/common/data/Box.java"          |  716 [31m--[m
+ .../src/com/cvo/web/common/data/BoxProp.java"      |   98 [31m-[m
+ .../src/com/cvo/web/common/data/ModelBox.java"     |   44 [31m-[m
+ .../com/cvo/web/common/data/PaginateModel.java"    |  119 [31m-[m
+ .../web/common/data/parse/BoxDeserializer.java"    |   37 [31m-[m
+ .../src/com/cvo/web/common/util/StringUtil.java"   | 1068 [31m---[m
+ .../src/com/maeil/rtm/S4HanaConnection.java"       |  121 [31m-[m
+ .../src/com/maeil/rtm/constants/MailConst.java"    |   16 [31m-[m
+ .../com/maeil/rtm/database/DatabaseAccessor.java"  |  131 [31m-[m
+ .../src/com/maeil/rtm/mapper/ServiceMapper.java"   |    8 [31m-[m
+ .../src/com/maeil/rtm/mapper/ServiceMapper.xml"    |   44 [31m-[m
+ .../src/com/maeil/rtm/mapper/configuration.xml"    |   34 [31m-[m
+ ...\355\212\270\354\272\240\355\224\204 RAG.ipynb" |  455 [31m-[m
+ ...214\355\231\224 \353\241\234\354\247\201.ipynb" |  484 [31m--[m
+ .../NSSM/nssm-2.24/win32/nssm.exe"                 |  Bin [31m294912[m -> [32m0[m bytes
+ .../NSSM/nssm-2.24/win64/nssm.exe"                 |  Bin [31m331264[m -> [32m0[m bytes
+ .../logs/2024-10/rtmCVO-2024-10-25-1.log.gz"       |  Bin [31m112[m -> [32m0[m bytes
+ .../NSSM/rtmDELI/logs/rtmCVO.log"                  |   30 [31m-[m
+ .../NSSM/rtmDELI/properties/db.properties"         |   54 [31m-[m
+ .../NSSM/rtmDELI/rtmCVO.bat"                       |    2 [31m-[m
+ .../NSSM/rtmDELI/rtmDELI.jar"                      |  Bin [31m9154707[m -> [32m0[m bytes
+ .../logs/2024-10/rtmCVO-2024-10-25-1.log.gz"       |  Bin [31m112[m -> [32m0[m bytes
+ .../NSSM/rtmDELItest/logs/rtmCVO.log"              |   30 [31m-[m
+ .../NSSM/rtmDELItest/properties/db.properties"     | 
