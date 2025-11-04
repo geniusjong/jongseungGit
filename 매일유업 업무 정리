@@ -410,6 +410,7 @@ git remote set-url origin https://glpat-TpWJHqGNtEKJT1dtHqmZ@gitlab.com/stsgroup
 CVO BW 리포트 
 <iframe src = 'http://sapbiprd.maeil.com:8000/SAP/BW/BEX?&QUERY=ZSDCVB02_Q001&SAP-USER=web_user&SAP-PASSWORD=maeil01' style='overflow-x:hidden; overflow:auto; width:100%; min-height:610px; border:none;'></iframe>
 
+<<<<<<< HEAD
 MSSQL 
 --프로시저 찾기
 SELECT ROUTINE_NAME, ROUTINE_DEFINITION
@@ -447,3 +448,5 @@ WHERE 1 = 0;
 --SAP RFC 연결 DNS
 SAP과 RFC연결할때 DNS가 외부 IP를 바라보고 있으면(nslookup으로 확인)
 RFC가 도메인으로 연결 안되고 IP로만 연결이 됨(방화벽 문제)
+=======
+>>>>>>> 7c711d9ceb04a2846136ad69a61fbce30d8ddf78
