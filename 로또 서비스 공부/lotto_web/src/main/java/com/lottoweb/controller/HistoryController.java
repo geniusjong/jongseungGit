@@ -2,6 +2,7 @@ package com.lottoweb.controller;
 
 import com.lottoweb.dao.LottoDAO;
 import com.lottoweb.model.LottoNumber;
+import com.lottoweb.util.LuckyNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,7 @@ public class HistoryController {
 		this.lottoDAO = lottoDAO;
 	}
 
-	@GetMapping("/lotto/lottoHistory")
+	@GetMapping({"/lotto/lottoHistory", "/history"})
 	public String history(
 			@RequestParam(required = false, defaultValue = "1") int page,
 			@RequestParam(required = false, defaultValue = "20") int size,
@@ -48,6 +49,29 @@ public class HistoryController {
 		List<LottoNumber> items = lottoDAO.getLottoHistory(start, end, number, offset, size, sort, dir);
 		Map<Integer, Integer> freq = lottoDAO.countFrequencies(start, end, number);
 
+		// 가장 많이/적게 나온 번호 계산
+		int mostFreq = -1, mostFreqCount = -1, leastFreq = -1, leastFreqCount = Integer.MAX_VALUE;
+		int maxFreq = 0;
+		for (Map.Entry<Integer, Integer> e : freq.entrySet()) {
+			if (e.getValue() > mostFreqCount) {
+				mostFreqCount = e.getValue();
+				mostFreq = e.getKey();
+			}
+			if (e.getValue() < leastFreqCount && e.getValue() > 0) {
+				leastFreqCount = e.getValue();
+				leastFreq = e.getKey();
+			}
+			if (e.getValue() > maxFreq) {
+				maxFreq = e.getValue();
+			}
+		}
+
+		// 그룹 시작 페이지 계산 (5개씩 그룹)
+		int groupStart = ((page - 1) / 5) * 5 + 1;
+		if (groupStart <= 0 || groupStart > totalPages) {
+			groupStart = 1;
+		}
+
 		model.addAttribute("items", items);
 		model.addAttribute("totalPages", totalPages);
 		model.addAttribute("currentPage", page);
@@ -58,7 +82,14 @@ public class HistoryController {
 		model.addAttribute("number", number);
 		model.addAttribute("sort", sort);
 		model.addAttribute("dir", dir);
+		model.addAttribute("groupStart", groupStart);
 		model.addAttribute("freq", freq);
+		model.addAttribute("mostFreq", mostFreq);
+		model.addAttribute("mostFreqCount", mostFreqCount);
+		model.addAttribute("leastFreq", leastFreq);
+		model.addAttribute("leastFreqCount", leastFreqCount);
+		model.addAttribute("maxFreq", maxFreq);
+		model.addAttribute("luckyNum", LuckyNumber.todayKST());
 
 		return "lotto/lottoHistory";
 	}

@@ -24,7 +24,7 @@ public class IndexController {
 		LottoNumber latest = lottoDAO.getLottoNumber();
 		model.addAttribute("latest", latest);
 		
-		// ÃÖ±Ù 5°³ È¸Â÷ ¸ñ·Ï
+		// ìµœê·¼ 5ê°œ íšŒì°¨ ëª©ë¡
 		List<LottoNumber> recentList = lottoDAO.getLottoHistory(null, null, null, 0, 5, "postgame", "desc");
 		model.addAttribute("recentList", recentList);
 		

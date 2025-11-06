@@ -1,23 +1,82 @@
 package com.lottoweb.model;
 
-public class LottoNumber {
-    private int postgame;
-    private int num1;
-    private int num2;
-    private int num3;
-    private int num4;
-    private int num5;
-    private int num6;
-    private int bonusnum;
-    private long firstprize;
-    private long firstprizecount;
+import javax.persistence.*;
 
-    // 湲곕낯 �깮�꽦�옄
+/**
+ * 로또 번호 Entity 클래스
+ * 데이터베이스의 tb_lotto_number 테이블과 매핑됩니다.
+ */
+@Entity
+@Table(name = "tb_lotto_number")
+public class LottoNumber {
+    
+    /**
+     * 회차 번호 (기본키)
+     */
+    @Id
+    @Column(name = "postgame")
+    private int postgame;
+    
+    /**
+     * 로또 번호 1
+     */
+    @Column(name = "num1")
+    private int num1;
+    
+    /**
+     * 로또 번호 2
+     */
+    @Column(name = "num2")
+    private int num2;
+    
+    /**
+     * 로또 번호 3
+     */
+    @Column(name = "num3")
+    private int num3;
+    
+    /**
+     * 로또 번호 4
+     */
+    @Column(name = "num4")
+    private int num4;
+    
+    /**
+     * 로또 번호 5
+     */
+    @Column(name = "num5")
+    private int num5;
+    
+    /**
+     * 로또 번호 6
+     */
+    @Column(name = "num6")
+    private int num6;
+    
+    /**
+     * 보너스 번호
+     */
+    @Column(name = "bonusnum")
+    private int bonusnum;
+    
+    /**
+     * 1등 당첨 금액
+     */
+    @Column(name = "firstprize")
+    private long firstprize;
+    
+    /**
+     * 1등 당첨자 수
+     */
+    @Column(name = "firstprizecount")
+    private int firstprizecount;
+
+    // 기본 생성자 (JPA 필수)
     public LottoNumber() {
     }
 
-    // 紐⑤뱺 �븘�뱶瑜� �룷�븿�븯�뒗 �깮�꽦�옄
-    public LottoNumber(int postgame, int num1, int num2, int num3, int num4, int num5, int num6, int bonusnum, long firstprize, long firstprizecount) {
+    // 모든 필드를 포함하는 생성자
+    public LottoNumber(int postgame, int num1, int num2, int num3, int num4, int num5, int num6, int bonusnum, long firstprize, int firstprizecount) {
         this.postgame = postgame;
         this.num1 = num1;
         this.num2 = num2;
@@ -30,7 +89,7 @@ public class LottoNumber {
         this.firstprizecount = firstprizecount;
     }
 
-    // Getter & Setter 硫붿꽌�뱶
+    // Getter & Setter 메서드
     public int getPostgame() {
         return postgame;
     }
@@ -103,11 +162,11 @@ public class LottoNumber {
         this.firstprize = firstprize;
     }
 
-    public long getFirstprizecount() {
+    public int getFirstprizecount() {
         return firstprizecount;
     }
 
-    public void setFirstprizecount(long firstprizecount) {
+    public void setFirstprizecount(int firstprizecount) {
         this.firstprizecount = firstprizecount;
     }
 
@@ -127,3 +186,4 @@ public class LottoNumber {
                 '}';
     }
 }
+

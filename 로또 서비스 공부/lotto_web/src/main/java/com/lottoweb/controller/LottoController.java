@@ -23,10 +23,10 @@ public class LottoController {
 
 	@GetMapping("/lotto")
 	public String lotto(@RequestParam(required = false) Boolean useLucky, Model model) {
-		// ÃÖ½Å ·Î¶Ç ¹øÈ£ Á¶È¸
+		// ìµœì‹  ë¡œë˜ ë²ˆí˜¸ ì¡°íšŒ
 		model.addAttribute("lottoNumber", lottoDAO.getLottoNumber());
 
-		// ±âº»/Çà¿î¹øÈ£ Æ÷ÇÔ ÃßÃ·
+		// ê¸°ë³¸/í–‰ìš´ë²ˆí˜¸ í¬í•¨ ì¶”ì²¨
 		Map<String, Object> lottoResult;
 		if (useLucky != null && useLucky) {
 			int lucky = LuckyNumber.todayKST();

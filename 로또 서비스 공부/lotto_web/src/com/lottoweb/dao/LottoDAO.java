@@ -9,7 +9,7 @@ import java.util.*;
 
 public class LottoDAO {
 
-	// ÃÖ½Å ·Î¶Ç ¹øÈ£ °¡Á®¿À±â
+	// ìµœì‹  ë¡œë˜ ë²ˆí˜¸ ê°€ì ¸ì˜¤ê¸°
 	public LottoNumber getLottoNumber() {
 		LottoNumber lottoNumber = null;
 		try (Connection conn = DriverManager.getConnection(DbConfig.getUrl(), DbConfig.getUser(), DbConfig.getPassword());
@@ -36,7 +36,7 @@ public class LottoDAO {
 		return lottoNumber;
 	}
 
-	// ·Î¶Ç ¹øÈ£µé °¡Á®¿À±â (°¡ÁßÄ¡ °è»ê¿ë)
+	// ë¡œë˜ ë²ˆí˜¸ë“¤ ê°€ì ¸ì˜¤ê¸° (ê°€ì¤‘ì¹˜ ê³„ì‚°ìš©)
 	public List<Integer> getAllLottoNumbers() {
 		List<Integer> allNumbers = new ArrayList<>();
 		try (Connection conn = DriverManager.getConnection(DbConfig.getUrl(), DbConfig.getUser(), DbConfig.getPassword());
@@ -56,20 +56,20 @@ public class LottoDAO {
 		return allNumbers;
 	}
 
-	// ·Î¶Ç ¹øÈ£ ÃßÃ· (°¡ÁßÄ¡ ±â¹İ)
+	// ë¡œë˜ ë²ˆí˜¸ ì¶”ì²¨ (ê°€ì¤‘ì¹˜ ê¸°ë°˜)
 	public Map<String, Object> drawLottoNumbers() {
 		List<Integer> allNumbers = getAllLottoNumbers();
 		Map<Integer, Double> weights = LottoWeightCalculator.calculateWeights(allNumbers);
 		return LottoWeightCalculator.drawLotto(weights, 6);
 	}
 
-    // Æ¯Á¤ ¹øÈ£¸¦ ¹İµå½Ã Æ÷ÇÔÇÏ¿© ÃßÃ· (°¡ÁßÄ¡ ±â¹İ, Áßº¹ ¾øÀ½)
+    // íŠ¹ì • ë²ˆí˜¸ë¥¼ ë°˜ë“œì‹œ í¬í•¨í•˜ì—¬ ì¶”ì²¨ (ê°€ì¤‘ì¹˜ ê¸°ë°˜, ì¤‘ë³µ ì—†ìŒ)
     public Map<String, Object> drawLottoNumbersIncluding(int includeNumber) {
         if (includeNumber < 1 || includeNumber > 45) return drawLottoNumbers();
         List<Integer> allNumbers = getAllLottoNumbers();
         Map<Integer, Double> weights = LottoWeightCalculator.calculateWeights(allNumbers);
 
-        // Æ÷ÇÔ ¹øÈ£´Â ¹Ì¸® ¼±ÅÃÇÏ°í, °¡ÁßÄ¡ ¸ñ·Ï¿¡¼­ Á¦°ÅÇÑ µÚ ³ª¸ÓÁö 5°³¸¦ »Ì´Â´Ù
+        // í¬í•¨ ë²ˆí˜¸ëŠ” ë¯¸ë¦¬ ì„ íƒí•˜ê³ , ê°€ì¤‘ì¹˜ ëª©ë¡ì—ì„œ ì œê±°í•œ ë’¤ ë‚˜ë¨¸ì§€ 5ê°œë¥¼ ë½‘ëŠ”ë‹¤
         Map<Integer, Double> filtered = new LinkedHashMap<>(weights);
         filtered.remove(includeNumber);
 
@@ -79,7 +79,7 @@ public class LottoDAO {
         if (!selected.contains(includeNumber)) selected.add(includeNumber);
         Collections.sort(selected);
 
-        // º¸³Ê½º´Â Áßº¹ ¾øÀÌ ¼±ÅÃ
+        // ë³´ë„ˆìŠ¤ëŠ” ì¤‘ë³µ ì—†ì´ ì„ íƒ
         Random r = new Random();
         int bonus;
         do { bonus = r.nextInt(45) + 1; } while (selected.contains(bonus));
@@ -90,7 +90,7 @@ public class LottoDAO {
         return result;
     }
 
-	// ÀüÃ¼ È÷½ºÅä¸® °Ç¼ö
+	// ì „ì²´ íˆìŠ¤í† ë¦¬ ê±´ìˆ˜
 	public int countLottoHistory() {
 		try (Connection conn = DriverManager.getConnection(DbConfig.getUrl(), DbConfig.getUser(), DbConfig.getPassword());
 			 Statement stmt = conn.createStatement();
@@ -102,7 +102,7 @@ public class LottoDAO {
 		return 0;
 	}
 
-	// ÆäÀÌÂ¡ È÷½ºÅä¸® Á¶È¸ (postgame DESC)
+	// í˜ì´ì§• íˆìŠ¤í† ë¦¬ ì¡°íšŒ (postgame DESC)
 	public List<LottoNumber> getLottoHistory(int offset, int limit) {
 		List<LottoNumber> list = new ArrayList<>();
 		String sql = "SELECT postgame, num1, num2, num3, num4, num5, num6, bonusnum, firstprize, firstprizecount FROM tb_lotto_number ORDER BY postgame DESC LIMIT ? OFFSET ?";
@@ -121,7 +121,7 @@ public class LottoDAO {
 		return list;
 	}
 
-	// ÇÊÅÍ¸µµÈ ÀüÃ¼ °Ç¼ö (È¸Â÷¹üÀ§/¹øÈ£ Æ÷ÇÔ)
+	// í•„í„°ë§ëœ ì „ì²´ ê±´ìˆ˜ (íšŒì°¨ë²”ìœ„/ë²ˆí˜¸ í¬í•¨)
 	public int countLottoHistory(Integer startPostgame, Integer endPostgame, Integer includeNumber) {
 		StringBuilder sb = new StringBuilder("SELECT COUNT(*) FROM tb_lotto_number WHERE 1=1");
 		List<Object> params = new ArrayList<>();
@@ -143,7 +143,7 @@ public class LottoDAO {
 		return 0;
 	}
 
-	// ÇÊÅÍ¸µ + ÆäÀÌÂ¡ Á¶È¸ + Á¤·Ä
+	// í•„í„°ë§ + í˜ì´ì§• ì¡°íšŒ + ì •ë ¬
 	public List<LottoNumber> getLottoHistory(Integer startPostgame, Integer endPostgame, Integer includeNumber, int offset, int limit, String sortCol, String sortDir) {
 		List<LottoNumber> list = new ArrayList<>();
 		String orderBy = resolveOrderBy(sortCol, sortDir);
@@ -182,7 +182,7 @@ public class LottoDAO {
 		return "ORDER BY " + column + " " + direction;
 	}
 
-	// ÇÊÅÍµÈ ÀüÃ¼ Çà¿¡ ´ëÇÑ ¹øÈ£ ºóµµ(1~45), º¸³Ê½º Æ÷ÇÔ
+	// í•„í„°ëœ ì „ì²´ í–‰ì— ëŒ€í•œ ë²ˆí˜¸ ë¹ˆë„(1~45), ë³´ë„ˆìŠ¤ í¬í•¨
 	public Map<Integer, Integer> countFrequencies(Integer startPostgame, Integer endPostgame, Integer includeNumber) {
 		Map<Integer, Integer> freq = new LinkedHashMap<>();
 		for (int i=1;i<=45;i++) freq.put(i, 0);

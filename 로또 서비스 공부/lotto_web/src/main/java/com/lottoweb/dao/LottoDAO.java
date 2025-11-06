@@ -2,78 +2,63 @@ package com.lottoweb.dao;
 
 import com.lottoweb.model.LottoNumber;
 import com.lottoweb.model.LottoWeightCalculator;
+import com.lottoweb.repository.LottoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.*;
 
 @Repository
 public class LottoDAO {
 
-	private final JdbcTemplate jdbcTemplate;
+	private final LottoRepository lottoRepository;  // JPA Repository
 
 	@Autowired
-	public LottoDAO(JdbcTemplate jdbcTemplate) {
-		this.jdbcTemplate = jdbcTemplate;
+	public LottoDAO(LottoRepository lottoRepository) {
+		this.lottoRepository = lottoRepository;
 	}
 
-	private static final RowMapper<LottoNumber> LOTTO_NUMBER_ROW_MAPPER = new RowMapper<LottoNumber>() {
-		@Override
-		public LottoNumber mapRow(ResultSet rs, int rowNum) throws SQLException {
-			LottoNumber n = new LottoNumber();
-			n.setPostgame(rs.getInt("postgame"));
-			n.setNum1(rs.getInt("num1"));
-			n.setNum2(rs.getInt("num2"));
-			n.setNum3(rs.getInt("num3"));
-			n.setNum4(rs.getInt("num4"));
-			n.setNum5(rs.getInt("num5"));
-			n.setNum6(rs.getInt("num6"));
-			n.setBonusnum(rs.getInt("bonusnum"));
-			n.setFirstprize(rs.getLong("firstprize"));
-			n.setFirstprizecount(rs.getLong("firstprizecount"));
-			return n;
-		}
-	};
-
-	// ÃÖ½Å ·Î¶Ç ¹øÈ£ °¡Á®¿À±â
+	// ìµœì‹  ë¡œë˜ ë²ˆí˜¸ ê°€ì ¸ì˜¤ê¸°
+	// â­ JPAë¡œ ì „í™˜: Repositoryë¥¼ ì‚¬ìš©í•©ë‹ˆë‹¤
 	public LottoNumber getLottoNumber() {
-		String sql = "SELECT * FROM tb_lotto_number ORDER BY postgame DESC LIMIT 1";
-		List<LottoNumber> results = jdbcTemplate.query(sql, LOTTO_NUMBER_ROW_MAPPER);
-		return results.isEmpty() ? null : results.get(0);
+		return lottoRepository.findFirstByOrderByPostgameDesc()
+				.orElse(null);  // Optionalì„ nullë¡œ ë³€í™˜
 	}
 
-	// ·Î¶Ç ¹øÈ£µé °¡Á®¿À±â (°¡ÁßÄ¡ °è»ê¿ë)
+	// ë¡œë˜ ë²ˆí˜¸ë“¤ ê°€ì ¸ì˜¤ê¸° (ê°€ì¤‘ì¹˜ ê³„ì‚°ìš©)
+	// â­ JPAë¡œ ì „í™˜: Repositoryë¥¼ ì‚¬ìš©í•˜ì—¬ ëª¨ë“  ë¡œë˜ ë²ˆí˜¸ë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤
 	public List<Integer> getAllLottoNumbers() {
-		String sql = "SELECT num1, num2, num3, num4, num5, num6 FROM tb_lotto_number";
+		List<LottoNumber> allLottos = lottoRepository.findAll();
 		List<Integer> allNumbers = new ArrayList<>();
 		
-		jdbcTemplate.query(sql, (ResultSet rs) -> {
-			for (int i = 1; i <= 6; i++) {
-				allNumbers.add(rs.getInt("num" + i));
-			}
-		});
+		for (LottoNumber lotto : allLottos) {
+			allNumbers.add(lotto.getNum1());
+			allNumbers.add(lotto.getNum2());
+			allNumbers.add(lotto.getNum3());
+			allNumbers.add(lotto.getNum4());
+			allNumbers.add(lotto.getNum5());
+			allNumbers.add(lotto.getNum6());
+		}
 		
 		return allNumbers;
 	}
 
-	// ·Î¶Ç ¹øÈ£ ÃßÃ· (°¡ÁßÄ¡ ±â¹İ)
+	// ë¡œë˜ ë²ˆí˜¸ ì¶”ì²¨ (ê°€ì¤‘ì¹˜ ê¸°ë°˜)
 	public Map<String, Object> drawLottoNumbers() {
 		List<Integer> allNumbers = getAllLottoNumbers();
 		Map<Integer, Double> weights = LottoWeightCalculator.calculateWeights(allNumbers);
 		return LottoWeightCalculator.drawLotto(weights, 6);
 	}
 
-	// Æ¯Á¤ ¹øÈ£¸¦ ¹İµå½Ã Æ÷ÇÔÇÏ¿© ÃßÃ· (°¡ÁßÄ¡ ±â¹İ, Áßº¹ ¾øÀ½)
+	// íŠ¹ì • ë²ˆí˜¸ë¥¼ ë°˜ë“œì‹œ í¬í•¨í•˜ì—¬ ì¶”ì²¨ (ê°€ì¤‘ì¹˜ ê¸°ë°˜, ì¤‘ë³µ ì—†ìŒ)
 	public Map<String, Object> drawLottoNumbersIncluding(int includeNumber) {
 		if (includeNumber < 1 || includeNumber > 45) return drawLottoNumbers();
 		List<Integer> allNumbers = getAllLottoNumbers();
 		Map<Integer, Double> weights = LottoWeightCalculator.calculateWeights(allNumbers);
 
-		// Æ÷ÇÔ ¹øÈ£´Â ¹Ì¸® ¼±ÅÃÇÏ°í, °¡ÁßÄ¡ ¸ñ·Ï¿¡¼­ Á¦°ÅÇÑ µÚ ³ª¸ÓÁö 5°³¸¦ »Ì´Â´Ù
+		// í¬í•¨ ë²ˆí˜¸ëŠ” ë¯¸ë¦¬ ì„ íƒí•˜ê³ , ê°€ì¤‘ì¹˜ ëª©ë¡ì—ì„œ ì œê±°í•œ ë’¤ ë‚˜ë¨¸ì§€ 5ê°œë¥¼ ë½‘ëŠ”ë‹¤
 		Map<Integer, Double> filtered = new LinkedHashMap<>(weights);
 		filtered.remove(includeNumber);
 
@@ -83,7 +68,7 @@ public class LottoDAO {
 		if (!selected.contains(includeNumber)) selected.add(includeNumber);
 		Collections.sort(selected);
 
-		// º¸³Ê½º´Â Áßº¹ ¾øÀÌ ¼±ÅÃ
+		// ë³´ë„ˆìŠ¤ëŠ” ì¤‘ë³µ ì—†ì´ ì„ íƒ
 		Random r = new Random();
 		int bonus;
 		do { bonus = r.nextInt(45) + 1; } while (selected.contains(bonus));
@@ -94,108 +79,54 @@ public class LottoDAO {
 		return result;
 	}
 
-	// ÀüÃ¼ È÷½ºÅä¸® °Ç¼ö
+	// ì „ì²´ íˆìŠ¤í† ë¦¬ ê±´ìˆ˜
+	// â­ JPAë¡œ ì „í™˜: count() ë©”ì„œë“œëŠ” JpaRepositoryì—ì„œ ìë™ ì œê³µë©ë‹ˆë‹¤
 	public int countLottoHistory() {
-		String sql = "SELECT COUNT(*) FROM tb_lotto_number";
-		Integer count = jdbcTemplate.queryForObject(sql, Integer.class);
-		return count != null ? count : 0;
+		return (int) lottoRepository.count();
 	}
 
-	// ÆäÀÌÂ¡ È÷½ºÅä¸® Á¶È¸ (postgame DESC)
+	// í˜ì´ì§• íˆìŠ¤í† ë¦¬ ì¡°íšŒ (postgame DESC)
+	// â­ JPAë¡œ ì „í™˜: Pageableì„ ì‚¬ìš©í•œ í˜ì´ì§•
 	public List<LottoNumber> getLottoHistory(int offset, int limit) {
-		String sql = "SELECT postgame, num1, num2, num3, num4, num5, num6, bonusnum, firstprize, firstprizecount FROM tb_lotto_number ORDER BY postgame DESC LIMIT ? OFFSET ?";
-		return jdbcTemplate.query(sql, LOTTO_NUMBER_ROW_MAPPER, limit, offset);
+		Pageable pageable = PageRequest.of(offset / limit, limit);
+		return lottoRepository.findAllByOrderByPostgameDesc(pageable).getContent();
 	}
 
-	// ÇÊÅÍ¸µµÈ ÀüÃ¼ °Ç¼ö (È¸Â÷¹üÀ§/¹øÈ£ Æ÷ÇÔ)
+	// í•„í„°ë§ëœ ì „ì²´ ê±´ìˆ˜ (íšŒì°¨ë²”ìœ„/ë²ˆí˜¸ í¬í•¨)
+	// â­ JPAë¡œ ì „í™˜: Repositoryì˜ @Query ë©”ì„œë“œ ì‚¬ìš©
 	public int countLottoHistory(Integer startPostgame, Integer endPostgame, Integer includeNumber) {
-		StringBuilder sb = new StringBuilder("SELECT COUNT(*) FROM tb_lotto_number WHERE 1=1");
-		List<Object> params = new ArrayList<>();
-		
-		if (startPostgame != null) {
-			sb.append(" AND postgame >= ?");
-			params.add(startPostgame);
-		}
-		if (endPostgame != null) {
-			sb.append(" AND postgame <= ?");
-			params.add(endPostgame);
-		}
-		if (includeNumber != null) {
-			sb.append(" AND (num1=? OR num2=? OR num3=? OR num4=? OR num5=? OR num6=? OR bonusnum=?)");
-			for (int i = 0; i < 7; i++) params.add(includeNumber);
-		}
-		
-		Integer count = jdbcTemplate.queryForObject(sb.toString(), params.toArray(), Integer.class);
-		return count != null ? count : 0;
+		return (int) lottoRepository.countWithFilters(startPostgame, endPostgame, includeNumber);
 	}
 
-	// ÇÊÅÍ¸µ + ÆäÀÌÂ¡ Á¶È¸ + Á¤·Ä
+	// í•„í„°ë§ + í˜ì´ì§• ì¡°íšŒ + ì •ë ¬
+	// â­ JPAë¡œ ì „í™˜: Repositoryì˜ @Query ë©”ì„œë“œ ì‚¬ìš© (ì •ë ¬ì€ í˜„ì¬ëŠ” postgame DESCë¡œ ê³ ì •)
 	public List<LottoNumber> getLottoHistory(Integer startPostgame, Integer endPostgame, Integer includeNumber, int offset, int limit, String sortCol, String sortDir) {
-		String orderBy = resolveOrderBy(sortCol, sortDir);
-		StringBuilder sb = new StringBuilder(
-			"SELECT postgame, num1, num2, num3, num4, num5, num6, bonusnum, firstprize, firstprizecount FROM tb_lotto_number WHERE 1=1");
-		List<Object> params = new ArrayList<>();
-		
-		if (startPostgame != null) {
-			sb.append(" AND postgame >= ?");
-			params.add(startPostgame);
-		}
-		if (endPostgame != null) {
-			sb.append(" AND postgame <= ?");
-			params.add(endPostgame);
-		}
-		if (includeNumber != null) {
-			sb.append(" AND (num1=? OR num2=? OR num3=? OR num4=? OR num5=? OR num6=? OR bonusnum=?)");
-			for (int i = 0; i < 7; i++) params.add(includeNumber);
-		}
-		sb.append(" ").append(orderBy).append(" LIMIT ? OFFSET ?");
-		params.add(limit);
-		params.add(offset);
-		
-		return jdbcTemplate.query(sb.toString(), params.toArray(), LOTTO_NUMBER_ROW_MAPPER);
+		// TODO: ì •ë ¬ ì˜µì…˜(sortCol, sortDir)ì„ ë™ì ìœ¼ë¡œ ì§€ì›í•˜ë ¤ë©´ Repositoryì— ì¶”ê°€ ë©”ì„œë“œ í•„ìš”
+		Pageable pageable = PageRequest.of(offset / limit, limit);
+		return lottoRepository.findWithFilters(startPostgame, endPostgame, includeNumber, pageable);
 	}
 
-	private String resolveOrderBy(String col, String dir) {
-		String direction = "DESC";
-		if ("asc".equalsIgnoreCase(dir)) direction = "ASC";
-		String column;
-		if ("postgame".equalsIgnoreCase(col)) column = "postgame";
-		else if ("firstprize".equalsIgnoreCase(col)) column = "firstprize";
-		else if ("firstprizecount".equalsIgnoreCase(col)) column = "firstprizecount";
-		else column = "postgame"; // default
-		return "ORDER BY " + column + " " + direction;
-	}
-
-	// ÇÊÅÍµÈ ÀüÃ¼ Çà¿¡ ´ëÇÑ ¹øÈ£ ºóµµ(1~45), º¸³Ê½º Æ÷ÇÔ
+	// í•„í„°ëœ ì „ì²´ í–‰ì— ëŒ€í•œ ë²ˆí˜¸ ë¹ˆë„(1~45), ë³´ë„ˆìŠ¤ í¬í•¨
+	// â­ JPAë¡œ ì „í™˜: Repositoryì˜ findWithFiltersë¥¼ ì‚¬ìš©í•˜ì—¬ í•„í„°ë§ëœ ë°ì´í„°ë¥¼ ê°€ì ¸ì˜µë‹ˆë‹¤
 	public Map<Integer, Integer> countFrequencies(Integer startPostgame, Integer endPostgame, Integer includeNumber) {
 		Map<Integer, Integer> freq = new LinkedHashMap<>();
 		for (int i = 1; i <= 45; i++) freq.put(i, 0);
 		
-		StringBuilder sb = new StringBuilder("SELECT num1,num2,num3,num4,num5,num6,bonusnum FROM tb_lotto_number WHERE 1=1");
-		List<Object> params = new ArrayList<>();
+		// í•„í„°ë§ëœ ë¡œë˜ ë²ˆí˜¸ë“¤ì„ ê°€ì ¸ì˜´ (í˜ì´ì§• ì—†ì´ ì „ì²´ ë°ì´í„°)
+		Pageable pageable = PageRequest.of(0, Integer.MAX_VALUE);
+		List<LottoNumber> filteredLottos = lottoRepository.findWithFilters(
+			startPostgame, endPostgame, includeNumber, pageable);
 		
-		if (startPostgame != null) {
-			sb.append(" AND postgame >= ?");
-			params.add(startPostgame);
+		// ê° ë¡œë˜ ë²ˆí˜¸ì˜ 6ê°œ ë²ˆí˜¸ì™€ ë³´ë„ˆìŠ¤ ë²ˆí˜¸ë¥¼ ì¹´ìš´íŠ¸
+		for (LottoNumber lotto : filteredLottos) {
+			increment(freq, lotto.getNum1());
+			increment(freq, lotto.getNum2());
+			increment(freq, lotto.getNum3());
+			increment(freq, lotto.getNum4());
+			increment(freq, lotto.getNum5());
+			increment(freq, lotto.getNum6());
+			increment(freq, lotto.getBonusnum());
 		}
-		if (endPostgame != null) {
-			sb.append(" AND postgame <= ?");
-			params.add(endPostgame);
-		}
-		if (includeNumber != null) {
-			sb.append(" AND (num1=? OR num2=? OR num3=? OR num4=? OR num5=? OR num6=? OR bonusnum=?)");
-			for (int i = 0; i < 7; i++) params.add(includeNumber);
-		}
-		
-		jdbcTemplate.query(sb.toString(), params.toArray(), (ResultSet rs) -> {
-			increment(freq, rs.getInt(1));
-			increment(freq, rs.getInt(2));
-			increment(freq, rs.getInt(3));
-			increment(freq, rs.getInt(4));
-			increment(freq, rs.getInt(5));
-			increment(freq, rs.getInt(6));
-			increment(freq, rs.getInt(7));
-		});
 		
 		return freq;
 	}

@@ -15,12 +15,12 @@ public class LottoServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // ÃÖ½Å ·Î¶Ç ¹øÈ£ Á¶È¸
+        // ìµœì‹  ë¡œë˜ ë²ˆí˜¸ ì¡°íšŒ
         LottoDAO lottoDAO = new LottoDAO();
         LottoNumber lottoNumber = lottoDAO.getLottoNumber();
         request.setAttribute("lottoNumber", lottoNumber);
 
-        // ±âº»/Çà¿î¹øÈ£ Æ÷ÇÔ ÃßÃ·
+        // ê¸°ë³¸/í–‰ìš´ë²ˆí˜¸ í¬í•¨ ì¶”ì²¨
         boolean useLucky = request.getParameter("useLucky") != null;
         Map<String, Object> lottoResult;
         if (useLucky) {

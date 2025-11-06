@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>로또 당첨 이력</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+	:root {
+		--bg: #0f1226;
+		--card: #171a2f;
+		--muted: #a5b0d6;
+		--text: #e9ecff;
+		--accent1: #7c6cff;
+		--accent2: #00e0b8;
+		--accent3: #ff9d9d;
+		--shadow: 0 10px 30px rgba(0,0,0,.35);
+		--radius: 18px;
+	}
+	* { box-sizing: border-box; }
+	body { 
+		margin: 0; 
+		font-family: 'Pretendard', 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans KR", sans-serif; 
+		background: radial-gradient(1200px 800px at 20% -10%, rgba(124,108,255,.25), transparent 60%),
+					radial-gradient(1000px 700px at 120% 10%, rgba(0,224,184,.18), transparent 50%),
+					var(--bg);
+		color: var(--text);
+	}
+	.container { max-width: 1200px; margin: 56px auto 80px; padding: 0 20px; }
+	h1 {
+		margin: 0 0 32px; font-size: 48px; letter-spacing: -1.2px; text-align: center; 
+		background: linear-gradient(90deg, var(--accent1), var(--accent2));
+		-webkit-background-clip: text; background-clip: text; color: transparent;
+		text-shadow: 0 8px 30px rgba(124,108,255,.25);
+	}
+	h2 { margin: 32px 0 20px; color: var(--muted); font-weight: 600; font-size: 24px; }
+	
+	.card { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); box-shadow: var(--shadow); overflow: hidden; margin-bottom: 32px; }
+	table { width: 100%; border-collapse: separate; border-spacing: 0; table-layout: fixed; }
+	thead th { font-weight: 700; color: #cfd6ff; background: rgba(255,255,255,.03); padding: 16px 14px; text-align: center; }
+	thead th a { color: #cfd6ff; text-decoration: none; transition: color .2s; }
+	thead th a:hover { color: var(--accent2); }
+	th:nth-child(1), td:nth-child(1) { width: 8%; }
+	th:nth-child(2), td:nth-child(2) { width: 45%; text-align: center; }
+	th:nth-child(3), td:nth-child(3) { width: 23%; text-align: right; }
+	th:nth-child(4), td:nth-child(4) { width: 24%; text-align: right; }
+	td { padding: 16px 14px; text-align: center; border-top: 1px solid rgba(255,255,255,.06); }
+	tbody tr:hover { background: rgba(255,255,255,.02); }
+	
+    .badge { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:50%; margin:3px; font-weight:900; font-size:14px; color:#fff; text-shadow:0 2px 0 rgba(0,0,0,.15); border:2px solid rgba(255,255,255,.9); box-shadow:0 4px 12px rgba(0,0,0,.18); }
+    .badge.yellow { background:#ffc400; }
+    .badge.blue { background:#6cc7ff; }
+    .badge.red { background:#ff7b87; }
+    .badge.gray { background:#b8bcc4; }
+    .badge.green { background:#94d145; }
+    .badge.bonus { outline: 2px dashed rgba(0,0,0,.12); outline-offset:2px; }
+	
+	.controls { margin-bottom: 24px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; padding: 20px; background: var(--card); border-radius: var(--radius); border: 1px solid rgba(255,255,255,.06); }
+	.controls form { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; flex: 1; }
+	.controls label { color: var(--muted); font-weight: 600; font-size: 14px; }
+	.controls input[type="number"], .controls select { 
+		padding: 10px 14px; border: 1px solid rgba(255,255,255,.1); border-radius: 10px; 
+		background: rgba(255,255,255,.04); color: var(--text); font-size: 14px;
+		transition: border-color .2s, background .2s;
+	}
+	.controls input[type="number"]:focus, .controls select:focus { 
+		outline: none; border-color: var(--accent1); background: rgba(255,255,255,.06);
+	}
+	.controls button[type="submit"] {
+		padding: 10px 20px; border: 0; border-radius: 10px; cursor: pointer; font-weight: 700;
+		background: linear-gradient(135deg, var(--accent2), #66ffd8); color: #0a0d1f;
+		box-shadow: 0 6px 16px rgba(0,224,184,.25);
+		transition: transform .12s, box-shadow .2s;
+	}
+	.controls button[type="submit"]:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,224,184,.35); }
+	.controls button[type="submit"]:active { transform: translateY(0); }
+	
+	.pagination { margin-top: 24px; text-align: center; }
+	.pagination a, .pagination span { 
+		display: inline-block; padding: 10px 16px; margin: 0 4px; 
+		border-radius: 10px; text-decoration: none; font-weight: 600; font-size: 14px;
+		transition: all .2s;
+	}
+	.pagination a { 
+		color: var(--text); background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.1);
+	}
+	.pagination a:hover { 
+		background: rgba(255,255,255,.1); transform: translateY(-2px);
+	}
+	.pagination .active { 
+		background: linear-gradient(135deg, var(--accent1), #a997ff); 
+		color: #0a0d1f; border: 0; box-shadow: 0 4px 12px rgba(124,108,255,.3);
+	}
+	
+	.heatmap { display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px; margin-top: 24px; }
+	.cell { 
+		height: 60px; border-radius: 10px; display: flex; flex-direction: column; 
+		align-items: center; justify-content: center; font-weight: 700; font-size: 14px;
+		color: var(--text); border: 1px solid rgba(255,255,255,.1);
+		transition: transform .2s, box-shadow .2s;
+	}
+	.cell:hover { transform: scale(1.05); box-shadow: 0 4px 12px rgba(30,144,255,.3); }
+	.heatmap-info { 
+		margin-top: 24px; padding: 24px; background: var(--card); border-radius: var(--radius); 
+		border: 1px solid rgba(255,255,255,.06); box-shadow: var(--shadow);
+	}
+	.heatmap-info h3 { margin-top: 0; margin-bottom: 16px; color: var(--text); font-size: 20px; }
+	.heatmap-info .stat { margin: 12px 0; font-weight: 600; color: var(--muted); font-size: 16px; }
+	.heatmap-info .stat strong { color: var(--accent2); }
+	.heatmap-info .lucky { color: var(--accent3); font-size: 20px; font-weight: 700; }
+	
+	.btn { 
+		display: inline-flex; align-items: center; justify-content: center; gap: 10px; 
+		padding: 14px 24px; border: 0; border-radius: 14px; cursor: pointer; font-weight: 700; 
+		color: #0a0d1f; background: linear-gradient(135deg, var(--accent2), #66ffd8); 
+		box-shadow: 0 10px 20px rgba(0,224,184,.25); text-decoration: none;
+		transform: translateY(0); transition: transform .12s, box-shadow .2s, filter .2s;
+	}
+	.btn:hover { transform: translateY(-2px); filter: brightness(1.02); box-shadow: 0 14px 28px rgba(0,224,184,.35); }
+	.btn:active { transform: translateY(0); box-shadow: 0 10px 16px rgba(0,224,184,.25); }
+	
+	/* 사용자 정보 영역 스타일 */
+	.user-info {
+		position: fixed;
+		top: 20px;
+		right: 20px;
+		background: var(--card);
+		border: 1px solid rgba(255,255,255,.06);
+		border-radius: 14px;
+		padding: 12px 18px;
+		box-shadow: var(--shadow);
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		z-index: 1000;
+	}
+	.user-info .username {
+		color: var(--text);
+		font-weight: 600;
+		font-size: 14px;
+	}
+	.user-info .logout-btn {
+		padding: 6px 12px;
+		background: rgba(255,157,157,.15);
+		border: 1px solid rgba(255,157,157,.3);
+		border-radius: 8px;
+		color: var(--accent3);
+		font-size: 12px;
+		font-weight: 600;
+		cursor: pointer;
+		text-decoration: none;
+		transition: all 0.2s;
+	}
+	.user-info .logout-btn:hover {
+		background: rgba(255,157,157,.25);
+		transform: translateY(-1px);
+	}
+</style>
+</head>
+<body>
+	<!-- 로그인한 사용자 정보 및 로그아웃 버튼 -->
+	<div class="user-info" sec:authorize="isAuthenticated()">
+		<span class="username" sec:authentication="name">사용자명</span>
+		<form th:action="@{/logout}" method="post" style="display: inline;">
+			<button type="submit" class="logout-btn">로그아웃</button>
+		</form>
+	</div>
+
+<div class="container">
+<h1>로또 당첨 이력</h1>
+
+<div class="controls">
+	<form method="get" th:action="@{/lotto/lottoHistory}">
+		<label>회차 시작 <input type="number" name="start" th:value="${start}"></label>
+		<label>회차 끝 <input type="number" name="end" th:value="${end}"></label>
+		<label>번호 포함 <input type="number" name="number" min="1" max="45" th:value="${number}"></label>
+		<label>페이지 크기
+			<select name="size">
+				<option value="10" th:selected="${size == 10}">10</option>
+				<option value="20" th:selected="${size == 20}">20</option>
+				<option value="50" th:selected="${size == 50}">50</option>
+			</select>
+		</label>
+		<button type="submit">적용</button>
+		<a th:href="@{/lotto/lottoHistory(export='csv', start=${start}, end=${end}, number=${number}, sort=${sort}, dir=${dir})}" class="btn" style="padding: 10px 20px; font-size: 14px;">CSV 다운로드</a>
+	</form>
+	<div style="color: var(--muted); font-weight: 600; font-size: 14px;">전체 <strong style="color: var(--accent2);" th:text="${totalCount}">0</strong>건</div>
+</div>
+
+<div class="card">
+<table>
+	<thead>
+		<tr>
+			<th class="sortable" data-sort="postgame">
+				<a href="javascript:void(0)" onclick="sortTable('postgame')">회차 <span id="sort-postgame">정렬</span></a>
+			</th>
+			<th>번호</th>
+			<th class="sortable" data-sort="firstprize">
+				<a href="javascript:void(0)" onclick="sortTable('firstprize')">1등 당첨금 <span id="sort-firstprize">정렬</span></a>
+			</th>
+			<th class="sortable" data-sort="firstprizecount">
+				<a href="javascript:void(0)" onclick="sortTable('firstprizecount')">1등 당첨자 수 <span id="sort-firstprizecount">정렬</span></a>
+			</th>
+		</tr>
+	</thead>
+	<tbody id="dataTableBody">
+		<tr th:each="n : ${items}" th:attr="data-postgame=${n.postgame}, data-firstprize=${n.firstprize}, data-firstprizecount=${n.firstprizecount}">
+			<td th:text="${n.postgame}">회차</td>
+            <td>
+                <span class="badge" 
+                      th:classappend="${n.num1 <= 10 ? 'yellow' : (n.num1 <= 20 ? 'blue' : (n.num1 <= 30 ? 'red' : (n.num1 <= 40 ? 'gray' : 'green')))}"
+                      th:text="${n.num1}">1</span>
+                <span class="badge" 
+                      th:classappend="${n.num2 <= 10 ? 'yellow' : (n.num2 <= 20 ? 'blue' : (n.num2 <= 30 ? 'red' : (n.num2 <= 40 ? 'gray' : 'green')))}"
+                      th:text="${n.num2}">2</span>
+                <span class="badge" 
+                      th:classappend="${n.num3 <= 10 ? 'yellow' : (n.num3 <= 20 ? 'blue' : (n.num3 <= 30 ? 'red' : (n.num3 <= 40 ? 'gray' : 'green')))}"
+                      th:text="${n.num3}">3</span>
+                <span class="badge" 
+                      th:classappend="${n.num4 <= 10 ? 'yellow' : (n.num4 <= 20 ? 'blue' : (n.num4 <= 30 ? 'red' : (n.num4 <= 40 ? 'gray' : 'green')))}"
+                      th:text="${n.num4}">4</span>
+                <span class="badge" 
+                      th:classappend="${n.num5 <= 10 ? 'yellow' : (n.num5 <= 20 ? 'blue' : (n.num5 <= 30 ? 'red' : (n.num5 <= 40 ? 'gray' : 'green')))}"
+                      th:text="${n.num5}">5</span>
+                <span class="badge" 
+                      th:classappend="${n.num6 <= 10 ? 'yellow' : (n.num6 <= 20 ? 'blue' : (n.num6 <= 30 ? 'red' : (n.num6 <= 40 ? 'gray' : 'green')))}"
+                      th:text="${n.num6}">6</span>
+                <span>+</span>
+                <span class="badge bonus" 
+                      th:classappend="${n.bonusnum <= 10 ? 'yellow' : (n.bonusnum <= 20 ? 'blue' : (n.bonusnum <= 30 ? 'red' : (n.bonusnum <= 40 ? 'gray' : 'green')))}"
+                      th:text="${n.bonusnum}">보너스</span>
+            </td>
+			<td th:attr="data-value=${n.firstprize}">
+				<span th:text="${#numbers.formatInteger(n.firstprize, 3, 'COMMA')} + ' 원'">원</span>
+			</td>
+			<td th:attr="data-value=${n.firstprizecount}">
+				<span th:text="${#numbers.formatInteger(n.firstprizecount, 3, 'COMMA')} + ' 명'">명</span>
+			</td>
+		</tr>
+		<tr th:if="${#lists.isEmpty(items)}">
+			<td colspan="4">데이터가 없습니다.</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<div class="pagination" th:if="${totalPages > 1}">
+	<th:block th:with="endPage=${groupStart + 4 > totalPages ? totalPages : groupStart + 4}">
+		<a th:href="@{/lotto/lottoHistory(start=${start}, end=${end}, number=${number}, size=${size}, sort=${sort}, dir=${dir}, page=1)}">처음</a>
+		<a th:if="${groupStart > 1}" th:href="@{/lotto/lottoHistory(start=${start}, end=${end}, number=${number}, size=${size}, sort=${sort}, dir=${dir}, page=${groupStart - 5})}">이전</a>
+		<a th:unless="${groupStart > 1}" th:href="@{/lotto/lottoHistory(start=${start}, end=${end}, number=${number}, size=${size}, sort=${sort}, dir=${dir}, page=${(currentPage - 1 > 0) ? currentPage - 1 : 1})}">이전</a>
+		<span th:each="p : ${#numbers.sequence(groupStart, endPage)}">
+			<span th:if="${p == currentPage}" class="active" th:text="${p}">1</span>
+			<a th:unless="${p == currentPage}" 
+			   th:href="@{/lotto/lottoHistory(start=${start}, end=${end}, number=${number}, size=${size}, sort=${sort}, dir=${dir}, page=${p})}"
+			   th:text="${p}">1</a>
+		</span>
+		<a th:if="${endPage < totalPages}" th:href="@{/lotto/lottoHistory(start=${start}, end=${end}, number=${number}, size=${size}, sort=${sort}, dir=${dir}, page=${endPage + 1})}">다음</a>
+		<a th:unless="${endPage < totalPages}" th:href="@{/lotto/lottoHistory(start=${start}, end=${end}, number=${number}, size=${size}, sort=${sort}, dir=${dir}, page=${(currentPage + 1 <= totalPages) ? currentPage + 1 : totalPages})}">다음</a>
+		<a th:href="@{/lotto/lottoHistory(start=${start}, end=${end}, number=${number}, size=${size}, sort=${sort}, dir=${dir}, page=${totalPages})}">마지막</a>
+	</th:block>
+</div>
+<div class="pagination" th:if="${totalPages <= 1}">
+	<span class="active">1</span>
+</div>
+
+<div th:if="${freq != null and !freq.isEmpty()}">
+	<h2>번호 빈도 히트맵 (전체 필터)</h2>
+	<div class="card">
+		<div class="heatmap">
+			<div class="cell" 
+				 th:each="entry : ${freq}"
+				 th:style="'background: rgba(30,144,255, ' + (${maxFreq} > 0 ? (0.15 + (${entry.value} * 0.85) / ${maxFreq}) : 0.15) + '); padding: 12px;'">
+				<span th:text="${entry.key} + '번'">번호</span>
+				<span style="font-size: 11px; opacity: 0.85;" th:text="${entry.value} + '회'">회</span>
+			</div>
+		</div>
+		<div class="heatmap-info" style="margin-top: 24px; background: transparent; border: 0; box-shadow: none; padding: 0;">
+		<h3 style="margin-bottom: 16px;">번호 통계</h3>
+		<div class="stat" th:if="${mostFreq > 0}">
+			가장 많이 나온 번호: <strong th:text="${mostFreq} + '번'">번</strong> (<span th:text="${mostFreqCount} + '회'">회</span>)
+		</div>
+		<div class="stat" th:if="${leastFreq > 0}">
+			가장 적게 나온 번호: <strong th:text="${leastFreq} + '번'">번</strong> (<span th:text="${leastFreqCount} + '회'">회</span>)
+		</div>
+		<div class="stat lucky">오늘의 행운의 번호: <strong th:text="${luckyNum} + '번'">번</strong></div>
+		</div>
+	</div>
+</div>
+
+<div style="margin-top: 32px; text-align: center;">
+	<a href="/" class="btn">메인으로</a>
+</div>
+</div>
+
+<script>
+	let currentSort = { column: null, direction: 'asc' };
+	
+	function sortTable(column) {
+		const tbody = document.getElementById('dataTableBody');
+		const rows = Array.from(tbody.querySelectorAll('tr'));
+		
+		const dataRows = rows.filter(row => row.getAttribute('data-postgame') !== null);
+		
+		if (dataRows.length === 0) return;
+		
+		if (currentSort.column === column) {
+			currentSort.direction = currentSort.direction === 'asc' ? 'desc' : 'asc';
+		} else {
+			currentSort.column = column;
+			currentSort.direction = 'asc';
+		}
+		
+		dataRows.sort((a, b) => {
+			let valueA, valueB;
+			
+			if (column === 'postgame') {
+				valueA = parseInt(a.getAttribute('data-postgame'));
+				valueB = parseInt(b.getAttribute('data-postgame'));
+			} else if (column === 'firstprize') {
+				valueA = parseInt(a.getAttribute('data-firstprize'));
+				valueB = parseInt(b.getAttribute('data-firstprize'));
+			} else if (column === 'firstprizecount') {
+				valueA = parseInt(a.getAttribute('data-firstprizecount'));
+				valueB = parseInt(b.getAttribute('data-firstprizecount'));
+			}
+			
+			if (currentSort.direction === 'asc') {
+				return valueA - valueB;
+			} else {
+				return valueB - valueA;
+			}
+		});
+		
+		dataRows.forEach(row => tbody.appendChild(row));
+		
+		document.querySelectorAll('#sort-postgame, #sort-firstprize, #sort-firstprizecount').forEach(span => {
+			span.textContent = '정렬';
+		});
+		
+		const sortSpan = document.getElementById('sort-' + column);
+		if (sortSpan) {
+			sortSpan.textContent = currentSort.direction === 'asc' ? '↑' : '↓';
+		}
+	}
+</script>
+
+</body>
+</html>
+

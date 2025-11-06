@@ -16,7 +16,7 @@
     <artifactId>lotto-web</artifactId>
     <version>1.0.0</version>
     <name>Lotto Web Application</name>
-    <description>∑Œ∂« ¿• æ÷«√∏Æƒ…¿Ãº« - Spring Boot</description>
+    <description>Î°úÎòê Ïõπ Ïï†ÌîåÎ¶¨ÏºÄÏù¥ÏÖò - Spring Boot</description>
     <packaging>jar</packaging>
 
     <properties>
@@ -27,29 +27,46 @@
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Web Starter (º≠∫Ì∏¥ ∆˜«‘) -->
+        <!-- Spring Boot Web Starter (ÏÑúÎ∏îÎ¶ø Ìè¨Ìï®) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Spring Boot JSP ¡ˆø¯ -->
+        <!-- Spring Boot Thymeleaf (ÌÖúÌîåÎ¶ø ÏóîÏßÑ) -->
         <dependency>
-            <groupId>org.apache.tomcat.embed</groupId>
-            <artifactId>tomcat-embed-jasper</artifactId>
-            <scope>provided</scope>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-        <!-- JSTL -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-        </dependency>
-
-        <!-- Spring Boot JDBC (µ•¿Ã≈Õ∫£¿ÃΩ∫ ø¨∞·) -->
+        <!-- Spring Boot JDBC (Îç∞Ïù¥ÌÑ∞Î≤†Ïù¥Ïä§ Ïó∞Í≤∞) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+
+        <!-- Spring Boot JPA (ORM) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Security (Ïù∏Ï¶ù/Ïù∏Í∞Ä) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- Thymeleaf Security (ÌÖúÌîåÎ¶øÏóêÏÑú Ïù∏Ï¶ù Ï†ïÎ≥¥ ÏÇ¨Ïö©) -->
+        <dependency>
+            <groupId>org.thymeleaf.extras</groupId>
+            <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Mail (Ïù¥Î©îÏùº Î∞úÏÜ°) -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
 
         <!-- MariaDB JDBC Driver -->
@@ -59,7 +76,7 @@
             <version>3.3.2</version>
         </dependency>
 
-        <!-- Spring Boot DevTools (∞≥πﬂ ∆Ì¿«) -->
+        <!-- Spring Boot DevTools (Í∞úÎ∞ú Ìé∏Ïùò) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -81,6 +98,16 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            
+            <!-- Maven Resources Plugin (Ïù∏ÏΩîÎî© ÏÑ§Ï†ï) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
             </plugin>
         </plugins>
     </build>
