@@ -1,0 +1,116 @@
+# ? docker-compose.yml 설명:
+# docker-compose는 여러 컨테이너를 함께 실행하는 도구입니다.
+# 한 번의 명령으로 애플리케이션과 데이터베이스를 함께 실행할 수 있습니다.
+# ? Docker Compose v2에서는 version 필드가 더 이상 필요하지 않습니다.
+
+# 서비스 정의 (컨테이너 목록)
+services:
+  
+  # MariaDB 데이터베이스 서비스
+  # ? 왜 컨테이너로 데이터베이스를 실행하나요?
+  # 1. 환경 일관성: 로컬 개발 환경과 운영 환경을 동일하게
+  # 2. 간편성: 별도 설치 없이 바로 사용 가능
+  # 3. 격리성: 다른 프로젝트와 데이터베이스 충돌 방지
+  db:
+    image: mariadb:10.11  # MariaDB 10.11 이미지 사용
+    container_name: lotto-db  # 컨테이너 이름
+    restart: always  # 컨테이너가 종료되면 자동으로 재시작
+    
+    # 환경 변수 설정
+    # ? 환경 변수로 설정하는 이유:
+    # 1. 보안: 코드에 비밀번호를 하드코딩하지 않음
+    # 2. 유연성: 환경별로 다른 설정 사용 가능
+    # 3. 관리 용이성: 설정 변경이 쉬움
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234  # root 비밀번호
+      MYSQL_DATABASE: lotto  # 생성할 데이터베이스 이름
+      MYSQL_USER: lotto  # 사용자 이름 (선택사항)
+      MYSQL_PASSWORD: 1234  # 사용자 비밀번호 (선택사항)
+    
+    # 포트 매핑
+    # 호스트:컨테이너 포트 매핑
+    # ? 포트 매핑이 필요한 이유:
+    # - 컨테이너 내부 포트는 외부에서 접근 불가
+    # - 포트 매핑을 통해 호스트에서 접근 가능
+    # ? 왜 3307을 사용하나요?
+    # - 로컬에 이미 MariaDB/MySQL이 실행 중일 수 있음
+    # - 포트 충돌을 방지하기 위해 다른 포트 사용
+    ports:
+      - "3307:3306"  # 호스트 3307 포트 → 컨테이너 3306 포트
+    
+    # 볼륨 마운트
+    # ? 볼륨이 필요한 이유:
+    # - 컨테이너가 삭제되면 데이터도 함께 삭제됨
+    # - 볼륨을 사용하면 데이터가 영구 저장됨
+    # - 백업/복원이 쉬움
+    volumes:
+      - mariadb_data:/var/lib/mysql  # 데이터베이스 데이터 영구 저장
+    
+    # 네트워크 설정
+    networks:
+      - lotto-network
+
+  # Spring Boot 애플리케이션 서비스
+  app:
+    build:
+      context: .  # Dockerfile이 있는 디렉토리
+      dockerfile: Dockerfile  # 사용할 Dockerfile 이름
+    container_name: lotto-app  # 컨테이너 이름
+    restart: always  # 컨테이너가 종료되면 자동으로 재시작
+    
+    # 포트 매핑
+    ports:
+      - "8080:8080"  # 호스트 8080 포트 → 컨테이너 8080 포트
+    
+    # 환경 변수 설정
+    # ? 데이터베이스 연결 설정을 환경 변수로 변경
+    # application.properties의 localhost를 db(컨테이너 이름)로 변경
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://db:3306/lotto?useUnicode=true&characterEncoding=UTF-8
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=1234
+      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=org.mariadb.jdbc.Driver
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+    
+    # 의존성 설정
+    # ? depends_on이 필요한 이유:
+    # - 앱이 시작되기 전에 데이터베이스가 먼저 실행되어야 함
+    # - 데이터베이스가 준비될 때까지 대기
+    depends_on:
+      - db
+    
+    # 네트워크 설정
+    networks:
+      - lotto-network
+
+# 볼륨 정의
+# ? 볼륨이란?
+# - 컨테이너 외부에 데이터를 저장하는 공간
+# - 컨테이너가 삭제되어도 데이터가 유지됨
+volumes:
+  mariadb_data:
+    # 데이터베이스 데이터를 영구 저장할 볼륨
+    # Docker가 자동으로 관리하는 볼륨
+
+# 네트워크 정의
+# ? 네트워크가 필요한 이유:
+# - 컨테이너 간 통신을 위해 같은 네트워크에 있어야 함
+# - db 컨테이너 이름으로 접근 가능 (예: jdbc:mariadb://db:3306)
+networks:
+  lotto-network:
+    # 애플리케이션과 데이터베이스가 통신할 네트워크
+    driver: bridge  # 기본 브리지 네트워크 사용
+
+# ? docker-compose 사용법:
+# 1. 빌드 및 실행: docker-compose up -d
+# 2. 중지: docker-compose down
+# 3. 로그 확인: docker-compose logs -f
+# 4. 상태 확인: docker-compose ps
+# 5. 재빌드: docker-compose up --build
+
+# ? 생산성 향상 포인트:
+# 1. 한 번의 명령으로 전체 환경 구성
+# 2. 환경 일관성 보장
+# 3. 신규 개발자 온보딩 시간 단축
+# 4. 배포 프로세스 표준화
+

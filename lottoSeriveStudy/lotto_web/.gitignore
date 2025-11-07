@@ -1,0 +1,47 @@
+# Maven
+target/
+build/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+# IDE
+.idea/
+*.iws
+*.iml
+*.ipr
+.vscode/
+.settings/
+.classpath
+.project
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# 민감한 정보가 포함된 설정 파일
+# ?? 주의: application.properties에 Gmail 비밀번호가 포함되어 있습니다
+src/main/resources/application.properties
+WebContent/WEB-INF/classes/db.properties
+
+# 환경 변수 파일
+.env
+.env.local
+.env.*.local
+
+# Docker
+*.pid
+*.seed
+*.pid.lock
+
+# 기타
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+

@@ -1,0 +1,49 @@
+# ? .dockerignore 파일 설명:
+# Docker 이미지 빌드 시 제외할 파일/디렉토리를 지정합니다.
+# .gitignore와 비슷하지만, Docker 빌드 컨텍스트에만 적용됩니다.
+
+# ? 왜 .dockerignore를 사용하나요?
+# 1. 빌드 속도 향상: 불필요한 파일을 제외하여 빌드 컨텍스트 크기 감소
+# 2. 보안: 민감한 파일이 이미지에 포함되지 않도록 방지
+# 3. 효율성: 캐시 활용도 향상
+
+# Git 관련
+.git
+.gitignore
+.gitattributes
+
+# IDE 관련
+.idea
+.vscode
+*.iml
+*.ipr
+*.iws
+
+# 빌드 결과물 (이미 target/에서 JAR 파일만 복사하므로)
+target/classes
+target/test-classes
+target/maven-archiver
+target/maven-status
+target/surefire-reports
+
+# 소스 코드 (이미 JAR에 포함되어 있으므로)
+src/
+
+# 문서 파일
+*.md
+README.md
+
+# 로그 파일
+*.log
+logs/
+
+# 임시 파일
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
+
+# 환경 설정 파일 (실제 운영 시에는 환경 변수로 관리)
+*.properties
+!application.properties  # 예외: application.properties는 포함
+
