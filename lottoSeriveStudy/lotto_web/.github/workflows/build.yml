@@ -1,0 +1,56 @@
+name: CI Build and Test
+
+# 워크플로우 실행 조건
+on:
+  push:
+    branches: [ main, master ]  # main 또는 master 브랜치에 푸시하면 실행
+  pull_request:
+    branches: [ main, master ]  # Pull Request 생성/업데이트 시에도 실행
+
+# 작업 정의
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest  # GitHub Actions의 무료 Ubuntu 서버 사용
+    
+    steps:
+      # 1단계: 코드 체크아웃
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      # 2단계: Java 11 설정
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'  # eclipse-temurin 사용 (Dockerfile과 동일)
+          cache: 'maven'  # Maven 의존성 캐시 (빌드 속도 향상)
+      
+      # 3단계: Maven 빌드 및 테스트
+      - name: Build with Maven
+        run: mvn clean package -DskipTests
+        # 참고: 테스트 코드가 있으면 -DskipTests 제거
+      
+      # 4단계: 빌드 결과 확인
+      - name: Verify JAR file
+        run: |
+          if [ ! -f target/lotto-web-1.0.0.jar ]; then
+            echo "? JAR 파일이 생성되지 않았습니다!"
+            exit 1
+          else
+            echo "? JAR 파일 생성 성공!"
+            ls -lh target/lotto-web-1.0.0.jar
+          fi
+      
+      # 5단계: Docker 이미지 빌드
+      - name: Build Docker image
+        run: |
+          docker build -t lotto-web:latest .
+          echo "? Docker 이미지 빌드 성공!"
+      
+      # 6단계: Docker 이미지 확인
+      - name: Verify Docker image
+        run: |
+          docker images lotto-web:latest
+          echo "? Docker 이미지 확인 완료!"
+
