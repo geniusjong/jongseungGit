@@ -139,7 +139,7 @@
     <div class="verify-container">
         <div class="verify-card">
             <!-- 성공 메시지 -->
-            <div th:if="${success}" class="verify-icon success">?</div>
+            <div th:if="${success}" class="verify-icon success">✓</div>
             <div th:if="${success}" class="verify-header">
                 <h1>이메일 인증 완료!</h1>
                 <p>이제 로그인하실 수 있습니다</p>
@@ -149,7 +149,7 @@
             </div>
 
             <!-- 에러 메시지 -->
-            <div th:if="${error}" class="verify-icon error">?</div>
+            <div th:if="${error}" class="verify-icon error">✗</div>
             <div th:if="${error}" class="verify-header">
                 <h1>인증 실패</h1>
                 <p>인증 링크를 확인해주세요</p>
@@ -163,4 +163,3 @@
     </div>
 </body>
 </html>
-

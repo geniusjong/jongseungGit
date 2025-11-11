@@ -36,7 +36,7 @@ public interface LottoRepository extends JpaRepository<LottoNumber, Integer> {
     Optional<LottoNumber> findByPostgame(int postgame);
     
     /**
-     * 회차 범위로 조회 (페이징 포함)
+     * 회차 범위로 조회 (페이징 적용)
      * 
      * SQL: SELECT * FROM tb_lotto_number WHERE postgame BETWEEN ? AND ? ORDER BY postgame DESC
      */
@@ -53,7 +53,7 @@ public interface LottoRepository extends JpaRepository<LottoNumber, Integer> {
      * 
      * SQL: SELECT COUNT(*) FROM tb_lotto_number
      */
-    // count() 메서드는 JpaRepository에서 이미 제공됨!
+    // count() 메서드는 JpaRepository에서 이미 제공합니다!
     
     /**
      * 특정 번호를 포함하는 로또 번호 조회
@@ -102,4 +102,3 @@ public interface LottoRepository extends JpaRepository<LottoNumber, Integer> {
         @Param("endPostgame") Integer endPostgame,
         @Param("includeNumber") Integer includeNumber);
 }
-

@@ -5,7 +5,7 @@ package com.lottoweb.dto;
  * 
  * ⭐ 왜 공통 응답 구조를 만들까요?
  * 1. 일관성: 모든 API 응답이 같은 형식으로 반환됨
- * 2. 에러 처리: 성공/실패 여부를 명확하게 표시
+ * 2. 에러 처리: 성공/실패 여부를 명확히 표시
  * 3. 확장성: 나중에 메타데이터(응답 시간, 요청 ID 등) 추가 가능
  * 4. 클라이언트 처리: 클라이언트가 일관된 방식으로 응답 처리
  * 
@@ -27,7 +27,7 @@ public class ApiResponse<T> {
     
     private boolean success;    // 성공 여부
     private String message;    // 응답 메시지
-    private T data;            // 실제 데이터 (제네릭으로 다양한 타입 지원)
+    private T data;            // 실제 데이터 (제네릭으로 타입 동적 지정)
     
     // 기본 생성자
     public ApiResponse() {}
@@ -78,4 +78,3 @@ public class ApiResponse<T> {
         this.data = data;
     }
 }
-

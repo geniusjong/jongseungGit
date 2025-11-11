@@ -20,7 +20,7 @@ public class EmailVerificationToken {
     private Long id;
     
     /**
-     * 토큰 문자열 (고유, 필수)
+     * 토큰 문자열 (필수, 유니크)
      */
     @Column(name = "token", nullable = false, unique = true, length = 255)
     private String token;
@@ -115,4 +115,3 @@ public class EmailVerificationToken {
         this.createdAt = createdAt;
     }
 }
-

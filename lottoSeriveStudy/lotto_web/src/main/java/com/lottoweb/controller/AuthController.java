@@ -65,7 +65,7 @@ public class AuthController {
             @RequestParam String email,
             Model model) {
 
-        // 입력 검증
+        // 사용자명 검사
         if (username == null || username.trim().isEmpty()) {
             model.addAttribute("error", "사용자명을 입력해주세요.");
             return "auth/register";
@@ -76,13 +76,13 @@ public class AuthController {
             return "auth/register";
         }
 
-        // 이메일 필수 검증
+        // 이메일 형식 검사
         if (email == null || email.trim().isEmpty()) {
             model.addAttribute("error", "이메일을 입력해주세요.");
             return "auth/register";
         }
 
-        // 이메일 형식 검증 (간단한 검증)
+        // 이메일 형식 검사 (간단한 형식 검사)
         if (!email.contains("@") || !email.contains(".")) {
             model.addAttribute("error", "올바른 이메일 형식을 입력해주세요.");
             return "auth/register";
@@ -147,7 +147,7 @@ public class AuthController {
     }
 
     /**
-     * 회원가입 성공 페이지 (이메일 인증 안내)
+     * 회원가입 성공 페이지 표시 (이메일 인증 안내)
      */
     @GetMapping("/register-success")
     public String registerSuccess(@RequestParam String email, Model model) {
@@ -178,7 +178,7 @@ public class AuthController {
             return "auth/verifyEmail";
         }
 
-        // 사용자 조회 및 인증 완료 처리
+        // 사용자 조회 후 인증 완료 처리
         Optional<User> userOpt = userRepository.findById(verificationToken.getUserId());
         
         if (userOpt.isEmpty()) {
@@ -197,4 +197,3 @@ public class AuthController {
         return "auth/verifyEmail";
     }
 }
-

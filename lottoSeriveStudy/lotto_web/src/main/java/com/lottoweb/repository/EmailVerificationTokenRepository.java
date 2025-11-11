@@ -32,4 +32,3 @@ public interface EmailVerificationTokenRepository extends JpaRepository<EmailVer
     @Query("DELETE FROM EmailVerificationToken e WHERE e.userId = :userId")
     void deleteByUserId(@Param("userId") Long userId);
 }
-

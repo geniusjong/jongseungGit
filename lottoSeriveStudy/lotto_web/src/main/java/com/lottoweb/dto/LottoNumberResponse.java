@@ -114,4 +114,3 @@ public class LottoNumberResponse {
         this.firstprizecount = firstprizecount;
     }
 }
-

@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * 로또 번호 추첨 결과를 담는 DTO (Data Transfer Object)
  * 
- * ? 왜 DTO를 사용하나요?
+ * ⭐ 왜 DTO를 사용하나요?
  * 1. Entity와 분리: 데이터베이스 구조와 API 응답 구조를 분리
  * 2. 필요한 데이터만 전송: 클라이언트가 필요한 정보만 포함
  * 3. 유연성: API 응답 형식을 쉽게 변경 가능
@@ -89,4 +89,3 @@ public class LottoDrawResponse {
                 '}';
     }
 }
-

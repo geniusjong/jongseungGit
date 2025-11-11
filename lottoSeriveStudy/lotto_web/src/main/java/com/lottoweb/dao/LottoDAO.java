@@ -58,7 +58,7 @@ public class LottoDAO {
 		List<Integer> allNumbers = getAllLottoNumbers();
 		Map<Integer, Double> weights = LottoWeightCalculator.calculateWeights(allNumbers);
 
-		// 포함 번호는 미리 선택하고, 가중치 목록에서 제거한 뒤 나머지 5개를 뽑는다
+		// 포함 번호는 강제 선택하고, 가중치 목록에서 제거한 후 나머지 5개를 뽑는다
 		Map<Integer, Double> filtered = new LinkedHashMap<>(weights);
 		filtered.remove(includeNumber);
 
@@ -79,7 +79,7 @@ public class LottoDAO {
 		return result;
 	}
 
-	// 전체 히스토리 건수
+	// 전체 히스토리 개수
 	// ⭐ JPA로 전환: count() 메서드는 JpaRepository에서 자동 제공됩니다
 	public int countLottoHistory() {
 		return (int) lottoRepository.count();
@@ -92,7 +92,7 @@ public class LottoDAO {
 		return lottoRepository.findAllByOrderByPostgameDesc(pageable).getContent();
 	}
 
-	// 필터링된 전체 건수 (회차범위/번호 포함)
+	// 필터링된 전체 개수 (회차범위/번호 포함)
 	// ⭐ JPA로 전환: Repository의 @Query 메서드 사용
 	public int countLottoHistory(Integer startPostgame, Integer endPostgame, Integer includeNumber) {
 		return (int) lottoRepository.countWithFilters(startPostgame, endPostgame, includeNumber);
@@ -101,12 +101,12 @@ public class LottoDAO {
 	// 필터링 + 페이징 조회 + 정렬
 	// ⭐ JPA로 전환: Repository의 @Query 메서드 사용 (정렬은 현재는 postgame DESC로 고정)
 	public List<LottoNumber> getLottoHistory(Integer startPostgame, Integer endPostgame, Integer includeNumber, int offset, int limit, String sortCol, String sortDir) {
-		// TODO: 정렬 옵션(sortCol, sortDir)을 동적으로 지원하려면 Repository에 추가 메서드 필요
+		// TODO: 정렬 방식(sortCol, sortDir)을 동적으로 적용하려면 Repository에 추가 메서드 필요
 		Pageable pageable = PageRequest.of(offset / limit, limit);
 		return lottoRepository.findWithFilters(startPostgame, endPostgame, includeNumber, pageable);
 	}
 
-	// 필터된 전체 행에 대한 번호 빈도(1~45), 보너스 포함
+	// 필터링된 전체 행에 대한 번호 빈도(1~45), 보너스 포함
 	// ⭐ JPA로 전환: Repository의 findWithFilters를 사용하여 필터링된 데이터를 가져옵니다
 	public Map<Integer, Integer> countFrequencies(Integer startPostgame, Integer endPostgame, Integer includeNumber) {
 		Map<Integer, Integer> freq = new LinkedHashMap<>();
@@ -135,4 +135,3 @@ public class LottoDAO {
 		if (key >= 1 && key <= 45) map.put(key, map.get(key) + 1);
 	}
 }
-

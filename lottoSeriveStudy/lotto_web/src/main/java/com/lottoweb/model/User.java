@@ -20,7 +20,7 @@ public class User {
     private Long id;
     
     /**
-     * 사용자명 (고유, 필수)
+     * 사용자명 (필수, 유니크)
      */
     @Column(name = "username", nullable = false, unique = true, length = 50)
     private String username;
@@ -32,7 +32,7 @@ public class User {
     private String password;
     
     /**
-     * 이메일 (필수, 고유)
+     * 이메일 (필수, 유니크)
      */
     @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
@@ -175,4 +175,3 @@ public class User {
                 '}';
     }
 }
-

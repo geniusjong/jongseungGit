@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>저장된 로또 번호</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #0f1226;
+            --card: #171a2f;
+            --muted: #a5b0d6;
+            --text: #e9ecff;
+            --accent1: #7c6cff;
+            --accent2: #00e0b8;
+            --accent3: #ff9d9d;
+            --shadow: 0 10px 30px rgba(0,0,0,.35);
+            --radius: 18px;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: 'Pretendard', 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans KR", sans-serif;
+            background: radial-gradient(1200px 800px at 20% -10%, rgba(124,108,255,.25), transparent 60%),
+                        radial-gradient(1000px 700px at 120% 10%, rgba(0,224,184,.18), transparent 50%),
+                        var(--bg);
+            color: var(--text);
+        }
+        .container { max-width: 1200px; margin: 56px auto 80px; padding: 0 20px; }
+        h1 {
+            margin: 0 0 32px; font-size: 48px; letter-spacing: -1.2px; text-align: center;
+            background: linear-gradient(90deg, var(--accent1), var(--accent2));
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+            text-shadow: 0 8px 30px rgba(124,108,255,.25);
+        }
+        h2 { margin: 32px 0 20px; color: var(--muted); font-weight: 600; font-size: 24px; }
+
+        .card { background: var(--card); border: 1px solid rgba(255,255,255,.06); border-radius: var(--radius); box-shadow: var(--shadow); padding: 28px; margin-bottom: 32px; }
+        
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255,255,255,.06);
+        }
+        .info-section .count {
+            font-size: 18px;
+            color: var(--muted);
+        }
+        .info-section .count strong {
+            color: var(--accent2);
+            font-size: 24px;
+        }
+
+        .lotto-item {
+            background: rgba(255,255,255,.02);
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+        .lotto-item:hover {
+            background: rgba(255,255,255,.04);
+            border-color: rgba(124,108,255,.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,.2);
+        }
+        .lotto-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        .lotto-item-date {
+            color: var(--muted);
+            font-size: 14px;
+        }
+        .lotto-item-id {
+            color: var(--accent1);
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .delete-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255,157,157,.15);
+            border: 1px solid rgba(255,157,157,.3);
+            color: var(--accent3);
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .delete-btn:hover {
+            background: rgba(255,157,157,.25);
+            border-color: rgba(255,157,157,.5);
+            transform: scale(1.1);
+        }
+        .lotto-numbers {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin: 16px 0;
+        }
+        .ball {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 900;
+            font-size: 18px;
+            color: #ffffff;
+            text-shadow: 0 2px 0 rgba(0,0,0,.15);
+            box-shadow: 0 6px 12px rgba(0,0,0,.2);
+            border: 2px solid rgba(255,255,255,.9);
+        }
+        .ball.yellow { background: #ffc400; }
+        .ball.blue { background: #6cc7ff; }
+        .ball.red { background: #ff7b87; }
+        .ball.gray { background: #b8bcc4; }
+        .ball.green { background: #94d145; }
+        .ball.bonus {
+            outline: 3px dashed rgba(0,0,0,.12);
+            outline-offset: 3px;
+        }
+        .plus {
+            color: var(--muted);
+            font-weight: 700;
+            padding: 0 4px;
+        }
+
+        .button-container {
+            margin-top: 34px;
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 24px;
+            border: 0;
+            border-radius: 14px;
+            cursor: pointer;
+            font-weight: 700;
+            color: #0a0d1f;
+            background: linear-gradient(135deg, var(--accent2), #66ffd8);
+            box-shadow: 0 10px 20px rgba(0,224,184,.25), inset 0 -2px 0 rgba(0,0,0,.15);
+            transition: transform .12s ease, box-shadow .2s ease;
+            text-decoration: none;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(0,224,184,.35);
+        }
+        .btn.secondary {
+            background: linear-gradient(135deg, var(--accent1), #a997ff);
+            box-shadow: 0 10px 20px rgba(124,108,255,.28), inset 0 -2px 0 rgba(0,0,0,.15);
+        }
+        .btn.danger {
+            background: linear-gradient(135deg, var(--accent3), #ff7b87);
+            box-shadow: 0 10px 20px rgba(255,157,157,.28), inset 0 -2px 0 rgba(0,0,0,.15);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--muted);
+        }
+        .empty-state-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+        .empty-state h3 {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+        .empty-state p {
+            font-size: 16px;
+            margin-bottom: 24px;
+        }
+
+        /* 사용자 정보 표시 스타일 */
+        .user-info {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--card);
+            border: 1px solid rgba(255,255,255,.06);
+            border-radius: 14px;
+            padding: 12px 18px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 1000;
+        }
+        .user-info .username {
+            color: var(--text);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .user-info .logout-btn {
+            padding: 6px 12px;
+            background: rgba(255,157,157,.15);
+            border: 1px solid rgba(255,157,157,.3);
+            border-radius: 8px;
+            color: var(--accent3);
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        .user-info .logout-btn:hover {
+            background: rgba(255,157,157,.25);
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <!-- 로그인한 사용자 정보 및 로그아웃 버튼 -->
+    <div class="user-info" sec:authorize="isAuthenticated()">
+        <span class="username" sec:authentication="name">사용자명</span>
+        <form th:action="@{/logout}" method="post" style="display: inline;">
+            <button type="submit" class="logout-btn">로그아웃</button>
+        </form>
+    </div>
+
+    <div class="container">
+        <h1>저장된 로또 번호</h1>
+
+        <div class="card">
+            <div class="info-section">
+                <div class="count">
+                    총 <strong th:text="${count}">0</strong>개의 번호가 저장되어 있습니다.
+                </div>
+                <div>
+                    <a href="/lotto" class="btn">새 번호 추첨</a>
+                </div>
+            </div>
+
+            <!-- 저장된 번호가 있는 경우 -->
+            <div th:if="${count > 0}">
+                <div class="lotto-item" th:each="saved : ${savedNumbers}" th:attr="data-id=${saved.id}">
+                    <div class="lotto-item-header">
+                        <span class="lotto-item-date" th:text="${#temporals.format(saved.createdAt, 'yyyy년 MM월 dd일 HH:mm')}">2024년 01월 01일 12:00</span>
+                        <button class="delete-btn" th:attr="onclick='deleteLottoNumber(' + ${saved.id} + ')'" title="삭제">×</button>
+                    </div>
+                    <div class="lotto-numbers">
+                        <div class="ball"
+                             th:each="num : ${#arrays.toIntegerArray({saved.num1, saved.num2, saved.num3, saved.num4, saved.num5, saved.num6})}"
+                             th:classappend="${num <= 10 ? 'yellow' : (num <= 20 ? 'blue' : (num <= 30 ? 'red' : (num <= 40 ? 'gray' : 'green')))}"
+                             th:text="${num}">1</div>
+                        <span class="plus">+</span>
+                        <div class="ball bonus"
+                             th:classappend="${saved.bonusNumber <= 10 ? 'yellow' : (saved.bonusNumber <= 20 ? 'blue' : (saved.bonusNumber <= 30 ? 'red' : (saved.bonusNumber <= 40 ? 'gray' : 'green')))}"
+                             th:text="${saved.bonusNumber}">보너스</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 저장된 번호가 없는 경우 -->
+            <div class="empty-state" th:if="${count == 0}">
+                <div class="empty-state-icon">🎱</div>
+                <h3>저장된 번호가 없습니다</h3>
+                <p>로또 번호를 추첨하고 저장해보세요!</p>
+                <a href="/lotto" class="btn">로또 번호 추첨하기</a>
+            </div>
+        </div>
+
+        <div class="button-container">
+            <a href="/" class="btn secondary">홈으로</a>
+            <a href="/lotto" class="btn">새 번호 추첨</a>
+        </div>
+    </div>
+
+    <script>
+        // 로또 번호 삭제 함수
+        async function deleteLottoNumber(id) {
+            // 확인 알럿
+            if (!confirm('정말로 지우시겠습니까?')) {
+                return; // 아니오를 누르면 삭제 안함
+            }
+
+            try {
+                const response = await fetch('/api/lotto/saved/' + id, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // 삭제 성공 메시지
+                    alert('삭제되었습니다.');
+                    // 페이지 새로고침하여 목록 업데이트
+                    location.reload();
+                } else {
+                    // 삭제 실패 메시지
+                    alert(data.message || '삭제 중 오류가 발생했습니다.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('삭제 중 오류가 발생했습니다.');
+            }
+        }
+    </script>
+</body>
+</html>
+

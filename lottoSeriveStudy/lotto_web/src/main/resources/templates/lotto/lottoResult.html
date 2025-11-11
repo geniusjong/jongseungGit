@@ -50,7 +50,7 @@
         .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 28px rgba(0,224,184,.35); }
         .btn.secondary { background: linear-gradient(135deg, var(--accent1), #a997ff); box-shadow: 0 10px 20px rgba(124,108,255,.28), inset 0 -2px 0 rgba(0,0,0,.15); }
         
-        /* 사용자 정보 영역 스타일 */
+        /* 사용자 정보 표시 스타일 */
         .user-info {
             position: fixed;
             top: 20px;
@@ -86,6 +86,30 @@
             background: rgba(255,157,157,.25);
             transform: translateY(-1px);
         }
+        
+        /* 메시지 표시 스타일 */
+        .message {
+            text-align: center;
+            margin-top: 20px;
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-weight: 600;
+            display: none;
+        }
+        .message.success {
+            background: rgba(0,224,184,.15);
+            color: var(--accent2);
+            border: 1px solid rgba(0,224,184,.3);
+        }
+        .message.error {
+            background: rgba(255,157,157,.15);
+            color: var(--accent3);
+            border: 1px solid rgba(255,157,157,.3);
+        }
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
@@ -115,15 +139,91 @@
     </div>
 
     <div style="text-align:center; margin-top:10px; color: var(--muted); font-weight:700;" th:if="${usedLucky}">
-        오늘의 행운의 번호(<span style="color:#ff9d9d;" th:text="${luckyNumber}">행운</span>)를 활용해 추첨했습니다.
+        오늘의 행운번호(<span style="color:#ff9d9d;" th:text="${luckyNumber}">행운번호</span>)를 활용하여 추첨되었습니다.
     </div>
+
+    <!-- 메시지 표시 영역 -->
+    <div id="message" class="message"></div>
 
     <div class="button-container">
-        <button class="btn secondary" onclick="location.href='/'">메인 페이지로</button>
+        <button class="btn secondary" onclick="location.href='/'">홈으로</button>
         <button class="btn" onclick="location.href='/lotto'">다시 추첨</button>
         <button class="btn" onclick="location.href='/lotto?useLucky=1'">행운번호 활용해 추첨</button>
+        <!-- 로그인한 사용자에게만 저장 버튼 표시 -->
+        <button class="btn" id="saveBtn" sec:authorize="isAuthenticated()" onclick="saveLottoNumber()" style="background: linear-gradient(135deg, #ff9d9d, #ff7b87);">
+            추첨된 번호 저장
+        </button>
+        <!-- 저장된 번호 보기 버튼 -->
+        <button class="btn secondary" sec:authorize="isAuthenticated()" onclick="location.href='/saved-lotto'" style="background: linear-gradient(135deg, var(--accent1), #a997ff);">
+            저장된 번호 보기
+        </button>
     </div>
 </div>
+
+<!-- Thymeleaf 변수를 JavaScript로 전달 -->
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    const drawnNumbers = /*[[${drawnNumbers}]]*/ [];
+    const bonusNumber = /*[[${bonusNumber}]]*/ 0;
+    /*]]>*/
+    
+    // 로또 번호 저장 함수
+    async function saveLottoNumber() {
+        const saveBtn = document.getElementById('saveBtn');
+        const messageDiv = document.getElementById('message');
+        
+        // 버튼 비활성화
+        saveBtn.disabled = true;
+        saveBtn.textContent = '저장 중...';
+        
+        // 메시지 숨기기
+        messageDiv.style.display = 'none';
+        
+        try {
+            const response = await fetch('/api/lotto/save', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    numbers: drawnNumbers,
+                    bonusNumber: bonusNumber
+                })
+            });
+            
+            const data = await response.json();
+            
+            if (data.success) {
+                // 성공 메시지
+                messageDiv.className = 'message success';
+                messageDiv.textContent = data.message || '로또 번호가 저장되었습니다.';
+                messageDiv.style.display = 'block';
+                
+                // 버튼 비활성화 (이미 저장됨)
+                saveBtn.disabled = true;
+                saveBtn.textContent = '저장 완료';
+            } else {
+                // 에러 메시지
+                messageDiv.className = 'message error';
+                messageDiv.textContent = data.message || '저장 중 오류가 발생했습니다.';
+                messageDiv.style.display = 'block';
+                
+                // 버튼 다시 활성화
+                saveBtn.disabled = false;
+                saveBtn.textContent = '추첨된 번호 저장';
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            messageDiv.className = 'message error';
+            messageDiv.textContent = '저장 중 오류가 발생했습니다.';
+            messageDiv.style.display = 'block';
+            
+            // 버튼 다시 활성화
+            saveBtn.disabled = false;
+            saveBtn.textContent = '추첨된 번호 저장';
+        }
+    }
+    /*]]>*/
+</script>
 </body>
 </html>
-

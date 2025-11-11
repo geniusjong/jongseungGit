@@ -6,9 +6,9 @@ import java.util.Map;
 /**
  * 로또 히스토리 조회 결과를 담는 DTO
  * 
- * ? 왜 복잡한 구조의 DTO를 만들까요?
+ * ⭐ 왜 복합적인 구조의 DTO를 만들까요?
  * 1. 한 번의 API 호출로 모든 정보 제공: 페이징, 필터링, 통계 정보를 한 번에
- * 2. 클라이언트 효율성: 여러 번의 API 호출 없이 한 번에 필요한 데이터 받기
+ * 2. 클라이언트 효율성: 여러 번의 API 호출 없이 한 번에 필요한 데이터 제공
  * 3. 일관성: 모든 히스토리 관련 정보를 하나의 응답으로 통합
  * 
  * 응답 예시:
@@ -191,4 +191,3 @@ public class LottoHistoryResponse {
         public void setCount(int count) { this.count = count; }
     }
 }
-

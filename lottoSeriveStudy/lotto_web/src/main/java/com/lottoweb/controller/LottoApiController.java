@@ -3,15 +3,16 @@ package com.lottoweb.controller;
 import com.lottoweb.dao.LottoDAO;
 import com.lottoweb.dto.*;
 import com.lottoweb.model.LottoNumber;
+import com.lottoweb.model.SavedLottoNumber;
+import com.lottoweb.service.SavedLottoNumberService;
 import com.lottoweb.util.LuckyNumber;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.Authentication;
+import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -40,26 +41,29 @@ import java.util.Map;
  * - GET /api/lotto/draw?useLucky=true  → 로또 번호 추첨
  * - GET /api/lotto/latest               → 최신 로또 번호 조회
  * - GET /api/lotto/history              → 로또 히스토리 조회 (페이징, 필터링, 통계)
+ * - POST /api/lotto/save                → 로또 번호 저장 (인증 필요)
  */
 @RestController
 @RequestMapping("/api/lotto")
 public class LottoApiController {
 
     private final LottoDAO lottoDAO;
+    private final SavedLottoNumberService savedLottoNumberService;
 
     @Autowired
-    public LottoApiController(LottoDAO lottoDAO) {
+    public LottoApiController(LottoDAO lottoDAO, SavedLottoNumberService savedLottoNumberService) {
         this.lottoDAO = lottoDAO;
+        this.savedLottoNumberService = savedLottoNumberService;
     }
 
     /**
      * 로또 번호 추첨 API
      * 
-     * ⭐ 이 API의 장점:
+     * ? 이 API의 장점:
      * 1. 모바일 앱에서 사용 가능
      * 2. Postman으로 테스트 가능
      * 3. 프론트엔드(React/Vue)에서 fetch로 호출 가능
-     * 4. 다른 서비스에서도 호출 가능
+     * 4. 다른 서버에서도 호출 가능
      * 
      * @param useLucky 행운번호 사용 여부 (true면 오늘 날짜 기반 행운번호 포함)
      * @return JSON 형식의 추첨 결과
@@ -82,7 +86,7 @@ public class LottoApiController {
         
         try {
             // ⭐ 기존 LottoDAO를 재사용하여 중복 코드 제거
-            // 기존 LottoController와 같은 로직을 사용하지만, JSON으로 반환
+            // 기존 LottoController와 같은 로직을 사용하되, JSON으로 반환
             Map<String, Object> lottoResult;
             boolean usedLucky = false;
             Integer luckyNumber = null;
@@ -105,11 +109,11 @@ public class LottoApiController {
             );
             
             // ⭐ ResponseEntity를 사용하여 HTTP 상태 코드 제어
-            // 200 OK와 함께 성공 응답 반환
+            // 200 OK로 기본 성공 응답 반환
             return ResponseEntity.ok(ApiResponse.success("로또 번호 추첨 성공", response));
             
         } catch (Exception e) {
-            // 에러 발생 시 500 Internal Server Error 반환
+            // 오류 발생 시 500 Internal Server Error 반환
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(ApiResponse.error("로또 번호 추첨 중 오류가 발생했습니다: " + e.getMessage()));
         }
@@ -150,7 +154,7 @@ public class LottoApiController {
                     latest.getPostgame(),
                     latest.getNum1(), latest.getNum2(), latest.getNum3(),
                     latest.getNum4(), latest.getNum5(), latest.getNum6(),
-                    latest.getBonusnum(),  // Entity는 bonusnum, DTO는 bonus로 명명
+                    latest.getBonusnum(),  // Entity는 bonusnum, DTO는 bonus로 매핑
                     latest.getFirstprizecount()
             );
             
@@ -165,17 +169,17 @@ public class LottoApiController {
     /**
      * 로또 히스토리 조회 API
      * 
-     * ⭐ 이 API의 장점:
-     * 1. 페이징: 페이지별로 데이터를 나누어 전송 (대용량 데이터 처리)
+     * ? 이 API의 장점:
+     * 1. 페이징: 페이징으로 데이터를 나누어 전송 (대용량 데이터 처리)
      * 2. 필터링: 회차 범위, 특정 번호 포함 여부로 필터링
-     * 3. 정렬: 다양한 정렬 옵션 제공
+     * 3. 정렬: 다양한 정렬 방식 제공
      * 4. 통계: 빈도 분석, 가장 많이/적게 나온 번호 정보 제공
      * 5. 한 번의 호출로 모든 정보 제공: 리스트, 페이징, 통계를 한 번에
      * 
      * ⭐ 왜 페이징을 사용하나요?
      * - 대용량 데이터를 한 번에 전송하면 성능 저하
      * - 클라이언트가 필요한 페이지만 요청하여 효율적
-     * - 네트워크 사용량 감소
+     * - 캐싱 활용도 증가
      * 
      * @param page 페이지 번호 (기본값: 1)
      * @param size 페이지당 데이터 수 (기본값: 20)
@@ -228,13 +232,13 @@ public class LottoApiController {
             @RequestParam(required = false) String dir) {
         
         try {
-            // ⭐ 페이징 검증 및 계산
+            // ⭐ 페이징 범위 검사 및 계산
             if (size <= 0) size = 20;
             if (page <= 0) page = 1;
             int offset = (page - 1) * size;
             
             // ⭐ 기존 LottoDAO 메서드 재사용
-            // 1. 전체 건수 조회 (필터링 적용)
+            // 1. 전체 개수 조회 (필터링 적용)
             int totalCount = lottoDAO.countLottoHistory(start, end, number);
             int totalPages = (int) Math.ceil(totalCount / (double) size);
             
@@ -288,7 +292,7 @@ public class LottoApiController {
                 leastFrequent = new LottoHistoryResponse.FrequencyInfo(leastFreq, leastFreqCount);
             }
             
-            // 6. DTO 조립
+            // 6. DTO 생성
             LottoHistoryResponse.PaginationInfo pagination = new LottoHistoryResponse.PaginationInfo(
                     page, totalPages, totalCount, size
             );
@@ -312,5 +316,174 @@ public class LottoApiController {
                     .body(ApiResponse.error("히스토리 조회 중 오류가 발생했습니다: " + e.getMessage()));
         }
     }
-}
+    
+    /**
+     * 로또 번호 저장 API
+     * 인증된 사용자만 접근 가능합니다.
+     * 
+     * @param principal 인증된 사용자 정보 (Spring Security가 자동 주입)
+     * @param request 저장할 로또 번호 정보 (6개 번호 + 보너스 번호)
+     * @return 저장 결과
+     * 
+     * 요청 예시:
+     * POST /api/lotto/save
+     * {
+     *   "numbers": [1, 2, 3, 4, 5, 6],
+     *   "bonusNumber": 7
+     * }
+     * 
+     * 응답 예시:
+     * {
+     *   "success": true,
+     *   "message": "로또 번호가 저장되었습니다.",
+     *   "data": {
+     *     "id": 1,
+     *     "numbers": [1, 2, 3, 4, 5, 6],
+     *     "bonusNumber": 7,
+     *     "createdAt": "2024-01-01T12:00:00"
+     *   }
+     * }
+     */
+    @PostMapping("/save")
+    public ResponseEntity<ApiResponse<SavedLottoNumberResponse>> saveLottoNumber(
+            Principal principal,
+            @RequestBody SaveLottoNumberRequest request) {
+        
+        try {
+            // 인증 확인
+            if (principal == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body(ApiResponse.error("로그인이 필요합니다."));
+            }
+            
+            String username = principal.getName();
+            
+            // 요청 데이터 유효성 검사
+            if (request == null || request.getNumbers() == null || request.getNumbers().length != 6) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(ApiResponse.error("로또 번호는 6개여야 합니다."));
+            }
+            
+            if (request.getBonusNumber() < 1 || request.getBonusNumber() > 45) {
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                        .body(ApiResponse.error("보너스 번호는 1부터 45 사이의 숫자여야 합니다."));
+            }
+            
+            // 중복 체크
+            if (savedLottoNumberService.isDuplicate(username, request.getNumbers())) {
+                return ResponseEntity.status(HttpStatus.CONFLICT)
+                        .body(ApiResponse.error("이미 저장된 번호 조합입니다."));
+            }
+            
+            // 저장
+            SavedLottoNumber saved = savedLottoNumberService.saveLottoNumber(
+                    username,
+                    request.getNumbers(),
+                    request.getBonusNumber()
+            );
+            
+            // DTO로 변환
+            SavedLottoNumberResponse response = new SavedLottoNumberResponse(
+                    saved.getId(),
+                    new int[]{saved.getNum1(), saved.getNum2(), saved.getNum3(), 
+                             saved.getNum4(), saved.getNum5(), saved.getNum6()},
+                    saved.getBonusNumber(),
+                    saved.getCreatedAt()
+            );
+            
+            return ResponseEntity.ok(ApiResponse.success("로또 번호가 저장되었습니다.", response));
+            
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponse.error(e.getMessage()));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponse.error("로또 번호 저장 중 오류가 발생했습니다: " + e.getMessage()));
+        }
+    }
 
+    /**
+     * 저장된 로또 번호 목록 조회 API
+     *
+     * @param principal 현재 로그인한 사용자
+     * @return 저장된 로또 번호 목록
+     *
+     * 응답 예시:
+     * {
+     *   "success": true,
+     *   "message": "조회 성공",
+     *   "data": [
+     *     {
+     *       "id": 1,
+     *       "numbers": [1, 2, 3, 4, 5, 6],
+     *       "bonusNumber": 7,
+     *       "savedAt": "2024-01-01T12:00:00"
+     *     }
+     *   ]
+     * }
+     */
+    @GetMapping("/saved")
+    public ResponseEntity<ApiResponse<List<SavedLottoNumberResponse>>> getSavedLottoNumbers(Principal principal) {
+        try {
+            if (principal == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body(ApiResponse.error("로그인이 필요합니다."));
+            }
+
+            String username = principal.getName();
+            List<SavedLottoNumber> savedNumbers = savedLottoNumberService.getSavedLottoNumbers(username);
+
+            // Entity를 DTO로 변환
+            List<SavedLottoNumberResponse> responseList = new ArrayList<>();
+            for (SavedLottoNumber saved : savedNumbers) {
+                SavedLottoNumberResponse response = new SavedLottoNumberResponse(
+                        saved.getId(),
+                        new int[]{saved.getNum1(), saved.getNum2(), saved.getNum3(),
+                                 saved.getNum4(), saved.getNum5(), saved.getNum6()},
+                        saved.getBonusNumber(),
+                        saved.getCreatedAt()
+                );
+                responseList.add(response);
+            }
+
+            return ResponseEntity.ok(ApiResponse.success("저장된 로또 번호 조회 성공", responseList));
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponse.error("저장된 로또 번호 조회 중 오류가 발생했습니다: " + e.getMessage()));
+        }
+    }
+
+    /**
+     * 저장된 로또 번호 삭제 API
+     *
+     * @param principal 현재 로그인한 사용자
+     * @param id 삭제할 저장된 로또 번호 ID
+     * @return 삭제 결과
+     */
+    @DeleteMapping("/saved/{id}")
+    public ResponseEntity<ApiResponse<Void>> deleteSavedLottoNumber(
+            Principal principal,
+            @PathVariable Long id) {
+        try {
+            if (principal == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                        .body(ApiResponse.error("로그인이 필요합니다."));
+            }
+
+            String username = principal.getName();
+            boolean deleted = savedLottoNumberService.deleteSavedLottoNumber(username, id);
+
+            if (deleted) {
+                return ResponseEntity.ok(ApiResponse.success("삭제되었습니다.", null));
+            } else {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(ApiResponse.error("저장된 번호를 찾을 수 없습니다."));
+            }
+
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(ApiResponse.error("삭제 중 오류가 발생했습니다: " + e.getMessage()));
+        }
+    }
+}

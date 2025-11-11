@@ -121,4 +121,3 @@ public class HistoryController {
 				.body(csv.toString());
 	}
 }
-

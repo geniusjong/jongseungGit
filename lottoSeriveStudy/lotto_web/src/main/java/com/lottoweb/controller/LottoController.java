@@ -48,4 +48,3 @@ public class LottoController {
 		return "lotto/lottoResult";
 	}
 }
-

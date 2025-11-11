@@ -8,7 +8,7 @@ public final class LuckyNumber {
     private LuckyNumber() {}
 
     /**
-     * 한국시간(KST) 기준 날짜로 시드를 만들어 1~45 사이의 동일한 숫자를 하루 동안 반환한다.
+     * 한국표준시(KST) 기준의 오늘 날짜로 시드를 만들어 1~45 범위의 동일한 숫자를 항상 반환합니다.
      */
     public static int todayKST() {
         LocalDate today = LocalDate.now(ZoneId.of("Asia/Seoul"));
@@ -16,4 +16,3 @@ public final class LuckyNumber {
         return new Random(seed).nextInt(45) + 1;
     }
 }
-
