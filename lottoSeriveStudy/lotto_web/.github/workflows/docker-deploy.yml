@@ -28,10 +28,12 @@ jobs:
       
       # 3단계: Maven 빌드
       - name: Build with Maven
+        working-directory: lottoSeriveStudy/lotto_web
         run: mvn clean package -DskipTests
       
       # 4단계: JAR 파일 확인
       - name: Verify JAR file
+        working-directory: lottoSeriveStudy/lotto_web
         run: |
           if [ ! -f target/lotto-web-1.0.0.jar ]; then
             echo "❌ JAR 파일이 생성되지 않았습니다!"
@@ -50,6 +52,7 @@ jobs:
       
       # 6단계: Docker 이미지 빌드 및 태그 지정
       - name: Build and tag Docker image
+        working-directory: lottoSeriveStudy/lotto_web
         run: |
           docker build -t jongseungpark/lotto-web:latest .
           docker tag jongseungpark/lotto-web:latest jongseungpark/lotto-web:${{ github.sha }}
