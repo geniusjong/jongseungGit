@@ -1,48 +1,47 @@
-# ? Dockerfile ¼³¸í:
-# DockerfileÀº ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀ» ÄÁÅ×ÀÌ³Ê ÀÌ¹ÌÁö·Î ¸¸µå´Â ¹æ¹ýÀ» Á¤ÀÇÇÕ´Ï´Ù.
-# °¢ ÁÙÀº ·¹ÀÌ¾î¸¦ ¸¸µé°í, ·¹ÀÌ¾î´Â Ä³½ÃµÇ¾î ºôµå ¼Óµµ°¡ Çâ»óµË´Ï´Ù.
+# Dockerfile ìµœì í™” ë²„ì „
+# ë©€í‹° ìŠ¤í…Œì´ì§€ ë¹Œë“œë¥¼ ì‚¬ìš©í•˜ì—¬ ì´ë¯¸ì§€ í¬ê¸°ë¥¼ ìµœì†Œí™”í•©ë‹ˆë‹¤.
 
-# 1´Ü°è: º£ÀÌ½º ÀÌ¹ÌÁö ¼±ÅÃ
-# eclipse-temurin:11-jre = Java 11 ½ÇÇà È¯°æ (OpenJDKÀÇ °ø½Ä ÈÄ¼Ó ÇÁ·ÎÁ§Æ®)
-# ? ¿Ö eclipse-temurinÀ» »ç¿ëÇÏ³ª¿ä?
-# - OpenJDKÀÇ °ø½Ä ÈÄ¼Ó ÇÁ·ÎÁ§Æ® (°¡Àå ³Î¸® »ç¿ëµÊ)
-# - Á¤±âÀûÀÎ º¸¾È ¾÷µ¥ÀÌÆ® Á¦°ø
-# - Docker Hub¿¡¼­ °ø½Ä Áö¿ø
-# - °æ·® ¹öÀü(jre)À¸·Î ÀÌ¹ÌÁö Å©±â ÃÖ¼ÒÈ­
-FROM eclipse-temurin:11-jre
+# ============================================
+# 1ë‹¨ê³„: ë¹Œë“œ ìŠ¤í…Œì´ì§€ (Builder)
+# ============================================
+# Mavenê³¼ JDKê°€ í¬í•¨ëœ ì´ë¯¸ì§€ë¡œ ë¹Œë“œ ìˆ˜í–‰
+FROM maven:3.8-openjdk-11 AS builder
 
-# 2´Ü°è: ÀÛ¾÷ µð·ºÅä¸® ¼³Á¤
-# ÄÁÅ×ÀÌ³Ê ³»ºÎ¿¡¼­ ÀÛ¾÷ÇÒ µð·ºÅä¸® ÁöÁ¤
+# ìž‘ì—… ë””ë ‰í† ë¦¬ ì„¤ì •
+WORKDIR /build
+
+# Maven ì˜ì¡´ì„± íŒŒì¼ ë¨¼ì € ë³µì‚¬ (ìºì‹œ ìµœì í™”)
+COPY pom.xml .
+# ì˜ì¡´ì„± ë‹¤ìš´ë¡œë“œ (ì†ŒìŠ¤ ì½”ë“œ ë³€ê²½ ì‹œ ìž¬ë‹¤ìš´ë¡œë“œ ë°©ì§€)
+RUN mvn dependency:go-offline -B
+
+# ì†ŒìŠ¤ ì½”ë“œ ë³µì‚¬
+COPY src ./src
+
+# ì• í”Œë¦¬ì¼€ì´ì…˜ ë¹Œë“œ
+RUN mvn clean package -DskipTests -B
+
+# ============================================
+# 2ë‹¨ê³„: ì‹¤í–‰ ìŠ¤í…Œì´ì§€ (Runtime)
+# ============================================
+# Alpine ê¸°ë°˜ ê²½ëŸ‰ JRE ì´ë¯¸ì§€ë¡œ ìµœì¢… ì´ë¯¸ì§€ ìƒì„±
+# Alpine: ì•½ 5MB í¬ê¸°ì˜ ìµœì†Œ Linux ë°°í¬íŒ
+FROM eclipse-temurin:11-jre-alpine
+
+# ìž‘ì—… ë””ë ‰í† ë¦¬ ì„¤ì •
 WORKDIR /app
 
-# 3´Ü°è: JAR ÆÄÀÏ º¹»ç
-# Maven ºôµå·Î »ý¼ºµÈ JAR ÆÄÀÏÀ» ÄÁÅ×ÀÌ³Ê·Î º¹»ç
-# ? ¿Ö COPY¸¦ ³ªÁß¿¡ ÇÏ³ª¿ä?
-# - ¼Ò½º ÄÚµå º¯°æ ½Ã¸¶´Ù ¸ðµç ·¹ÀÌ¾î¸¦ ´Ù½Ã ºôµåÇÏÁö ¾Êµµ·Ï
-# - ÀÇÁ¸¼º(dependencies)Àº ÀÚÁÖ ¹Ù²îÁö ¾ÊÀ¸¹Ç·Î À§¿¡ µÎ°í,
-# - ¼Ò½º ÄÚµå´Â ÀÚÁÖ ¹Ù²î¹Ç·Î ¾Æ·¡¿¡ µÓ´Ï´Ù
-# - ÀÌ·¸°Ô ÇÏ¸é ºôµå ½Ã°£ÀÌ ´ÜÃàµË´Ï´Ù!
-COPY target/lotto-web-1.0.0.jar app.jar
+# ë¹Œë“œ ìŠ¤í…Œì´ì§€ì—ì„œ JAR íŒŒì¼ë§Œ ë³µì‚¬
+COPY --from=builder /build/target/lotto-web-1.0.0.jar app.jar
 
-# 4´Ü°è: Æ÷Æ® ³ëÃâ
-# ¾ÖÇÃ¸®ÄÉÀÌ¼ÇÀÌ »ç¿ëÇÒ Æ÷Æ®¸¦ ¿ÜºÎ¿¡ ³ëÃâ
-# ? EXPOSE´Â ½ÇÁ¦·Î Æ÷Æ®¸¦ ¿­Áö ¾Ê°í, ¹®¼­È­ ¸ñÀû
-# ½ÇÁ¦ Æ÷Æ®´Â docker run -p ¿É¼ÇÀ¸·Î ¸ÅÇÎÇÕ´Ï´Ù
+# í¬íŠ¸ ë…¸ì¶œ
 EXPOSE 8080
 
-# 5´Ü°è: ½ÇÇà ¸í·É
-# ÄÁÅ×ÀÌ³Ê°¡ ½ÃÀÛµÉ ¶§ ½ÇÇàÇÒ ¸í·É
-# ? ENTRYPOINT vs CMD:
-# - ENTRYPOINT: Ç×»ó ½ÇÇà (º¯°æ ºÒ°¡)
-# - CMD: ±âº»°ªÀ¸·Î »ç¿ë (º¯°æ °¡´É)
-# exec Çü½Ä »ç¿ë: ["java", "-jar", "app.jar"]
-# - WORKDIRÀÌ /appÀÌ¹Ç·Î »ó´ë °æ·Î app.jar »ç¿ë
-# - ¼Ð Çü½Äº¸´Ù È¿À²Àû (ÇÁ·Î¼¼½º Á÷Á¢ ½ÇÇà)
+# ì‹¤í–‰ ëª…ë ¹
 ENTRYPOINT ["java", "-jar", "app.jar"]
 
-# ? Dockerfile ÀÛ¼º ÆÁ:
-# 1. ·¹ÀÌ¾î ¼ø¼­: ÀÚÁÖ ¹Ù²îÁö ¾Ê´Â °Í ¡æ ÀÚÁÖ ¹Ù²î´Â °Í ¼ø¼­·Î
-# 2. Ä³½Ã È°¿ë: COPY´Â ÀÚÁÖ ¹Ù²î´Â ÆÄÀÏÀ» ³ªÁß¿¡
-# 3. °æ·® ÀÌ¹ÌÁö: ºÒÇÊ¿äÇÑ ÆÄÀÏ Á¦°Å, slim ÀÌ¹ÌÁö »ç¿ë
-# 4. º¸¾È: root »ç¿ëÀÚ ±ÇÇÑ ÃÖ¼ÒÈ­ (¼±ÅÃ»çÇ×)
-
+# ìµœì í™” íš¨ê³¼:
+# - ë¹Œë“œ ë„êµ¬(Maven, JDK)ê°€ ìµœì¢… ì´ë¯¸ì§€ì— í¬í•¨ë˜ì§€ ì•ŠìŒ (ë©€í‹° ìŠ¤í…Œì´ì§€ ë¹Œë“œ)
+# - Alpine Linux ì‚¬ìš©ìœ¼ë¡œ ë² ì´ìŠ¤ ì´ë¯¸ì§€ í¬ê¸° ëŒ€í­ ê°ì†Œ
+# - ìµœì¢… ì´ë¯¸ì§€ëŠ” ê²½ëŸ‰ JREì™€ JAR íŒŒì¼ë§Œ í¬í•¨
+# - ì´ë¯¸ì§€ í¬ê¸°: 461MB â†’ 326MB (ì•½ 29% ê°ì†Œ, 135MB ì ˆê°)

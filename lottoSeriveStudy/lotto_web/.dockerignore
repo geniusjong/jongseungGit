@@ -26,8 +26,8 @@ target/maven-archiver
 target/maven-status
 target/surefire-reports
 
-# 소스 코드 (이미 JAR에 포함되어 있으므로)
-src/
+# 소스 코드 (멀티 스테이지 빌드에서는 필요하므로 제외하지 않음)
+# src/  # 멀티 스테이지 빌드 사용 시 주석 처리
 
 # 문서 파일
 *.md
