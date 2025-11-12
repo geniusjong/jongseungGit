@@ -1,56 +1,60 @@
 name: CI Build and Test
 
-# ¿öÅ©ÇÃ·Î¿ì ½ÇÇà Á¶°Ç
+# ì›Œí¬í”Œë¡œìš° ì‹¤í–‰ ì¡°ê±´
 on:
   push:
-    branches: [ main, master ]  # main ¶Ç´Â master ºê·£Ä¡¿¡ Çª½ÃÇÏ¸é ½ÇÇà
+    branches: [ main, master ]  # main ë˜ëŠ” master ë¸Œëœì¹˜ì— í‘¸ì‹œí•˜ë©´ ì‹¤í–‰
   pull_request:
-    branches: [ main, master ]  # Pull Request »ı¼º/¾÷µ¥ÀÌÆ® ½Ã¿¡µµ ½ÇÇà
+    branches: [ main, master ]  # Pull Request ìƒì„±/ì—…ë°ì´íŠ¸ ì‹œì—ë„ ì‹¤í–‰
 
-# ÀÛ¾÷ Á¤ÀÇ
+# ì‘ì—… ì •ì˜
 jobs:
   build:
     name: Build and Test
-    runs-on: ubuntu-latest  # GitHub ActionsÀÇ ¹«·á Ubuntu ¼­¹ö »ç¿ë
+    runs-on: ubuntu-latest  # GitHub Actionsì˜ ë¬´ë£Œ Ubuntu ì„œë²„ ì‚¬ìš©
     
     steps:
-      # 1´Ü°è: ÄÚµå Ã¼Å©¾Æ¿ô
+      # 1ë‹¨ê³„: ì½”ë“œ ì²´í¬ì•„ì›ƒ
       - name: Checkout code
         uses: actions/checkout@v3
       
-      # 2´Ü°è: Java 11 ¼³Á¤
+      # 2ë‹¨ê³„: Java 11 ì„¤ì •
       - name: Set up JDK 11
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'temurin'  # eclipse-temurin »ç¿ë (Dockerfile°ú µ¿ÀÏ)
-          cache: 'maven'  # Maven ÀÇÁ¸¼º Ä³½Ã (ºôµå ¼Óµµ Çâ»ó)
+          distribution: 'temurin'  # eclipse-temurin ì‚¬ìš© (Dockerfileê³¼ ë™ì¼)
+          cache: 'maven'  # Maven ì˜ì¡´ì„± ìºì‹œ (ë¹Œë“œ ì†ë„ í–¥ìƒ)
+          cache-dependency-path: 'lottoSeriveStudy/lotto_web/pom.xml'  # Maven ìºì‹œ ê²½ë¡œ ì§€ì •
       
-      # 3´Ü°è: Maven ºôµå ¹× Å×½ºÆ®
+      # 3ë‹¨ê³„: í”„ë¡œì íŠ¸ ë””ë ‰í† ë¦¬ë¡œ ì´ë™ ë° Maven ë¹Œë“œ
       - name: Build with Maven
+        working-directory: lottoSeriveStudy/lotto_web
         run: mvn clean package -DskipTests
-        # Âü°í: Å×½ºÆ® ÄÚµå°¡ ÀÖÀ¸¸é -DskipTests Á¦°Å
+        # ì°¸ê³ : í…ŒìŠ¤íŠ¸ ì½”ë“œê°€ ìˆìœ¼ë©´ -DskipTests ì œê±°
       
-      # 4´Ü°è: ºôµå °á°ú È®ÀÎ
+      # 4ë‹¨ê³„: ë¹Œë“œ ê²°ê³¼ í™•ì¸
       - name: Verify JAR file
+        working-directory: lottoSeriveStudy/lotto_web
         run: |
           if [ ! -f target/lotto-web-1.0.0.jar ]; then
-            echo "? JAR ÆÄÀÏÀÌ »ı¼ºµÇÁö ¾Ê¾Ò½À´Ï´Ù!"
+            echo "? JAR íŒŒì¼ì´ ìƒì„±ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤!"
             exit 1
           else
-            echo "? JAR ÆÄÀÏ »ı¼º ¼º°ø!"
+            echo "? JAR íŒŒì¼ ìƒì„± ì„±ê³µ!"
             ls -lh target/lotto-web-1.0.0.jar
           fi
       
-      # 5´Ü°è: Docker ÀÌ¹ÌÁö ºôµå
+      # 5ë‹¨ê³„: Docker ì´ë¯¸ì§€ ë¹Œë“œ
       - name: Build Docker image
+        working-directory: lottoSeriveStudy/lotto_web
         run: |
           docker build -t lotto-web:latest .
-          echo "? Docker ÀÌ¹ÌÁö ºôµå ¼º°ø!"
+          echo "? Docker ì´ë¯¸ì§€ ë¹Œë“œ ì„±ê³µ!"
       
-      # 6´Ü°è: Docker ÀÌ¹ÌÁö È®ÀÎ
+      # 6ë‹¨ê³„: Docker ì´ë¯¸ì§€ í™•ì¸
       - name: Verify Docker image
+        working-directory: lottoSeriveStudy/lotto_web
         run: |
           docker images lotto-web:latest
-          echo "? Docker ÀÌ¹ÌÁö È®ÀÎ ¿Ï·á!"
-
+          echo "? Docker ì´ë¯¸ì§€ í™•ì¸ ì™„ë£Œ!"

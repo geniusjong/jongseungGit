@@ -37,6 +37,8 @@ WebContent/WEB-INF/classes/db.properties
 *.pid
 *.seed
 *.pid.lock
+*.tar
+lotto_web-app.tar
 
 # ±‚≈∏
 *.tmp
