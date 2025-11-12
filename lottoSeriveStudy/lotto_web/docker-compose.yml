@@ -6,39 +6,49 @@
 # 서비스 정의 (컨테이너 목록)
 services:
   
-  # MariaDB 데이터베이스 서비스는 로컬 호스트의 MariaDB를 사용하므로 제거
-  # 로컬에 이미 MariaDB가 3306 포트로 실행 중이므로 Docker 컨테이너는 사용하지 않음
+  # MariaDB 데이터베이스 서비스
+  db:
+    image: mariadb:10.11
+    container_name: lotto-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: lotto
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3307:3306"  # 호스트 3307 포트 -> 컨테이너 3306 포트 (로컬 MariaDB와 충돌 방지)
+    volumes:
+      - db_data:/var/lib/mysql  # Docker가 관리하는 볼륨 (데이터 영구 저장)
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   # Spring Boot 애플리케이션 서비스
   app:
     build:
       context: .  # Dockerfile이 있는 디렉토리
       dockerfile: Dockerfile  # 사용할 Dockerfile 이름
-    container_name: lotto-app  # 컨테이너 이름
+    container_name: lotto-app
     restart: always  # 컨테이너가 종료되면 자동으로 다시 시작
-    
-    # 포트 매핑
+    depends_on:
+      db:
+        condition: service_healthy  # DB가 준비될 때까지 대기
     ports:
       - "8080:8080"  # 호스트 8080 포트 -> 컨테이너 8080 포트
     
     # 환경 변수 설정
-    # 데이터베이스 연결 설정을 환경 변수로 변경
-    # application.properties의 localhost를 db(컨테이너 이름)로 변경
     environment:
       # Spring Boot 프로파일을 docker로 설정하여 application-docker.properties 사용
       - SPRING_PROFILES_ACTIVE=docker
     
-    # 의존성 설정 제거 (로컬 호스트의 MariaDB 사용)
-    # depends_on은 필요 없음 (로컬 호스트의 MariaDB는 이미 실행 중)
-    
-    # 네트워크 설정 (호스트 네트워크 접근을 위해 필요)
-    # extra_hosts를 사용하여 host.docker.internal을 추가
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+    # 네트워크: 같은 docker-compose 네트워크에서 db 서비스 이름으로 접근 가능
 
-# 볼륨 정의 제거 (로컬 호스트의 MariaDB 사용)
-
-# 네트워크 정의 제거 (단일 컨테이너만 사용하므로 불필요)
+# 볼륨 정의 (데이터 영구 저장)
+volumes:
+  db_data:  # MariaDB 데이터를 저장하는 볼륨
 
 # docker-compose 사용법:
 # 1. 빌드 및 실행: docker-compose up -d
@@ -46,9 +56,9 @@ services:
 # 3. 로그 확인: docker-compose logs -f
 # 4. 상태 확인: docker-compose ps
 # 5. 재빌드: docker-compose up --build
+# 6. 볼륨 포함 삭제: docker-compose down -v (주의: 데이터 삭제됨)
 
-# 생성성 장점 포인트:
-# 1. 한 번의 명령으로 전체 환경 구성
-# 2. 환경 일관성 유지
-# 3. 실제 운영자 설치 시간 절약
-# 4. 다른 프로젝트와 분리
+# 데이터 마이그레이션:
+# 1. 기존 로컬 DB에서 덤프: mysqldump -u root -p1234 lotto > lotto_backup.sql
+# 2. Docker DB 실행: docker-compose up -d db
+# 3. 데이터 복원: docker exec -i lotto-db mysql -u root -p1234 lotto < lotto_backup.sql
