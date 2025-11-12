@@ -12,10 +12,10 @@ services:
     container_name: lotto-db
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
       MYSQL_DATABASE: lotto
-      MYSQL_USER: root
-      MYSQL_PASSWORD: 1234
+      MYSQL_USER: ${DB_USERNAME:-root}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
       - "3307:3306"  # 호스트 3307 포트 -> 컨테이너 3306 포트 (로컬 MariaDB와 충돌 방지)
     volumes:
@@ -40,9 +40,17 @@ services:
       - "8080:8080"  # 호스트 8080 포트 -> 컨테이너 8080 포트
     
     # 환경 변수 설정
+    env_file:
+      - .env  # .env 파일에서 환경 변수 로드
     environment:
       # Spring Boot 프로파일을 docker로 설정하여 application-docker.properties 사용
       - SPRING_PROFILES_ACTIVE=docker
+      # DB 연결 정보 (환경 변수로 주입)
+      - DB_USERNAME=${DB_USERNAME:-root}
+      - DB_PASSWORD=${DB_PASSWORD}
+      # 이메일 설정 (환경 변수로 주입)
+      - MAIL_USERNAME=${MAIL_USERNAME}
+      - MAIL_PASSWORD=${MAIL_PASSWORD}
     
     # 네트워크: 같은 docker-compose 네트워크에서 db 서비스 이름으로 접근 가능
 
