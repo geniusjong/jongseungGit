@@ -15,7 +15,7 @@ DB_PASSWORD=1234
 
 # 이메일 설정 (Gmail)
 MAIL_USERNAME=itoweb9@gmail.com
-MAIL_PASSWORD=vjjadehbenqrbsyg
+MAIL_PASSWORD=your_gmail_app_password_here
 ```
 
 **참고:**
