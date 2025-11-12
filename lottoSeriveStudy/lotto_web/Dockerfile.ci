@@ -1,0 +1,18 @@
+# CI/CD용 Dockerfile (GitHub Actions)
+# GitHub Actions에서 이미 Maven으로 JAR를 빌드했으므로 JAR만 복사
+# 로컬 개발용 Dockerfile과 분리
+
+FROM eclipse-temurin:11-jre-alpine
+
+WORKDIR /app
+
+# GitHub Actions에서 빌드된 JAR 파일 복사
+COPY target/lotto-web-1.0.0.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+# 이 Dockerfile은 GitHub Actions에서만 사용
+# 로컬 개발 시에는 원본 Dockerfile 사용
+
