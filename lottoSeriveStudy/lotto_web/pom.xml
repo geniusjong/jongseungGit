@@ -16,7 +16,7 @@
     <artifactId>lotto-web</artifactId>
     <version>1.0.0</version>
     <name>Lotto Web Application</name>
-    <description>Î°úÎòê ?õπ ?ï†?îåÎ¶¨Ï???ù¥?Öò - Spring Boot</description>
+    <description>Êø°ÏíïÏÇâ ?Ïéí ?Î∏∑?ÎµÜÁî±—ä???Ïî†?ÎÄ° - Spring Boot</description>
     <packaging>jar</packaging>
 
     <properties>
@@ -27,19 +27,19 @@
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Web Starter (?ÑúÎ∏îÎ¶ø ?è¨?ï®) -->
+        <!-- Spring Boot Web Starter (?ÍΩåÈáâÎ∂æ‚î∏ ?Î£∑?Î∏ø) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Spring Boot Thymeleaf (?Öú?îåÎ¶? ?óîÏß?) -->
+        <!-- Spring Boot Thymeleaf (?ÎÄ•?ÎµÜÁî±? ?ÎøèÔßû?) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-        <!-- Spring Boot JDBC (?ç∞?ù¥?Ñ∞Î≤†Ïù¥?ä§ ?ó∞Í≤?) -->
+        <!-- Spring Boot JDBC (?Îú≤?Ïî†?ÍΩ£Ë∏∞Ï¢éÏî†?Îí™ ?Îø∞ÂØÉ?) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -51,19 +51,19 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- Spring Boot Security (?ù∏Ï¶?/?ù∏Í∞?) -->
+        <!-- Spring Boot Security (?Ïî§Ôßù?/?Ïî§Â™õ?) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!-- Thymeleaf Security (?Öú?îåÎ¶øÏóê?Ñú ?ù∏Ï¶? ?†ïÎ≥? ?Ç¨?ö©) -->
+        <!-- Thymeleaf Security (?ÎÄ•?ÎµÜÁî±Ïö∞Îøâ?ÍΩå ?Ïî§Ôßù? ?Ï†ôËπÇ? ?Í∂ó?Ïäú) -->
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
         </dependency>
 
-        <!-- Spring Boot Mail (?ù¥Î©îÏùº Î∞úÏÜ°) -->
+        <!-- Spring Boot Mail (?Ïî†ÔßéÎ∂øÏî™ Ë´õÏíñÎÑö) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
@@ -76,7 +76,7 @@
             <version>3.3.2</version>
         </dependency>
 
-        <!-- Spring Boot DevTools (Í∞úÎ∞ú ?é∏?ùò) -->
+        <!-- Spring Boot DevTools (Â™õÏíïÏªª ?Î†™?ÏìΩ) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -91,7 +91,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- H2 Database (≈◊Ω∫∆ÆøÎ ¿Œ∏ﬁ∏∏Æ DB) -->
+        <!-- H2 Database (ÌÖåÏä§Ìä∏Ïö© Ïù∏Î©îÎ™®Î¶¨ DB) -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
@@ -107,7 +107,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             
-            <!-- Maven Resources Plugin (?ù∏ÏΩîÎî© ?Ñ§?†ï) -->
+            <!-- Maven Resources Plugin (?Ïî§ËÇÑÎ∂æÎµ´ ?ÍΩï?Ï†ô) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -115,6 +115,91 @@
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
+            </plugin>
+            
+            <!-- JaCoCo Plugin (ÌÖåÏä§Ìä∏ Ïª§Î≤ÑÎ¶¨ÏßÄ Ï∏°Ï†ï) -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.10</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>PACKAGE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.50</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <!-- Maven Surefire Plugin (ÌÖåÏä§Ìä∏ Ïã§Ìñâ) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.22.2</version>
+                <configuration>
+                    <includes>
+                        <include>**/*Test.java</include>
+                        <include>**/*Tests.java</include>
+                    </includes>
+                </configuration>
+            </plugin>
+            
+            <!-- Checkstyle Plugin (ÏΩîÎìú ÌíàÏßà Í≤ÄÏÇ¨) -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>3.3.0</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.puppycrawl.tools</groupId>
+                        <artifactId>checkstyle</artifactId>
+                        <version>10.12.0</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <configLocation>sun_checks.xml</configLocation>
+                    <consoleOutput>true</consoleOutput>
+                    <failsOnError>false</failsOnError>
+                    <linkXRef>false</linkXRef>
+                    <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>validate</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>

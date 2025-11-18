@@ -1,6 +1,6 @@
 name: CI Build and Test
 
-# 워크플로우 실행 조건
+# 트리거 설정: 언제 실행할지 조건
 on:
   push:
     branches: [ main, master ]  # main 또는 master 브랜치에 푸시하면 실행
@@ -10,7 +10,7 @@ on:
 # 작업 정의
 jobs:
   build:
-    name: Build and Test
+    name: Build, Test, and Quality Check
     runs-on: ubuntu-latest  # GitHub Actions의 무료 Ubuntu 서버 사용
     
     steps:
@@ -27,13 +27,54 @@ jobs:
           cache: 'maven'  # Maven 의존성 캐시 (빌드 속도 향상)
           cache-dependency-path: 'lottoSeriveStudy/lotto_web/pom.xml'  # Maven 캐시 경로 지정
       
-      # 3단계: 프로젝트 디렉토리로 이동 및 Maven 빌드
-      - name: Build with Maven
+      # 3단계: 테스트 실행 (JaCoCo 테스트 커버리지 파일 생성)
+      - name: Run Tests with Coverage
+        working-directory: lottoSeriveStudy/lotto_web
+        run: mvn clean test jacoco:report
+      
+      # 4단계: 테스트 커버리지 리포트 업로드 (GitHub Actions Artifact)
+      - name: Upload Test Coverage Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: test-coverage-report
+          path: lottoSeriveStudy/lotto_web/target/site/jacoco/
+          retention-days: 30
+      
+      # 5단계: 테스트 결과 확인
+      - name: Verify Test Results
+        working-directory: lottoSeriveStudy/lotto_web
+        run: |
+          if [ -f target/surefire-reports/TEST-*.xml ]; then
+            echo "✅ 테스트 리포트 생성 완료"
+            echo "테스트 리포트 위치: target/surefire-reports/"
+            echo "커버리지 리포트 위치: target/site/jacoco/index.html"
+          else
+            echo "⚠️ 테스트 리포트를 찾을 수 없습니다"
+          fi
+      
+      # 6단계: 코드 품질 검사 (Checkstyle)
+      - name: Code Quality Check with Checkstyle
+        working-directory: lottoSeriveStudy/lotto_web
+        run: mvn checkstyle:check
+        continue-on-error: true  # Checkstyle 실패해도 빌드 계속 진행
+      
+      # 7단계: Checkstyle 리포트 업로드
+      - name: Upload Checkstyle Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: checkstyle-report
+          path: lottoSeriveStudy/lotto_web/target/checkstyle-result.xml
+          retention-days: 30
+        continue-on-error: true
+      
+      # 8단계: Maven 빌드 (JAR 생성)
+      - name: Build JAR with Maven
         working-directory: lottoSeriveStudy/lotto_web
         run: mvn clean package -DskipTests
-        # 참고: 테스트 코드가 있으면 -DskipTests 제거
       
-      # 4단계: 빌드 결과 확인
+      # 9단계: 빌드 결과 확인
       - name: Verify JAR file
         working-directory: lottoSeriveStudy/lotto_web
         run: |
@@ -45,7 +86,7 @@ jobs:
             ls -lh target/lotto-web-1.0.0.jar
           fi
       
-      # 5단계: Docker Hub 로그인 (push 이벤트에서만 실행)
+      # 10단계: Docker Hub 로그인 (push 이벤트에서만 실행)
       - name: Login to Docker Hub
         if: github.event_name == 'push'
         uses: docker/login-action@v2
@@ -53,26 +94,21 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
-      # 7단계: Docker 이미지 빌드 및 태그 지정
-      # GitHub Actions에서 이미 JAR를 빌드했으므로 단순 Dockerfile 사용
+      # 11단계: Docker 이미지 빌드 및 태그 설정
       - name: Build Docker image
         working-directory: lottoSeriveStudy/lotto_web
-        env:
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
-          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
         run: |
-          docker build -f Dockerfile.ci -t jongseungpark/lotto-web:latest .
+          docker build -t jongseungpark/lotto-web:latest .
           docker tag jongseungpark/lotto-web:latest jongseungpark/lotto-web:${{ github.sha }}
           echo "✅ Docker 이미지 빌드 성공!"
       
-      # 8단계: Docker 이미지 확인
+      # 12단계: Docker 이미지 확인
       - name: Verify Docker image
         run: |
           docker images jongseungpark/lotto-web:latest
           echo "✅ Docker 이미지 확인 완료!"
       
-      # 9단계: Docker Hub에 푸시 (push 이벤트에서만 실행)
+      # 13단계: Docker Hub에 푸시 (push 이벤트에서만 실행)
       - name: Push to Docker Hub
         if: github.event_name == 'push'
         run: |

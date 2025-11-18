@@ -1,51 +1,92 @@
 name: CI Build and Test
 
-# ì›Œí¬í”Œë¡œìš° ì‹¤í–‰ ì¡°ê±´
+# Æ®¸®°Å ¼³Á¤: ¾ğÁ¦ ½ÇÇàÇÒÁö Á¶°Ç
 on:
   push:
-    branches: [ main, master ]  # main ë˜ëŠ” master ë¸Œëœì¹˜ì— í‘¸ì‹œí•˜ë©´ ì‹¤í–‰
+    branches: [ main, master ]  # main ¶Ç´Â master ºê·£Ä¡¿¡ Çª½ÃÇÏ¸é ½ÇÇà
   pull_request:
-    branches: [ main, master ]  # Pull Request ìƒì„±/ì—…ë°ì´íŠ¸ ì‹œì—ë„ ì‹¤í–‰
+    branches: [ main, master ]  # Pull Request »ı¼º/¾÷µ¥ÀÌÆ® ½Ã¿¡µµ ½ÇÇà
 
-# ì‘ì—… ì •ì˜
+# ÀÛ¾÷ Á¤ÀÇ
 jobs:
   build:
-    name: Build and Test
-    runs-on: ubuntu-latest  # GitHub Actionsì˜ ë¬´ë£Œ Ubuntu ì„œë²„ ì‚¬ìš©
+    name: Build, Test, and Quality Check
+    runs-on: ubuntu-latest  # GitHub ActionsÀÇ ¹«·á Ubuntu ¼­¹ö »ç¿ë
     
     steps:
-      # 1ë‹¨ê³„: ì½”ë“œ ì²´í¬ì•„ì›ƒ
+      # 1´Ü°è: ÄÚµå Ã¼Å©¾Æ¿ô
       - name: Checkout code
         uses: actions/checkout@v3
       
-      # 2ë‹¨ê³„: Java 11 ì„¤ì •
+      # 2´Ü°è: Java 11 ¼³Á¤
       - name: Set up JDK 11
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'temurin'  # eclipse-temurin ì‚¬ìš© (Dockerfileê³¼ ë™ì¼)
-          cache: 'maven'  # Maven ì˜ì¡´ì„± ìºì‹œ (ë¹Œë“œ ì†ë„ í–¥ìƒ)
-          cache-dependency-path: 'lottoSeriveStudy/lotto_web/pom.xml'  # Maven ìºì‹œ ê²½ë¡œ ì§€ì •
+          distribution: 'temurin'  # eclipse-temurin »ç¿ë (Dockerfile°ú µ¿ÀÏ)
+          cache: 'maven'  # Maven ÀÇÁ¸¼º Ä³½Ã (ºôµå ¼Óµµ Çâ»ó)
+          cache-dependency-path: 'lottoSeriveStudy/lotto_web/pom.xml'  # Maven Ä³½Ã °æ·Î ÁöÁ¤
       
-      # 3ë‹¨ê³„: í”„ë¡œì íŠ¸ ë””ë ‰í† ë¦¬ë¡œ ì´ë™ ë° Maven ë¹Œë“œ
-      - name: Build with Maven
+      # 3´Ü°è: Å×½ºÆ® ½ÇÇà (JaCoCo Å×½ºÆ® Ä¿¹ö¸®Áö ÆÄÀÏ »ı¼º)
+      - name: Run Tests with Coverage
+        working-directory: lottoSeriveStudy/lotto_web
+        run: mvn clean test jacoco:report
+      
+      # 4´Ü°è: Å×½ºÆ® Ä¿¹ö¸®Áö ¸®Æ÷Æ® ¾÷·Îµå (GitHub Actions Artifact)
+      - name: Upload Test Coverage Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: test-coverage-report
+          path: lottoSeriveStudy/lotto_web/target/site/jacoco/
+          retention-days: 30
+      
+      # 5´Ü°è: Å×½ºÆ® °á°ú È®ÀÎ
+      - name: Verify Test Results
+        working-directory: lottoSeriveStudy/lotto_web
+        run: |
+          if [ -f target/surefire-reports/TEST-*.xml ]; then
+            echo "? Å×½ºÆ® ¸®Æ÷Æ® »ı¼º ¿Ï·á"
+            echo "Å×½ºÆ® ¸®Æ÷Æ® À§Ä¡: target/surefire-reports/"
+            echo "Ä¿¹ö¸®Áö ¸®Æ÷Æ® À§Ä¡: target/site/jacoco/index.html"
+          else
+            echo "?? Å×½ºÆ® ¸®Æ÷Æ®¸¦ Ã£À» ¼ö ¾ø½À´Ï´Ù"
+          fi
+      
+      # 6´Ü°è: ÄÚµå Ç°Áú °Ë»ç (Checkstyle)
+      - name: Code Quality Check with Checkstyle
+        working-directory: lottoSeriveStudy/lotto_web
+        run: mvn checkstyle:check
+        continue-on-error: true  # Checkstyle ½ÇÆĞÇØµµ ºôµå °è¼Ó ÁøÇà
+      
+      # 7´Ü°è: Checkstyle ¸®Æ÷Æ® ¾÷·Îµå
+      - name: Upload Checkstyle Report
+        uses: actions/upload-artifact@v3
+        if: always()
+        with:
+          name: checkstyle-report
+          path: lottoSeriveStudy/lotto_web/target/checkstyle-result.xml
+          retention-days: 30
+        continue-on-error: true
+      
+      # 8´Ü°è: Maven ºôµå (JAR »ı¼º)
+      - name: Build JAR with Maven
         working-directory: lottoSeriveStudy/lotto_web
         run: mvn clean package -DskipTests
-        # ì°¸ê³ : í…ŒìŠ¤íŠ¸ ì½”ë“œê°€ ìˆìœ¼ë©´ -DskipTests ì œê±°
       
-      # 4ë‹¨ê³„: ë¹Œë“œ ê²°ê³¼ í™•ì¸
+      # 9´Ü°è: ºôµå °á°ú È®ÀÎ
       - name: Verify JAR file
         working-directory: lottoSeriveStudy/lotto_web
         run: |
           if [ ! -f target/lotto-web-1.0.0.jar ]; then
-            echo "âŒ JAR íŒŒì¼ì´ ìƒì„±ë˜ì§€ ì•Šì•˜ìŠµë‹ˆë‹¤!"
+            echo "? JAR ÆÄÀÏÀÌ »ı¼ºµÇÁö ¾Ê¾Ò½À´Ï´Ù!"
             exit 1
           else
-            echo "âœ… JAR íŒŒì¼ ìƒì„± ì„±ê³µ!"
+            echo "? JAR ÆÄÀÏ »ı¼º ¼º°ø!"
             ls -lh target/lotto-web-1.0.0.jar
           fi
       
-      # 5ë‹¨ê³„: Docker Hub ë¡œê·¸ì¸ (push ì´ë²¤íŠ¸ì—ì„œë§Œ ì‹¤í–‰)
+      # 10´Ü°è: Docker Hub ·Î±×ÀÎ (push ÀÌº¥Æ®¿¡¼­¸¸ ½ÇÇà)
       - name: Login to Docker Hub
         if: github.event_name == 'push'
         uses: docker/login-action@v2
@@ -53,24 +94,24 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
       
-      # 6ë‹¨ê³„: Docker ì´ë¯¸ì§€ ë¹Œë“œ ë° íƒœê·¸ ì§€ì •
+      # 11´Ü°è: Docker ÀÌ¹ÌÁö ºôµå ¹× ÅÂ±× ¼³Á¤
       - name: Build Docker image
         working-directory: lottoSeriveStudy/lotto_web
         run: |
           docker build -t jongseungpark/lotto-web:latest .
           docker tag jongseungpark/lotto-web:latest jongseungpark/lotto-web:${{ github.sha }}
-          echo "âœ… Docker ì´ë¯¸ì§€ ë¹Œë“œ ì„±ê³µ!"
+          echo "? Docker ÀÌ¹ÌÁö ºôµå ¼º°ø!"
       
-      # 7ë‹¨ê³„: Docker ì´ë¯¸ì§€ í™•ì¸
+      # 12´Ü°è: Docker ÀÌ¹ÌÁö È®ÀÎ
       - name: Verify Docker image
         run: |
           docker images jongseungpark/lotto-web:latest
-          echo "âœ… Docker ì´ë¯¸ì§€ í™•ì¸ ì™„ë£Œ!"
+          echo "? Docker ÀÌ¹ÌÁö È®ÀÎ ¿Ï·á!"
       
-      # 8ë‹¨ê³„: Docker Hubì— í‘¸ì‹œ (push ì´ë²¤íŠ¸ì—ì„œë§Œ ì‹¤í–‰)
+      # 13´Ü°è: Docker Hub¿¡ Çª½Ã (push ÀÌº¥Æ®¿¡¼­¸¸ ½ÇÇà)
       - name: Push to Docker Hub
         if: github.event_name == 'push'
         run: |
           docker push jongseungpark/lotto-web:latest
           docker push jongseungpark/lotto-web:${{ github.sha }}
-          echo "âœ… Docker Hub í‘¸ì‹œ ì„±ê³µ!"
+          echo "? Docker Hub Çª½Ã ¼º°ø!"
