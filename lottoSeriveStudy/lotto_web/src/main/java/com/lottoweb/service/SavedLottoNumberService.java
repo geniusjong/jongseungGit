@@ -67,7 +67,7 @@ public class SavedLottoNumberService {
         // 중복 번호 검사
         for (int i = 0; i < sortedNumbers.length - 1; i++) {
             if (sortedNumbers[i] == sortedNumbers[i + 1]) {
-                throw new IllegalArgumentException("로또 번호에 중복이 있습니다.");
+                throw new IllegalArgumentException("로또 번호는 중복될 수 없습니다.");
             }
         }
         
