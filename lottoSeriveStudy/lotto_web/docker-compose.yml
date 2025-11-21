@@ -1,12 +1,12 @@
-# docker-compose.yml ì„¤ëª…:
-# docker-composeëŠ” ì—¬ëŸ¬ ì»¨í…Œì´ë„ˆë¥¼ í•¨ê»˜ ì‹¤í–‰í•˜ëŠ” ë„êµ¬ì…ë‹ˆë‹¤.
-# í•œ ë²ˆì˜ ëª…ë ¹ìœ¼ë¡œ ì• í”Œë¦¬ì¼€ì´ì…˜ê³¼ ë°ì´í„°ë² ì´ìŠ¤ë¥¼ í•¨ê»˜ ì‹¤í–‰í•  ìˆ˜ ìˆìŠµë‹ˆë‹¤.
-# Docker Compose v2ì—ì„œëŠ” version í•„ë“œê°€ ë” ì´ìƒ í•„ìš”í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.
+# docker-compose.yml ¼³¸í:
+# docker-compose´Â ¿©·¯ ÄÁÅ×ÀÌ³Ê¸¦ ÇÔ²² ½ÇÇàÇÏ´Â µµ±¸ÀÔ´Ï´Ù.
+# ÇÑ ¹øÀÇ ¸í·ÉÀ¸·Î ¾ÖÇÃ¸®ÄÉÀÌ¼Ç°ú µ¥ÀÌÅÍº£ÀÌ½º¸¦ ÇÔ²² ½ÇÇàÇÒ ¼ö ÀÖ½À´Ï´Ù.
+# Docker Compose v2¿¡¼­´Â version ÇÊµå°¡ ´õ ÀÌ»ó ÇÊ¿äÇÏÁö ¾Ê½À´Ï´Ù.
 
-# ì„œë¹„ìŠ¤ ì •ì˜ (ì»¨í…Œì´ë„ˆ ëª©ë¡)
+# ¼­ºñ½º Á¤ÀÇ (ÄÁÅ×ÀÌ³Ê ¸ñ·Ï)
 services:
   
-  # MariaDB ë°ì´í„°ë² ì´ìŠ¤ ì„œë¹„ìŠ¤
+  # MariaDB µ¥ÀÌÅÍº£ÀÌ½º ¼­ºñ½º
   db:
     image: mariadb:10.11
     container_name: lotto-db
@@ -17,56 +17,52 @@ services:
       MYSQL_USER: ${DB_USERNAME:-root}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     ports:
-      - "3307:3306"  # í˜¸ìŠ¤íŠ¸ 3307 í¬íŠ¸ -> ì»¨í…Œì´ë„ˆ 3306 í¬íŠ¸ (ë¡œì»¬ MariaDBì™€ ì¶©ëŒ ë°©ì§€)
+      - "3307:3306"  # È£½ºÆ® 3307 Æ÷Æ® -> ÄÁÅ×ÀÌ³Ê 3306 Æ÷Æ® (·ÎÄÃ MariaDB¿Í Ãæµ¹ ¹æÁö)
     volumes:
-      - db_data:/var/lib/mysql  # Dockerê°€ ê´€ë¦¬í•˜ëŠ” ë³¼ë¥¨ (ë°ì´í„° ì˜êµ¬ ì €ì¥)
+      - db_data:/var/lib/mysql  # Docker°¡ °ü¸®ÇÏ´Â º¼·ı (µ¥ÀÌÅÍ ¿µ±¸ ÀúÀå)
+    networks:
+      - lotto-network
     healthcheck:
       test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
       interval: 10s
       timeout: 5s
       retries: 5
 
-  # Spring Boot ì• í”Œë¦¬ì¼€ì´ì…˜ ì„œë¹„ìŠ¤
+  # Spring Boot ¾ÖÇÃ¸®ÄÉÀÌ¼Ç ¼­ºñ½º
   app:
-    build:
-      context: .  # Dockerfileì´ ìˆëŠ” ë””ë ‰í† ë¦¬
-      dockerfile: Dockerfile  # ì‚¬ìš©í•  Dockerfile ì´ë¦„
+    image: jongseungpark/lotto-web:latest
     container_name: lotto-app
-    restart: always  # ì»¨í…Œì´ë„ˆê°€ ì¢…ë£Œë˜ë©´ ìë™ìœ¼ë¡œ ë‹¤ì‹œ ì‹œì‘
+    restart: always  # ÄÁÅ×ÀÌ³Ê°¡ Á¾·áµÇ¸é ÀÚµ¿À¸·Î ´Ù½Ã ½ÃÀÛ
     depends_on:
       db:
-        condition: service_healthy  # DBê°€ ì¤€ë¹„ë  ë•Œê¹Œì§€ ëŒ€ê¸°
+        condition: service_healthy  # DB°¡ ÁØºñµÉ ¶§±îÁö ´ë±â
     ports:
-      - "8080:8080"  # í˜¸ìŠ¤íŠ¸ 8080 í¬íŠ¸ -> ì»¨í…Œì´ë„ˆ 8080 í¬íŠ¸
+      - "8080:8080"  # È£½ºÆ® 8080 Æ÷Æ® -> ÄÁÅ×ÀÌ³Ê 8080 Æ÷Æ®
     
-    # í™˜ê²½ ë³€ìˆ˜ ì„¤ì •
+    # È¯°æ º¯¼ö ¼³Á¤
     env_file:
-      - .env  # .env íŒŒì¼ì—ì„œ í™˜ê²½ ë³€ìˆ˜ ë¡œë“œ
+      - .env  # .env ÆÄÀÏ¿¡¼­ È¯°æ º¯¼ö ·Îµå
     environment:
-      # Spring Boot í”„ë¡œíŒŒì¼ì„ dockerë¡œ ì„¤ì •í•˜ì—¬ application-docker.properties ì‚¬ìš©
-      - SPRING_PROFILES_ACTIVE=docker
-      # DB ì—°ê²° ì •ë³´ (í™˜ê²½ ë³€ìˆ˜ë¡œ ì£¼ì…)
-      - DB_USERNAME=${DB_USERNAME:-root}
-      - DB_PASSWORD=${DB_PASSWORD}
-      # ì´ë©”ì¼ ì„¤ì • (í™˜ê²½ ë³€ìˆ˜ë¡œ ì£¼ì…)
-      - MAIL_USERNAME=${MAIL_USERNAME}
-      - MAIL_PASSWORD=${MAIL_PASSWORD}
+      # Spring Boot ÇÁ·ÎÆÄÀÏÀ» prod·Î ¼³Á¤ÇÏ¿© application-prod.properties »ç¿ë
+      - SPRING_PROFILES_ACTIVE=prod
+      # DB ¿¬°á Á¤º¸ (È¯°æ º¯¼ö·Î ÁÖÀÔ)
+      - SPRING_DATASOURCE_URL=jdbc:mariadb://db:3306/lotto?useUnicode=true&characterEncoding=UTF-8
+      - SPRING_DATASOURCE_USERNAME=${DB_USERNAME:-root}
+      - SPRING_DATASOURCE_PASSWORD=${DB_PASSWORD}
+      # ÀÌ¸ŞÀÏ ¼³Á¤ (È¯°æ º¯¼ö·Î ÁÖÀÔ)
+      - SPRING_MAIL_USERNAME=${MAIL_USERNAME}
+      - SPRING_MAIL_PASSWORD=${MAIL_PASSWORD}
     
-    # ë„¤íŠ¸ì›Œí¬: ê°™ì€ docker-compose ë„¤íŠ¸ì›Œí¬ì—ì„œ db ì„œë¹„ìŠ¤ ì´ë¦„ìœ¼ë¡œ ì ‘ê·¼ ê°€ëŠ¥
+    volumes:
+      - ./logs:/app/logs
+    networks:
+      - lotto-network
 
-# ë³¼ë¥¨ ì •ì˜ (ë°ì´í„° ì˜êµ¬ ì €ì¥)
+# º¼·ı Á¤ÀÇ (µ¥ÀÌÅÍ ¿µ±¸ ÀúÀå)
 volumes:
-  db_data:  # MariaDB ë°ì´í„°ë¥¼ ì €ì¥í•˜ëŠ” ë³¼ë¥¨
+  db_data:  # MariaDB µ¥ÀÌÅÍ¸¦ ÀúÀåÇÏ´Â º¼·ı
 
-# docker-compose ì‚¬ìš©ë²•:
-# 1. ë¹Œë“œ ë° ì‹¤í–‰: docker-compose up -d
-# 2. ì¤‘ì§€: docker-compose down
-# 3. ë¡œê·¸ í™•ì¸: docker-compose logs -f
-# 4. ìƒíƒœ í™•ì¸: docker-compose ps
-# 5. ì¬ë¹Œë“œ: docker-compose up --build
-# 6. ë³¼ë¥¨ í¬í•¨ ì‚­ì œ: docker-compose down -v (ì£¼ì˜: ë°ì´í„° ì‚­ì œë¨)
-
-# ë°ì´í„° ë§ˆì´ê·¸ë ˆì´ì…˜:
-# 1. ê¸°ì¡´ ë¡œì»¬ DBì—ì„œ ë¤í”„: mysqldump -u root -p1234 lotto > lotto_backup.sql
-# 2. Docker DB ì‹¤í–‰: docker-compose up -d db
-# 3. ë°ì´í„° ë³µì›: docker exec -i lotto-db mysql -u root -p1234 lotto < lotto_backup.sql
+# ³×Æ®¿öÅ© Á¤ÀÇ
+networks:
+  lotto-network:
+    driver: bridge
