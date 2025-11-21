@@ -20,30 +20,30 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 濡쒕삉 踰덊샇 愿??젴 REST API Controller
+ * 로또 번호 관련 REST API Controller
  * 
- * 狩? @RestController vs @Controller 李⑥씠:
+ * 참고 @RestController vs @Controller 차이:
  * 
  * @Controller:
- * - View ?씠由꾩쓣 諛섑솚 (?삁: "index", "lotto/lottoResult")
- * - Thymeleaf媛? HTML?쓣 ?깮?꽦?븯?뿬 ?궗?슜?옄?뿉寃? ?쟾?떖
- * - ?쎒 ?럹?씠吏? ?젋?뜑留곸뿉 ?쟻?빀
+ * - View 이름을 반환 (예: "index", "lotto/lottoResult")
+ * - Thymeleaf가 HTML을 생성하여 사용자에게 전달
+ * - 웹 페이지 렌더링에 적합
  * 
  * @RestController:
- * - ?뜲?씠?꽣 媛앹껜瑜? 吏곸젒 諛섑솚 (?삁: ApiResponse, DTO)
- * - Spring?씠 ?옄?룞?쑝濡? JSON?쑝濡? 蹂??솚
- * - API ?쓳?떟?뿉 ?쟻?빀
+ * - 데이터 객체를 직접 반환 (예: ApiResponse, DTO)
+ * - Spring이 자동으로 JSON으로 변환
+ * - API 응답에 적합
  * 
- * 狩? ?솢 ?븯?씠釉뚮━?뱶 諛⑹떇?쓣 ?궗?슜?븯?굹?슂?
- * 1. 湲곗〈 ?쎒 ?궗?슜?옄: /lotto ?넂 Thymeleaf ?럹?씠吏? (湲곗〈 諛⑹떇 ?쑀吏?)
- * 2. 紐⑤컮?씪 ?빋/?떎瑜? ?겢?씪?씠?뼵?듃: /api/lotto/draw ?넂 JSON ?쓳?떟 (?깉濡쒖슫 諛⑹떇)
- * 3. 媛숈?? 鍮꾩쫰?땲?뒪 濡쒖쭅 ?옱?궗?슜: LottoDAO瑜? 怨듭쑀?븯?뿬 以묐났 ?젣嫄?
+ * 참고 두 가지 방식을 함께 사용할 수 있습니다:
+ * 1. 기본 웹 사용자: /lotto 등 Thymeleaf 페이지 (기본 방식 사용)
+ * 2. 모바일 앱/다른 클라이언트: /api/lotto/draw 등 JSON 응답 (새로운 방식)
+ * 3. 같은 데이터베이스 로직 재사용: LottoDAO를 공유하여 중복 제거
  * 
- * API ?뿏?뱶?룷?씤?듃:
- * - GET /api/lotto/draw?useLucky=true  ?넂 濡쒕삉 踰덊샇 異붿꺼
- * - GET /api/lotto/latest               ?넂 理쒖떊 濡쒕삉 踰덊샇 議고쉶
- * - GET /api/lotto/history              ?넂 濡쒕삉 ?엳?뒪?넗由? 議고쉶 (?럹?씠吏?, ?븘?꽣留?, ?넻怨?)
- * - POST /api/lotto/save                ?넂 濡쒕삉 踰덊샇 ????옣 (?씤利? ?븘?슂)
+ * API 엔드포인트:
+ * - GET /api/lotto/draw?useLucky=true  → 로또 번호 추첨
+ * - GET /api/lotto/latest               → 최신 로또 번호 조회
+ * - GET /api/lotto/history              → 로또 히스토리 조회 (페이지, 필터링, 통계)
+ * - POST /api/lotto/save                → 로또 번호 저장 (인증 필요)
  */
 @RestController
 @RequestMapping("/api/lotto")
@@ -60,21 +60,21 @@ public class LottoApiController {
     }
 
     /**
-     * 濡쒕삉 踰덊샇 異붿꺼 API
+     * 로또 번호 추첨 API
      * 
-     * ? ?씠 API?쓽 ?옣?젏:
-     * 1. 紐⑤컮?씪 ?빋?뿉?꽌 ?궗?슜 媛??뒫
-     * 2. Postman?쑝濡? ?뀒?뒪?듃 媛??뒫
-     * 3. ?봽濡좏듃?뿏?뱶(React/Vue)?뿉?꽌 fetch濡? ?샇異? 媛??뒫
-     * 4. ?떎瑜? ?꽌踰꾩뿉?꽌?룄 ?샇異? 媛??뒫
+     * 이 API의 장점:
+     * 1. 모바일 앱에서 사용 가능
+     * 2. Postman으로 테스트 가능
+     * 3. 프론트엔드(React/Vue)에서 fetch로 호출 가능
+     * 4. 다른 서버에서도 호출 가능
      * 
-     * @param useLucky ?뻾?슫踰덊샇 ?궗?슜 ?뿬遺? (true硫? ?삤?뒛 ?궇吏? 湲곕컲 ?뻾?슫踰덊샇 ?룷?븿)
-     * @return JSON ?삎?떇?쓽 異붿꺼 寃곌낵
+     * @param useLucky 행운번호 사용 여부 (true면 오늘 날짜 기준 행운번호 포함)
+     * @return JSON 형식의 추첨 결과
      * 
-     * ?쓳?떟 ?삁?떆:
+     * 응답 예시:
      * {
      *   "success": true,
-     *   "message": "?꽦怨?",
+     *   "message": "성공",
      *   "data": {
      *     "drawnNumbers": [1, 2, 3, 4, 5, 6],
      *     "bonusNumber": 7,
@@ -89,8 +89,8 @@ public class LottoApiController {
             @RequestParam(required = false, defaultValue = "false") Boolean useLucky) {
         
         try {
-            // 狩? 湲곗〈 LottoDAO瑜? ?옱?궗?슜?븯?뿬 以묐났 肄붾뱶 ?젣嫄?
-            // 湲곗〈 LottoController??? 媛숈?? 濡쒖쭅?쓣 ?궗?슜?븯?릺, JSON?쑝濡? 諛섑솚
+            // 참고 기본 LottoDAO를 재사용하여 중복 코드 제거
+            // 기본 LottoController와 같은 로직을 사용하되, JSON으로 반환
             Map<String, Object> lottoResult;
             boolean usedLucky = false;
             Integer luckyNumber = null;
@@ -107,31 +107,31 @@ public class LottoApiController {
             List<Integer> drawnNumbers = (List<Integer>) lottoResult.get("drawnNumbers");
             int bonusNumber = (int) lottoResult.get("bonusNumber");
             
-            // DTO濡? 蹂??솚?븯?뿬 ?쓳?떟
+            // DTO로 변환하여 응답
             LottoDrawResponse response = new LottoDrawResponse(
                     drawnNumbers, bonusNumber, usedLucky, luckyNumber
             );
             
-            // 狩? ResponseEntity瑜? ?궗?슜?븯?뿬 HTTP ?긽?깭 肄붾뱶 ?젣?뼱
-            // 200 OK濡? 湲곕낯 ?꽦怨? ?쓳?떟 諛섑솚
-            return ResponseEntity.ok(ApiResponse.success("濡쒕삉 踰덊샇 異붿꺼 ?꽦怨?", response));
+            // 참고 ResponseEntity를 사용하여 HTTP 상태 코드 제어
+            // 200 OK로 기본 성공 응답 반환
+            return ResponseEntity.ok(ApiResponse.success("로또 번호 추첨 성공", response));
             
         } catch (Exception e) {
-            // ?삤瑜? 諛쒖깮 ?떆 500 Internal Server Error 諛섑솚
+            // 오류 발생 시 500 Internal Server Error 반환
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponse.error("濡쒕삉 踰덊샇 異붿꺼 以? ?삤瑜섍?? 諛쒖깮?뻽?뒿?땲?떎: " + e.getMessage()));
+                    .body(ApiResponse.error("로또 번호 추첨 중 오류가 발생했습니다: " + e.getMessage()));
         }
     }
 
     /**
-     * 理쒖떊 濡쒕삉 ?떦泥? 踰덊샇 議고쉶 API
+     * 최신 로또 당첨 번호 조회 API
      * 
-     * @return 理쒖떊 濡쒕삉 ?떦泥? 踰덊샇 ?젙蹂?
+     * @return 최신 로또 당첨 번호 정보
      * 
-     * ?쓳?떟 ?삁?떆:
+     * 응답 예시:
      * {
      *   "success": true,
-     *   "message": "?꽦怨?",
+     *   "message": "성공",
      *   "data": {
      *     "postgame": 1234,
      *     "num1": 1, "num2": 2, "num3": 3,
@@ -148,76 +148,76 @@ public class LottoApiController {
             
             if (latest == null) {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(ApiResponse.error("濡쒕삉 踰덊샇 ?젙蹂대?? 李얠쓣 ?닔 ?뾾?뒿?땲?떎."));
+                        .body(ApiResponse.error("로또 번호 정보를 찾을 수 없습니다."));
             }
             
-            // Entity瑜? DTO濡? 蹂??솚
-            // 狩? Entity?쓽 ?븘?뱶紐?(bonusnum)怨? DTO?쓽 ?븘?뱶紐?(bonus)?씠 ?떎瑜? ?닔 ?엳?쑝誘?濡?
-            // getBonusnum() 硫붿꽌?뱶瑜? ?궗?슜?븯?뿬 蹂??솚
+            // Entity를 DTO로 변환
+            // 참고 Entity의 필드명(bonusnum)과 DTO의 필드명(bonus)이 다를 수 있으므로
+            // getBonusnum() 메서드를 사용하여 변환
             LottoNumberResponse response = new LottoNumberResponse(
                     latest.getPostgame(),
                     latest.getNum1(), latest.getNum2(), latest.getNum3(),
                     latest.getNum4(), latest.getNum5(), latest.getNum6(),
-                    latest.getBonusnum(),  // Entity?뒗 bonusnum, DTO?뒗 bonus濡? 留ㅽ븨
+                    latest.getBonusnum(),  // Entity는 bonusnum, DTO는 bonus로 매핑
                     latest.getFirstprizecount()
             );
             
-            return ResponseEntity.ok(ApiResponse.success("理쒖떊 濡쒕삉 踰덊샇 議고쉶 ?꽦怨?", response));
+            return ResponseEntity.ok(ApiResponse.success("최신 로또 번호 조회 성공", response));
             
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponse.error("濡쒕삉 踰덊샇 議고쉶 以? ?삤瑜섍?? 諛쒖깮?뻽?뒿?땲?떎: " + e.getMessage()));
+                    .body(ApiResponse.error("로또 번호 조회 중 오류가 발생했습니다: " + e.getMessage()));
         }
     }
 
     /**
-     * 濡쒕삉 ?엳?뒪?넗由? 議고쉶 API
+     * 로또 히스토리 조회 API
      * 
-     * ? ?씠 API?쓽 ?옣?젏:
-     * 1. ?럹?씠吏?: ?럹?씠吏뺤쑝濡? ?뜲?씠?꽣瑜? ?굹?늻?뼱 ?쟾?넚 (????슜?웾 ?뜲?씠?꽣 泥섎━)
-     * 2. ?븘?꽣留?: ?쉶李? 踰붿쐞, ?듅?젙 踰덊샇 ?룷?븿 ?뿬遺?濡? ?븘?꽣留?
-     * 3. ?젙?젹: ?떎?뼇?븳 ?젙?젹 諛⑹떇 ?젣怨?
-     * 4. ?넻怨?: 鍮덈룄 遺꾩꽍, 媛??옣 留롮씠/?쟻寃? ?굹?삩 踰덊샇 ?젙蹂? ?젣怨?
-     * 5. ?븳 踰덉쓽 ?샇異쒕줈 紐⑤뱺 ?젙蹂? ?젣怨?: 由ъ뒪?듃, ?럹?씠吏?, ?넻怨꾨?? ?븳 踰덉뿉
+     * 이 API의 장점:
+     * 1. 페이지: 페이지별로 데이터를 나누어 전송 (대용량 데이터 처리)
+     * 2. 필터링: 회차 범위, 특정 번호 포함 여부로 필터링
+     * 3. 정렬: 다양한 정렬 방식 제공
+     * 4. 통계: 빈도 분석, 가장 많이/적게 나온 번호 정보 제공
+     * 5. 한 번의 호출로 모든 정보 제공: 리스트, 페이지, 통계까지 한 번에
      * 
-     * 狩? ?솢 ?럹?씠吏뺤쓣 ?궗?슜?븯?굹?슂?
-     * - ????슜?웾 ?뜲?씠?꽣瑜? ?븳 踰덉뿉 ?쟾?넚?븯硫? ?꽦?뒫 ????븯
-     * - ?겢?씪?씠?뼵?듃媛? ?븘?슂?븳 ?럹?씠吏?留? ?슂泥??븯?뿬 ?슚?쑉?쟻
-     * - 罹먯떛 ?솢?슜?룄 利앷??
+     * 참고 페이지를 사용할까요?
+     * - 대용량 데이터를 한 번에 전송하면 성능 저하
+     * - 클라이언트가 필요한 페이지만 요청하여 효율적
+     * - 서버 부하도 감소
      * 
-     * @param page ?럹?씠吏? 踰덊샇 (湲곕낯媛?: 1)
-     * @param size ?럹?씠吏??떦 ?뜲?씠?꽣 ?닔 (湲곕낯媛?: 20)
-     * @param start ?떆?옉 ?쉶李? (?꽑?깮)
-     * @param end 醫낅즺 ?쉶李? (?꽑?깮)
-     * @param number ?룷?븿?븷 踰덊샇 (?꽑?깮)
-     * @param sort ?젙?젹 ?븘?뱶 (?꽑?깮, 湲곕낯媛?: postgame)
-     * @param dir ?젙?젹 諛⑺뼢 (?꽑?깮, 湲곕낯媛?: desc)
-     * @return JSON ?삎?떇?쓽 ?엳?뒪?넗由? 議고쉶 寃곌낵
+     * @param page 페이지 번호 (기본값: 1)
+     * @param size 페이지당 데이터 수 (기본값: 20)
+     * @param start 시작 회차 (선택)
+     * @param end 종료 회차 (선택)
+     * @param number 포함할 번호 (선택)
+     * @param sort 정렬 필드 (선택, 기본값: postgame)
+     * @param dir 정렬 방향 (선택, 기본값: desc)
+     * @return JSON 형식의 히스토리 조회 결과
      * 
-     * ?쓳?떟 ?삁?떆:
+     * 응답 예시:
      * {
      *   "success": true,
-     *   "message": "?엳?뒪?넗由? 議고쉶 ?꽦怨?",
+     *   "message": "히스토리 조회 성공",
      *   "data": {
-     *     "items": [...],          // 濡쒕삉 踰덊샇 由ъ뒪?듃
-     *     "pagination": {          // ?럹?씠吏? ?젙蹂?
+     *     "items": [...],          // 로또 번호 리스트
+     *     "pagination": {          // 페이지 정보
      *       "currentPage": 1,
      *       "totalPages": 100,
      *       "totalCount": 2000,
      *       "size": 20
      *     },
-     *     "filters": {              // ?븘?꽣 ?젙蹂?
+     *     "filters": {              // 필터 정보
      *       "start": 1000,
      *       "end": 2000,
      *       "number": 7
      *     },
-     *     "statistics": {           // ?넻怨? ?젙蹂?
-     *       "frequencies": {...},   // 媛? 踰덊샇?쓽 異쒗쁽 鍮덈룄
-     *       "mostFrequent": {       // 媛??옣 留롮씠 ?굹?삩 踰덊샇
+     *     "statistics": {           // 통계 정보
+     *       "frequencies": {...},   // 각 번호의 출현 빈도
+     *       "mostFrequent": {       // 가장 많이 나온 번호
      *         "number": 7,
      *         "count": 100
      *       },
-     *       "leastFrequent": {      // 媛??옣 ?쟻寃? ?굹?삩 踰덊샇
+     *       "leastFrequent": {      // 가장 적게 나온 번호
      *         "number": 1,
      *         "count": 50
      *       }
@@ -243,20 +243,20 @@ public class LottoApiController {
             @RequestParam(required = false) String dir) {
         
         try {
-            // 狩? ?럹?씠吏? 踰붿쐞 寃??궗 諛? 怨꾩궛
+            // 참고 페이지 범위 검증 및 계산
             if (size <= 0) size = 20;
             if (page <= 0) page = 1;
             int offset = (page - 1) * size;
             
-            // 狩? 湲곗〈 LottoDAO 硫붿꽌?뱶 ?옱?궗?슜
-            // 1. ?쟾泥? 媛쒖닔 議고쉶 (?븘?꽣留? ?쟻?슜)
+            // 참고 기본 LottoDAO 메서드 재사용
+            // 1. 전체 개수 조회 (필터링 적용)
             int totalCount = lottoDAO.countLottoHistory(start, end, number);
             int totalPages = (int) Math.ceil(totalCount / (double) size);
             
-            // 2. ?엳?뒪?넗由? 由ъ뒪?듃 議고쉶 (?럹?씠吏?, ?븘?꽣留?, ?젙?젹 ?쟻?슜)
+            // 2. 히스토리 리스트 조회 (페이지, 필터링, 정렬 적용)
             List<LottoNumber> lottoList = lottoDAO.getLottoHistory(start, end, number, offset, size, sort, dir);
             
-            // 3. Entity瑜? DTO濡? 蹂??솚
+            // 3. Entity를 DTO로 변환
             List<LottoNumberResponse> items = new ArrayList<>();
             for (LottoNumber lotto : lottoList) {
                 LottoNumberResponse response = new LottoNumberResponse(
@@ -269,10 +269,10 @@ public class LottoApiController {
                 items.add(response);
             }
             
-            // 4. 鍮덈룄 ?넻怨? 怨꾩궛
+            // 4. 빈도 통계 계산
             Map<Integer, Integer> frequencies = lottoDAO.countFrequencies(start, end, number);
             
-            // 5. 媛??옣 留롮씠/?쟻寃? ?굹?삩 踰덊샇 怨꾩궛
+            // 5. 가장 많이/적게 나온 번호 계산
             LottoHistoryResponse.FrequencyInfo mostFrequent = null;
             LottoHistoryResponse.FrequencyInfo leastFrequent = null;
             
@@ -282,13 +282,13 @@ public class LottoApiController {
                 int num = entry.getKey();
                 int count = entry.getValue();
                 
-                // 媛??옣 留롮씠 ?굹?삩 踰덊샇
+                // 가장 많이 나온 번호
                 if (count > mostFreqCount) {
                     mostFreqCount = count;
                     mostFreq = num;
                 }
                 
-                // 媛??옣 ?쟻寃? ?굹?삩 踰덊샇 (0蹂대떎 ?겙 寃쎌슦留?)
+                // 가장 적게 나온 번호 (0보다 큰 경우만)
                 if (count > 0 && count < leastFreqCount) {
                     leastFreqCount = count;
                     leastFreq = num;
@@ -303,7 +303,7 @@ public class LottoApiController {
                 leastFrequent = new LottoHistoryResponse.FrequencyInfo(leastFreq, leastFreqCount);
             }
             
-            // 6. DTO ?깮?꽦
+            // 6. DTO 생성
             LottoHistoryResponse.PaginationInfo pagination = new LottoHistoryResponse.PaginationInfo(
                     page, totalPages, totalCount, size
             );
@@ -320,33 +320,33 @@ public class LottoApiController {
                     items, pagination, filters, statistics
             );
             
-            return ResponseEntity.ok(ApiResponse.success("?엳?뒪?넗由? 議고쉶 ?꽦怨?", response));
+            return ResponseEntity.ok(ApiResponse.success("히스토리 조회 성공", response));
             
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponse.error("?엳?뒪?넗由? 議고쉶 以? ?삤瑜섍?? 諛쒖깮?뻽?뒿?땲?떎: " + e.getMessage()));
+                    .body(ApiResponse.error("히스토리 조회 중 오류가 발생했습니다: " + e.getMessage()));
         }
     }
     
     /**
-     * 濡쒕삉 踰덊샇 ????옣 API
-     * ?씤利앸맂 ?궗?슜?옄留? ?젒洹? 媛??뒫?빀?땲?떎.
+     * 로또 번호 저장 API
+     * 인증된 사용자만 접근 가능합니다.
      * 
-     * @param principal ?씤利앸맂 ?궗?슜?옄 ?젙蹂? (Spring Security媛? ?옄?룞 二쇱엯)
-     * @param request ????옣?븷 濡쒕삉 踰덊샇 ?젙蹂? (6媛? 踰덊샇 + 蹂대꼫?뒪 踰덊샇)
-     * @return ????옣 寃곌낵
+     * @param principal 인증된 사용자 정보 (Spring Security가 자동 주입)
+     * @param request 저장할 로또 번호 정보 (6개 번호 + 보너스 번호)
+     * @return 저장 결과
      * 
-     * ?슂泥? ?삁?떆:
+     * 요청 예시:
      * POST /api/lotto/save
      * {
      *   "numbers": [1, 2, 3, 4, 5, 6],
      *   "bonusNumber": 7
      * }
      * 
-     * ?쓳?떟 ?삁?떆:
+     * 응답 예시:
      * {
      *   "success": true,
-     *   "message": "濡쒕삉 踰덊샇媛? ????옣?릺?뿀?뒿?땲?떎.",
+     *   "message": "로또 번호가 저장되었습니다.",
      *   "data": {
      *     "id": 1,
      *     "numbers": [1, 2, 3, 4, 5, 6],
@@ -361,39 +361,39 @@ public class LottoApiController {
             @RequestBody SaveLottoNumberRequest request) {
         
         try {
-            // ?씤利? ?솗?씤
+            // 인증 확인
             if (principal == null) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                        .body(ApiResponse.error("濡쒓렇?씤?씠 ?븘?슂?빀?땲?떎."));
+                        .body(ApiResponse.error("로그인이 필요합니다."));
             }
             
             String username = principal.getName();
             
-            // ?슂泥? ?뜲?씠?꽣 ?쑀?슚?꽦 寃??궗
+            // 요청 데이터 유효성 검증
             if (request == null || request.getNumbers() == null || request.getNumbers().length != 6) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(ApiResponse.error("濡쒕삉 踰덊샇?뒗 6媛쒖뿬?빞 ?빀?땲?떎."));
+                        .body(ApiResponse.error("로또 번호는 6개여야 합니다."));
             }
             
             if (request.getBonusNumber() < 1 || request.getBonusNumber() > 45) {
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                        .body(ApiResponse.error("蹂대꼫?뒪 踰덊샇?뒗 1遺??꽣 45 ?궗?씠?쓽 ?닽?옄?뿬?빞 ?빀?땲?떎."));
+                        .body(ApiResponse.error("보너스 번호는 1부터 45 사이의 숫자여야 합니다."));
             }
             
-            // 以묐났 泥댄겕
+            // 중복 검증
             if (savedLottoNumberService.isDuplicate(username, request.getNumbers())) {
                 return ResponseEntity.status(HttpStatus.CONFLICT)
-                        .body(ApiResponse.error("?씠誘? ????옣?맂 踰덊샇 議고빀?엯?땲?떎."));
+                        .body(ApiResponse.error("이미 저장된 번호 조합입니다."));
             }
             
-            // ????옣
+            // 저장
             SavedLottoNumber saved = savedLottoNumberService.saveLottoNumber(
                     username,
                     request.getNumbers(),
                     request.getBonusNumber()
             );
             
-            // DTO濡? 蹂??솚
+            // DTO로 변환
             SavedLottoNumberResponse response = new SavedLottoNumberResponse(
                     saved.getId(),
                     new int[]{saved.getNum1(), saved.getNum2(), saved.getNum3(), 
@@ -402,27 +402,27 @@ public class LottoApiController {
                     saved.getCreatedAt()
             );
             
-            return ResponseEntity.ok(ApiResponse.success("濡쒕삉 踰덊샇媛? ????옣?릺?뿀?뒿?땲?떎.", response));
+            return ResponseEntity.ok(ApiResponse.success("로또 번호가 저장되었습니다.", response));
             
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(ApiResponse.error(e.getMessage()));
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponse.error("濡쒕삉 踰덊샇 ????옣 以? ?삤瑜섍?? 諛쒖깮?뻽?뒿?땲?떎: " + e.getMessage()));
+                    .body(ApiResponse.error("로또 번호 저장 중 오류가 발생했습니다: " + e.getMessage()));
         }
     }
 
     /**
-     * ????옣?맂 濡쒕삉 踰덊샇 紐⑸줉 議고쉶 API
+     * 저장된 로또 번호 목록 조회 API
      *
-     * @param principal ?쁽?옱 濡쒓렇?씤?븳 ?궗?슜?옄
-     * @return ????옣?맂 濡쒕삉 踰덊샇 紐⑸줉
+     * @param principal 현재 로그인한 사용자
+     * @return 저장된 로또 번호 목록
      *
-     * ?쓳?떟 ?삁?떆:
+     * 응답 예시:
      * {
      *   "success": true,
-     *   "message": "議고쉶 ?꽦怨?",
+     *   "message": "조회 성공",
      *   "data": [
      *     {
      *       "id": 1,
@@ -438,13 +438,13 @@ public class LottoApiController {
         try {
             if (principal == null) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                        .body(ApiResponse.error("濡쒓렇?씤?씠 ?븘?슂?빀?땲?떎."));
+                        .body(ApiResponse.error("로그인이 필요합니다."));
             }
 
             String username = principal.getName();
             List<SavedLottoNumber> savedNumbers = savedLottoNumberService.getSavedLottoNumbers(username);
 
-            // Entity瑜? DTO濡? 蹂??솚
+            // Entity를 DTO로 변환
             List<SavedLottoNumberResponse> responseList = new ArrayList<>();
             for (SavedLottoNumber saved : savedNumbers) {
                 SavedLottoNumberResponse response = new SavedLottoNumberResponse(
@@ -457,20 +457,20 @@ public class LottoApiController {
                 responseList.add(response);
             }
 
-            return ResponseEntity.ok(ApiResponse.success("????옣?맂 濡쒕삉 踰덊샇 議고쉶 ?꽦怨?", responseList));
+            return ResponseEntity.ok(ApiResponse.success("저장된 로또 번호 조회 성공", responseList));
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponse.error("????옣?맂 濡쒕삉 踰덊샇 議고쉶 以? ?삤瑜섍?? 諛쒖깮?뻽?뒿?땲?떎: " + e.getMessage()));
+                    .body(ApiResponse.error("저장된 로또 번호 조회 중 오류가 발생했습니다: " + e.getMessage()));
         }
     }
 
     /**
-     * ????옣?맂 濡쒕삉 踰덊샇 ?궘?젣 API
+     * 저장된 로또 번호 삭제 API
      *
-     * @param principal ?쁽?옱 濡쒓렇?씤?븳 ?궗?슜?옄
-     * @param id ?궘?젣?븷 ????옣?맂 濡쒕삉 踰덊샇 ID
-     * @return ?궘?젣 寃곌낵
+     * @param principal 현재 로그인한 사용자
+     * @param id 삭제할 저장된 로또 번호 ID
+     * @return 삭제 결과
      */
     @DeleteMapping("/saved/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteSavedLottoNumber(
@@ -480,22 +480,22 @@ public class LottoApiController {
         try {
             if (principal == null) {
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                        .body(ApiResponse.error("濡쒓렇?씤?씠 ?븘?슂?빀?땲?떎."));
+                        .body(ApiResponse.error("로그인이 필요합니다."));
             }
 
             String username = principal.getName();
             boolean deleted = savedLottoNumberService.deleteSavedLottoNumber(username, id);
 
             if (deleted) {
-                return ResponseEntity.ok(ApiResponse.success("?궘?젣?릺?뿀?뒿?땲?떎.", null));
+                return ResponseEntity.ok(ApiResponse.success("삭제되었습니다.", null));
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
-                        .body(ApiResponse.error("????옣?맂 踰덊샇瑜? 李얠쓣 ?닔 ?뾾?뒿?땲?떎."));
+                        .body(ApiResponse.error("저장된 번호를 찾을 수 없습니다."));
             }
 
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                    .body(ApiResponse.error("?궘?젣 以? ?삤瑜섍?? 諛쒖깮?뻽?뒿?땲?떎: " + e.getMessage()));
+                    .body(ApiResponse.error("삭제 중 오류가 발생했습니다: " + e.getMessage()));
         }
     }
 }
