@@ -4,15 +4,15 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 /**
- * ÀúÀåµÈ ·Î¶Ç ¹øÈ£ Entity Å¬·¡½º
- * »ç¿ëÀÚ°¡ ÃßÃ·ÇÑ ·Î¶Ç ¹øÈ£¸¦ ÀúÀåÇÏ´Â Å×ÀÌºí°ú ¸ÅÇÎµË´Ï´Ù.
+ * ì €ì¥ëœ ë¡œë˜ ë²ˆí˜¸ Entity í´ë˜ìŠ¤
+ * ì‚¬ìš©ìê°€ ì¶”ì²¨í•œ ë¡œë˜ ë²ˆí˜¸ë¥¼ ì €ì¥í•˜ëŠ” í…Œì´ë¸”ê³¼ ë§¤í•‘ë©ë‹ˆë‹¤.
  */
 @Entity
 @Table(name = "tb_saved_lotto_number")
 public class SavedLottoNumber {
     
     /**
-     * ÀúÀåµÈ ·Î¶Ç ¹øÈ£ ID (±âº»Å°, ÀÚµ¿ Áõ°¡)
+     * ì €ì¥ëœ ë¡œë˜ ë²ˆí˜¸ ID (ê¸°ë³¸í‚¤, ìë™ ì¦ê°€)
      */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,75 +20,75 @@ public class SavedLottoNumber {
     private Long id;
     
     /**
-     * »ç¿ëÀÚ (Many-to-One °ü°è)
-     * ÇÑ »ç¿ëÀÚ´Â ¿©·¯ °³ÀÇ ÀúÀåµÈ ·Î¶Ç ¹øÈ£¸¦ °¡Áú ¼ö ÀÖ½À´Ï´Ù.
+     * ì‚¬ìš©ì (Many-to-One ê´€ê³„)
+     * í•œ ì‚¬ìš©ìëŠ” ì—¬ëŸ¬ ê°œì˜ ì €ì¥ëœ ë¡œë˜ ë²ˆí˜¸ë¥¼ ê°€ì§ˆ ìˆ˜ ìˆìŠµë‹ˆë‹¤.
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
     
     /**
-     * ·Î¶Ç ¹øÈ£ 1
+     * ë¡œë˜ ë²ˆí˜¸ 1
      */
     @Column(name = "num1", nullable = false)
     private int num1;
     
     /**
-     * ·Î¶Ç ¹øÈ£ 2
+     * ë¡œë˜ ë²ˆí˜¸ 2
      */
     @Column(name = "num2", nullable = false)
     private int num2;
     
     /**
-     * ·Î¶Ç ¹øÈ£ 3
+     * ë¡œë˜ ë²ˆí˜¸ 3
      */
     @Column(name = "num3", nullable = false)
     private int num3;
     
     /**
-     * ·Î¶Ç ¹øÈ£ 4
+     * ë¡œë˜ ë²ˆí˜¸ 4
      */
     @Column(name = "num4", nullable = false)
     private int num4;
     
     /**
-     * ·Î¶Ç ¹øÈ£ 5
+     * ë¡œë˜ ë²ˆí˜¸ 5
      */
     @Column(name = "num5", nullable = false)
     private int num5;
     
     /**
-     * ·Î¶Ç ¹øÈ£ 6
+     * ë¡œë˜ ë²ˆí˜¸ 6
      */
     @Column(name = "num6", nullable = false)
     private int num6;
     
     /**
-     * º¸³Ê½º ¹øÈ£
+     * ë³´ë„ˆìŠ¤ ë²ˆí˜¸
      */
     @Column(name = "bonus_number", nullable = false)
     private int bonusNumber;
     
     /**
-     * »ı¼ºÀÏ½Ã
+     * ìƒì„±ì¼ì‹œ
      */
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
     
     /**
-     * ¼öÁ¤ÀÏ½Ã
+     * ìˆ˜ì •ì¼ì‹œ
      */
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
     
     /**
-     * JPA¿¡¼­ »ç¿ëÇÏ±â À§ÇÑ ±âº» »ı¼ºÀÚ
+     * JPAì—ì„œ ì‚¬ìš©í•˜ê¸° ìœ„í•œ ê¸°ë³¸ ìƒì„±ì
      */
     public SavedLottoNumber() {
     }
     
     /**
-     * »ı¼ºÀÚ
+     * ìƒì„±ì
      */
     public SavedLottoNumber(User user, int num1, int num2, int num3, int num4, int num5, int num6, int bonusNumber) {
         this.user = user;
@@ -104,7 +104,7 @@ public class SavedLottoNumber {
     }
     
     /**
-     * Entity ÀúÀå Àü¿¡ ½ÇÇàµÇ´Â ¸Ş¼­µå (»ı¼ºÀÏ½Ã, ¼öÁ¤ÀÏ½Ã ÀÚµ¿ ¼³Á¤)
+     * Entity ì €ì¥ ì „ì— ì‹¤í–‰ë˜ëŠ” ë©”ì„œë“œ (ìƒì„±ì¼ì‹œ, ìˆ˜ì •ì¼ì‹œ ìë™ ì„¤ì •)
      */
     @PrePersist
     protected void onCreate() {
@@ -113,7 +113,7 @@ public class SavedLottoNumber {
     }
     
     /**
-     * Entity ¾÷µ¥ÀÌÆ® Àü¿¡ ½ÇÇàµÇ´Â ¸Ş¼­µå (¼öÁ¤ÀÏ½Ã ÀÚµ¿ ¼³Á¤)
+     * Entity ì—…ë°ì´íŠ¸ ì „ì— ì‹¤í–‰ë˜ëŠ” ë©”ì„œë“œ (ìˆ˜ì •ì¼ì‹œ ìë™ ì„¤ì •)
      */
     @PreUpdate
     protected void onUpdate() {
@@ -210,7 +210,7 @@ public class SavedLottoNumber {
     }
     
     /**
-     * ·Î¶Ç ¹øÈ£¸¦ Á¤·ÄµÈ ¹è¿­·Î ¹İÈ¯
+     * ë¡œë˜ ë²ˆí˜¸ë¥¼ ì •ë ¬ëœ ë°°ì—´ë¡œ ë°˜í™˜
      */
     public int[] getNumbersAsArray() {
         int[] numbers = {num1, num2, num3, num4, num5, num6};
@@ -219,7 +219,7 @@ public class SavedLottoNumber {
     }
     
     /**
-     * µÎ ÀúÀåµÈ ·Î¶Ç ¹øÈ£°¡ µ¿ÀÏÇÑ ¹øÈ£ Á¶ÇÕÀÎÁö È®ÀÎ
+     * ë‘ ì €ì¥ëœ ë¡œë˜ ë²ˆí˜¸ê°€ ë™ì¼í•œ ë²ˆí˜¸ ì¡°í•©ì¸ì§€ í™•ì¸
      */
     public boolean isSameNumbers(SavedLottoNumber other) {
         int[] thisNumbers = this.getNumbersAsArray();

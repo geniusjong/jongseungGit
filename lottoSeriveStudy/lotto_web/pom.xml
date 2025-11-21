@@ -16,7 +16,7 @@
     <artifactId>lotto-web</artifactId>
     <version>1.0.0</version>
     <name>Lotto Web Application</name>
-    <description>æ¿¡ì’•ì‚‰ ?ìŽ’ ?ë¸·?ëµ†ç”±ÑŠ???ì” ?ë€¡ - Spring Boot</description>
+    <description>æ¿¡ì’•?‚‰ ??Ž’ ?ë¸??ëµ†ç”±??????” ???? - Spring Boot</description>
     <packaging>jar</packaging>
 
     <properties>
@@ -27,19 +27,19 @@
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Web Starter (?ê½Œé‡‰ë¶¾â”¸ ?ë£·?ë¸¿) -->
+        <!-- Spring Boot Web Starter (?ê½Œé‡‰ë¶¾â”¸ ?ë£??ë¸?) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Spring Boot Thymeleaf (?ë€¥?ëµ†ç”±? ?ë¿ï§ž?) -->
+        <!-- Spring Boot Thymeleaf (?????ëµ†ç”±? ?ë¿ï§ž?) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
 
-        <!-- Spring Boot JDBC (?ëœ²?ì” ?ê½£è¸°ì¢Žì” ?ë’ª ?ë¿°å¯ƒ?) -->
+        <!-- Spring Boot JDBC (??œ²??” ?ê½£è¸°ì¢Žì” ??’ª ?ë¿°å¯ƒ?) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-jdbc</artifactId>
@@ -51,19 +51,19 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!-- Spring Boot Security (?ì”¤ï§?/?ì”¤åª›?) -->
+        <!-- Spring Boot Security (??”¤ï§??/??”¤åª??) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
 
-        <!-- Thymeleaf Security (?ë€¥?ëµ†ç”±ìš°ë¿‰?ê½Œ ?ì”¤ï§? ?ì ™è¹‚? ?ê¶—?ìŠœ) -->
+        <!-- Thymeleaf Security (?????ëµ†ç”±?š°ë¿??ê½? ??”¤ï§?? ?? ™è¹?? ?ê¶???Šœ) -->
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
         </dependency>
 
-        <!-- Spring Boot Mail (?ì” ï§Žë¶¿ì”ª è«›ì’–ë„š) -->
+        <!-- Spring Boot Mail (??” ï§Žë¶¿?”ª è«›ì’–?„š) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
@@ -76,7 +76,7 @@
             <version>3.3.2</version>
         </dependency>
 
-        <!-- Spring Boot DevTools (åª›ì’•ì»» ?ë ª?ì“½) -->
+        <!-- Spring Boot DevTools (åª›ì’•ì»? ?? ª??“½) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
@@ -91,11 +91,18 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- H2 Database (í…ŒìŠ¤íŠ¸ìš© ì¸ë©”ëª¨ë¦¬ DB) -->
+        <!-- H2 Database (?…Œ?Š¤?Š¸?š© ?¸ë©”ëª¨ë¦? DB) -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>test</scope>
+        </dependency>
+
+        <!-- SpringDoc OpenAPI (Swagger UI) -->
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-ui</artifactId>
+            <version>1.7.0</version>
         </dependency>
     </dependencies>
 
@@ -107,7 +114,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
             
-            <!-- Maven Resources Plugin (?ì”¤è‚„ë¶¾ëµ« ?ê½•?ì ™) -->
+            <!-- Maven Resources Plugin (??”¤?‚„ë¶¾ëµ« ?ê½??? ™) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -117,7 +124,7 @@
                 </configuration>
             </plugin>
             
-            <!-- JaCoCo Plugin (í…ŒìŠ¤íŠ¸ ì»¤ë²„ë¦¬ì§€ ì¸¡ì •) -->
+            <!-- JaCoCo Plugin (?…Œ?Š¤?Š¸ ì»¤ë²„ë¦¬ì?? ì¸¡ì •) -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -159,7 +166,7 @@
                 </executions>
             </plugin>
             
-            <!-- Maven Surefire Plugin (í…ŒìŠ¤íŠ¸ ì‹¤í–‰) -->
+            <!-- Maven Surefire Plugin (?…Œ?Š¤?Š¸ ?‹¤?–‰) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -172,7 +179,7 @@
                 </configuration>
             </plugin>
             
-            <!-- Checkstyle Plugin (ì½”ë“œ í’ˆì§ˆ ê²€ì‚¬) -->
+            <!-- Checkstyle Plugin (ì½”ë“œ ?’ˆì§? ê²??‚¬) -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-checkstyle-plugin</artifactId>
@@ -196,7 +203,7 @@
                     </sourceDirectories>
                 </configuration>
                 <executions>
-                    <!-- CI/CDì—ì„œë§Œ ì‹¤í–‰, ë¹Œë“œ ì‹¤íŒ¨í•˜ì§€ ì•ŠìŒ -->
+                    <!-- CI/CD?—?„œë§? ?‹¤?–‰, ë¹Œë“œ ?‹¤?Œ¨?•˜ì§? ?•Š?Œ -->
                 </executions>
             </plugin>
         </plugins>

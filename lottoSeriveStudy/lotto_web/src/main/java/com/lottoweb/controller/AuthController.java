@@ -26,12 +26,12 @@ public class AuthController {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    private final EmailService emailService;
+    private final Optional<EmailService> emailService;
     private final EmailVerificationTokenRepository tokenRepository;
 
     @Autowired
     public AuthController(UserRepository userRepository, PasswordEncoder passwordEncoder,
-                         EmailService emailService, EmailVerificationTokenRepository tokenRepository) {
+                         Optional<EmailService> emailService, EmailVerificationTokenRepository tokenRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.emailService = emailService;
@@ -65,7 +65,7 @@ public class AuthController {
             @RequestParam String email,
             Model model) {
 
-        // 사용자명 검사
+        // 사용자명 검증
         if (username == null || username.trim().isEmpty()) {
             model.addAttribute("error", "사용자명을 입력해주세요.");
             return "auth/register";
@@ -76,13 +76,13 @@ public class AuthController {
             return "auth/register";
         }
 
-        // 이메일 형식 검사
+        // 이메일 형식 검증
         if (email == null || email.trim().isEmpty()) {
             model.addAttribute("error", "이메일을 입력해주세요.");
             return "auth/register";
         }
 
-        // 이메일 형식 검사 (간단한 형식 검사)
+        // 이메일 형식 검증 (간단한 형식 검증)
         if (!email.contains("@") || !email.contains(".")) {
             model.addAttribute("error", "올바른 이메일 형식을 입력해주세요.");
             return "auth/register";
@@ -104,7 +104,7 @@ public class AuthController {
             // 비밀번호 암호화
             String encodedPassword = passwordEncoder.encode(password);
 
-            // 새 사용자 생성 (이메일 인증 전이므로 enabled = false)
+            // 새 사용자 생성 (이메일 인증 전까지는 enabled = false)
             User newUser = new User();
             newUser.setUsername(username.trim());
             newUser.setPassword(encodedPassword);
@@ -117,7 +117,7 @@ public class AuthController {
 
             // 이메일 인증 토큰 생성
             String token = UUID.randomUUID().toString();
-            LocalDateTime expiryDate = LocalDateTime.now().plusHours(24); // 24시간 유효
+            LocalDateTime expiryDate = LocalDateTime.now().plusHours(24); // 24시간 동안 유효
             
             EmailVerificationToken verificationToken = new EmailVerificationToken(
                 token, savedUser.getId(), expiryDate
@@ -125,18 +125,20 @@ public class AuthController {
             tokenRepository.save(verificationToken);
 
             // 이메일 인증 메일 발송
-            try {
-                emailService.sendVerificationEmail(
-                    savedUser.getEmail(),
-                    savedUser.getUsername(),
-                    token
-                );
-            } catch (javax.mail.MessagingException e) {
-                // 이메일 발송 실패 시에도 사용자는 저장됨 (나중에 재발송 가능)
-                // 로그는 출력하되 사용자에게는 성공 메시지 표시
-                System.err.println("이메일 발송 실패: " + e.getMessage());
-                e.printStackTrace();
-            }
+            emailService.ifPresent(service -> {
+                try {
+                    service.sendVerificationEmail(
+                        savedUser.getEmail(),
+                        savedUser.getUsername(),
+                        token
+                    );
+                } catch (javax.mail.MessagingException e) {
+                    // 이메일 발송 실패 시에도 사용자는 저장됨 (나중에 재발송 가능)
+                    // 로그는 출력하되 사용자에게는 성공 메시지 표시
+                    System.err.println("이메일 발송 실패: " + e.getMessage());
+                    e.printStackTrace();
+                }
+            });
 
             // 회원가입 성공 - 이메일 인증 안내 페이지로 리다이렉트
             return "redirect:/register-success?email=" + savedUser.getEmail();

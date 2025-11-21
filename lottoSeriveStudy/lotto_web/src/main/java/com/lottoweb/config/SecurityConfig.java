@@ -57,6 +57,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 
                 // URL별 접근 권한 설정
                 .authorizeRequests()
+                    // Swagger UI 및 API 문서 접근 허용
+                    .antMatchers("/swagger-ui/**", "/swagger-ui.html", "/v3/api-docs/**", "/swagger-resources/**").permitAll()
                     // 로그인 없이 접근 가능한 페이지 및 정적 리소스
                     .antMatchers("/login", "/register", "/register-success", "/verify-email", 
                                 "/css/**", "/js/**", "/images/**").permitAll()

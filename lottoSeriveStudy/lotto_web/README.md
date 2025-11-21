@@ -120,6 +120,26 @@ mvn test jacoco:report
 - ? 경계값 테스트: 최소/최대값, null 처리 등
 - ? 보안 테스트: 인증되지 않은 요청, 권한 검사 등
 
+## ? API 문서화 (Swagger/OpenAPI)
+
+### Swagger UI 접속
+애플리케이션 실행 후 다음 URL에서 API 문서를 확인할 수 있습니다:
+
+- **Swagger UI**: http://localhost:8080/swagger-ui.html
+- **API 문서 (JSON)**: http://localhost:8080/v3/api-docs
+
+### 주요 기능
+- **인터랙티브 API 문서**: Swagger UI에서 직접 API를 테스트할 수 있습니다
+- **자동 문서 생성**: 코드의 어노테이션을 기반으로 자동으로 문서가 생성됩니다
+- **요청/응답 예시**: 각 API의 요청 파라미터와 응답 형식을 확인할 수 있습니다
+- **인증 테스트**: 로그인 후 세션 쿠키를 사용하여 인증이 필요한 API를 테스트할 수 있습니다
+
+### 사용 방법
+1. 애플리케이션을 실행합니다 (`mvn spring-boot:run`)
+2. 브라우저에서 `http://localhost:8080/swagger-ui.html` 접속
+3. 원하는 API를 선택하고 "Try it out" 버튼 클릭
+4. 파라미터를 입력하고 "Execute" 버튼 클릭하여 API 테스트
+
 ## ? REST API 문서
 
 ### 로또 번호 추첨
@@ -347,7 +367,7 @@ lotto_web/
 - [ ] 테스트 커버리지 80% 이상 달성
 - [ ] JWT 토큰 기반 인증 추가
 - [ ] Redis를 활용한 세션 관리
-- [ ] API 문서화 (Swagger/OpenAPI)
+- [x] API 문서화 (Swagger/OpenAPI) ?
 - [x] CI/CD 파이프라인 구축 (GitHub Actions) ?
 - [ ] 모니터링 및 로깅 시스템 구축
 
